@@ -16,10 +16,10 @@
     },
     "commands": {
         "showHistory": {
+            "description": "Show browser history",
             "suggested_key": {
-                "default": "Ctrl+."
-            },
-            "description": "Show browser history"
+                "default": "Ctrl+Shift+X"
+            }
         }
     },
     "content_scripts": [
@@ -31,10 +31,5 @@
                 "content.js"
             ]
         }
-    ],
-    "icons": {
-        "16": "icon16.png",
-        "48": "icon48.png",
-        "128": "icon128.png"
-    }
+    ]
 }
