@@ -1,18 +1,15 @@
 {
-    "manifest_version": 2,
     "name": "FillHistory",
-    "version": "1.0",
+    "version": "0.1.0",
     "description": "Displays browser history and fills in the link when selected",
+    "manifest_version": 3,
     "permissions": [
         "history",
         "tabs",
         "activeTab"
     ],
     "background": {
-        "scripts": [
-            "background.js"
-        ],
-        "persistent": false
+        "service_worker": "background.js"
     },
     "commands": {
         "showHistory": {
