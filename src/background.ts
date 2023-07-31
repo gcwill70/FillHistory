@@ -1,16 +1,11 @@
-// Listener for keyboard events
 chrome.commands.onCommand.addListener(function (command) {
-    if (command === "showHistory") {
-        chrome.tabs.executeScript({ file: "content.js" });
-    }
+    console.log(`background command: ${command}`);
 });
 
-// Listener for message from content script
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.type === "getHistory") {
-        chrome.history.search({ text: "", maxResults: 10 }, function (historyItems) {
-            sendResponse({ type: "historyResults", data: historyItems });
-        });
-        return true; // Enable asynchronous response
+chrome.runtime.onMessage.addListener(async function (message, sender, sendResponse) {
+    console.log(`background message: ${message}`);
+    if (message.type === "getHistory") {
+        const results = await chrome.history.search({ text: message.text, maxResults: 10 });
+        chrome.runtime.sendMessage({ type: "showHistory", data: results });
     }
 });

@@ -2,15 +2,16 @@
   "name": "fill-history",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "build": "webpack --config webpack/webpack.config.js"
+    "build": "webpack --config webpack/webpack.config.js",
+    "dev": "webpack --config webpack/webpack.config.js --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/chrome": "^0.0.241",
+    "@types/chrome": "^0.0.242",
     "copy-webpack-plugin": "^11.0.0",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
