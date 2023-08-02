@@ -1,21 +1,31 @@
-// Listener for keyboard events
-document.addEventListener("keydown", function (event) {
-    if (event.target.nodeName === "INPUT" || event.target.nodeName === "TEXTAREA") {
-        if (event.key === "." && event.ctrlKey) {
-            event.preventDefault();
-            chrome.runtime.sendMessage({ type: "getHistory" }, function (response) {
-                if (response.type === "historyResults") {
-                    createHistoryWindow(response.data);
-                }
-            });
-        }
+chrome.runtime.onMessage.addListener(async function (
+  message,
+  sender,
+  sendResponse
+) {
+  console.log(`foreground message: ${message}`);
+  if (message.type === "showHistory") {
+    const activeElement = document.activeElement ?? new Element();
+    if (
+      activeElement.tagName === "INPUT" ||
+      activeElement.tagName === "TEXTAREA"
+    ) {
+      const results = chrome.runtime.sendMessage({
+        type: "getHistory",
+        text: "",
+      });
     }
+  } else if (message.type === "historyResults") {
+    createHistoryWindow(message.results);
+  }
 });
 
-// Create and populate the history window
-function createHistoryWindow(historyItems) {
-    const overlay = document.createElement("div");
-    overlay.style.cssText = `
+function createHistoryWindow(historyItems: chrome.history.HistoryItem[]) {
+  console.log(`createHistoryWindow: ${historyItems}`);
+  const overlay =
+    document.getElementById("history-window") ?? document.createElement("div");
+  overlay.setAttribute("id", "history-window");
+  overlay.style.cssText = `
       position: fixed;
       top: 0;
       left: 0;
@@ -25,8 +35,8 @@ function createHistoryWindow(historyItems) {
       z-index: 9999;
     `;
 
-    const window = document.createElement("div");
-    window.style.cssText = `
+  const window = document.createElement("div");
+  window.style.cssText = `
       position: absolute;
       top: 50%;
       left: 50%;
@@ -39,73 +49,83 @@ function createHistoryWindow(historyItems) {
       overflow-y: auto;
     `;
 
-    const searchInput = document.createElement("input");
-    searchInput.type = "text";
-    searchInput.placeholder = "Search history";
-    searchInput.style.cssText = `
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      box-sizing: border-box;
-    `;
+  // const searchInput = document.createElement("input");
+  // searchInput.type = "text";
+  // searchInput.placeholder = "Search history";
+  // searchInput.style.cssText = `
+  //   width: 100%;
+  //   padding: 10px;
+  //   margin-bottom: 10px;
+  //   box-sizing: border-box;
+  // `;
+  // searchInput.onsubmit = function (event) {
+  //     chrome.runtime.sendMessage({ type: "getHistory", text: event.submitter?.textContent });
+  //     closeHistoryWindow();
+  // }
 
-    const resultsList = document.createElement("ul");
-    resultsList.style.cssText = `
+  const resultsList = document.createElement("ul");
+  resultsList.style.cssText = `
       list-style: none;
       padding: 0;
       margin: 0;
     `;
 
-    for (const historyItem of historyItems) {
-        const listItem = document.createElement("li");
-        listItem.textContent = historyItem.title;
-        listItem.style.cssText = `
-        padding: 5px;
-        cursor: pointer;
-        background-color: #f5f5f5;
-        margin-bottom: 5px;
-        border-radius: 3px;
-      `;
+  for (let i = 0; i < historyItems.length; ++i) {
+    try {
+      const content = historyItems[i].title ?? historyItems[i].url!;
+      const listItem = document.createElement("li");
+      listItem.textContent = content;
+      listItem.style.cssText = `
+            padding: 5px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            margin-bottom: 5px;
+            border-radius: 3px;`;
 
-        listItem.addEventListener("click", function () {
-            const link = document.activeElement.value || document.activeElement.textContent;
-            fillTextField(link);
-            closeHistoryWindow();
-        });
-
-        resultsList.appendChild(listItem);
+      listItem.addEventListener("click", function (ev) {
+        const link = document.activeElement?.textContent;
+        console.log(link);
+        // if (link) {
+        //     closeHistoryWindow();
+        //     fillTextField(link);
+        // }
+      });
+      resultsList.appendChild(listItem);
+    } catch (e) {
+      console.log(e);
     }
+  }
 
-    window.appendChild(searchInput);
-    window.appendChild(resultsList);
-    overlay.appendChild(window);
-    document.body.appendChild(overlay);
+  // window.appendChild(searchInput);
+  window.appendChild(resultsList);
+  overlay.appendChild(window);
+  document.body.appendChild(overlay);
 
-    // Focus on search input
-    searchInput.focus();
+  // Focus on search input
+  // searchInput.focus();
 
-    // Close the history window when clicking outside
-    overlay.addEventListener("click", function (event) {
-        if (event.target === overlay) {
-            closeHistoryWindow();
-        }
-    });
-
-    // Close the history window when pressing Esc key
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            closeHistoryWindow();
-        }
-    });
-
-    function closeHistoryWindow() {
-        overlay.remove();
+  // Close the history window when clicking outside
+  overlay.addEventListener("click", function (event) {
+    if (event.target === overlay) {
+      closeHistoryWindow();
     }
+  });
 
-    function fillTextField(link) {
-        const activeElement = document.activeElement;
-        if (activeElement.nodeName === "INPUT" || activeElement.nodeName === "TEXTAREA") {
-            activeElement.value = link;
-        }
+  // Close the history window when pressing Esc key
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeHistoryWindow();
     }
+  });
+
+  async function closeHistoryWindow() {
+    overlay.remove();
+  }
+
+  // async function fillTextField(link) {
+  //     const activeElement = document.activeElement;
+  //     if (activeElement.nodeName === "INPUT" || activeElement.nodeName === "TEXTAREA") {
+  //         activeElement.value = link;
+  //     }
+  // }
 }
