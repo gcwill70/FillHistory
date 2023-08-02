@@ -3,25 +3,14 @@ chrome.runtime.onMessage.addListener(async function (
   sender,
   sendResponse
 ) {
-  console.log(`foreground message: ${message}`);
-  if (message.type === "showHistory") {
-    const activeElement = document.activeElement ?? new Element();
-    if (
-      activeElement.tagName === "INPUT" ||
-      activeElement.tagName === "TEXTAREA"
-    ) {
-      const results = chrome.runtime.sendMessage({
-        type: "getHistory",
-        text: "",
-      });
-    }
-  } else if (message.type === "historyResults") {
+  if (message.type === "historyResults") {
     createHistoryWindow(message.results);
   }
 });
 
 function createHistoryWindow(historyItems: chrome.history.HistoryItem[]) {
-  console.log(`createHistoryWindow: ${historyItems}`);
+  console.log(`createHistoryWindow`);
+  const activeElement = document.activeElement!;
   const overlay =
     document.getElementById("history-window") ?? document.createElement("div");
   overlay.setAttribute("id", "history-window");
@@ -59,9 +48,12 @@ function createHistoryWindow(historyItems: chrome.history.HistoryItem[]) {
   //   box-sizing: border-box;
   // `;
   // searchInput.onsubmit = function (event) {
-  //     chrome.runtime.sendMessage({ type: "getHistory", text: event.submitter?.textContent });
-  //     closeHistoryWindow();
-  // }
+  //   chrome.runtime.sendMessage({
+  //     type: "getHistory",
+  //     text: event.submitter?.textContent,
+  //   });
+  //   closeHistoryWindow();
+  // };
 
   const resultsList = document.createElement("ul");
   resultsList.style.cssText = `
@@ -72,7 +64,7 @@ function createHistoryWindow(historyItems: chrome.history.HistoryItem[]) {
 
   for (let i = 0; i < historyItems.length; ++i) {
     try {
-      const content = historyItems[i].title ?? historyItems[i].url!;
+      const content = historyItems[i].url!;
       const listItem = document.createElement("li");
       listItem.textContent = content;
       listItem.style.cssText = `
@@ -83,12 +75,8 @@ function createHistoryWindow(historyItems: chrome.history.HistoryItem[]) {
             border-radius: 3px;`;
 
       listItem.addEventListener("click", function (ev) {
-        const link = document.activeElement?.textContent;
-        console.log(link);
-        // if (link) {
-        //     closeHistoryWindow();
-        //     fillTextField(link);
-        // }
+        closeHistoryWindow();
+        fillTextField(content);
       });
       resultsList.appendChild(listItem);
     } catch (e) {
@@ -118,14 +106,15 @@ function createHistoryWindow(historyItems: chrome.history.HistoryItem[]) {
     }
   });
 
-  async function closeHistoryWindow() {
+  function closeHistoryWindow() {
     overlay.remove();
   }
 
-  // async function fillTextField(link) {
-  //     const activeElement = document.activeElement;
-  //     if (activeElement.nodeName === "INPUT" || activeElement.nodeName === "TEXTAREA") {
-  //         activeElement.value = link;
-  //     }
-  // }
+  function fillTextField(link: string) {
+    if (activeElement.nodeName === "INPUT") {
+      (activeElement as HTMLInputElement).value = link;
+    } else if (activeElement.nodeName === "TEXTAREA") {
+      (activeElement as HTMLTextAreaElement).value = link;
+    }
+  }
 }
