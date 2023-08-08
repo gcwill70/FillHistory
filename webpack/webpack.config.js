@@ -4,7 +4,7 @@ module.exports = {
   mode: "development",
   devtool: "inline-source-map",
   entry: {
-    content: [path.resolve(__dirname, "..", "src", "core", "content.ts")],
+    content: [path.resolve(__dirname, "..", "src", "core", "content.tsx")],
     background: path.resolve(__dirname, "..", "src", "core", "background.ts"),
   },
   output: {
@@ -13,7 +13,7 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
   module: {
     rules: [
@@ -29,4 +29,7 @@ module.exports = {
       patterns: [{ from: ".", to: ".", context: "public" }],
     }),
   ],
+  optimization: {
+    minimize: false,
+  },
 };
