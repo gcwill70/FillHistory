@@ -56,7 +56,7 @@ export default function HistoryView(props: {
             return (
               <li
                 style={listItemStyle}
-                id={`results-list-${i}`}
+                key={`results-list-${i}`}
                 onClick={() => props.onClick(item)}
               >
                 {item.url}
