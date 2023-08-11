@@ -4,7 +4,7 @@ module.exports = {
   mode: "development",
   devtool: "inline-source-map",
   entry: {
-    content: [path.resolve(__dirname, "src/extension/content/index.tsx")],
+    content: [path.resolve(__dirname, "src/extension/content/index.ts")],
     background: path.resolve(__dirname, "src/extension/background/index.ts"),
   },
   output: {

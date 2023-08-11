@@ -2,6 +2,7 @@ import { Store } from "webext-redux";
 import { subscribeListeners } from "./listeners";
 
 export * from "./listeners";
+export * from "./App";
 
 (async () => {
   const store = new Store();
