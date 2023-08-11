@@ -13,7 +13,7 @@ export * from "./persist-state";
   wrapStore(store);
 
   store.subscribe(() => {
-    saveState(store.getState());
+    saveState();
   });
 
   subscribeListeners(store);

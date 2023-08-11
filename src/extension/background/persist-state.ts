@@ -1,6 +1,7 @@
 import { RootState } from "../../core/store";
 
-export async function saveState(state: RootState) {
+export async function saveState() {
+  const state = getState();
   if (!state) {
     return;
   }

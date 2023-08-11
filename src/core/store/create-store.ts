@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { RootAction, rootReducer, RootState } from "./root-reducer";
+import { historyCommandController } from "../controllers";
+import { RootAction, RootState, rootReducer } from "./root-reducer";
 
 export function createStore(
   preloadedState: RootState = rootReducer(undefined, { type: "init" })
@@ -7,11 +8,16 @@ export function createStore(
   const store = configureStore<RootState, RootAction>({
     reducer: rootReducer,
     preloadedState,
+    middleware: [historyCommandController],
   });
 
   store.dispatch({
     type: "init/start",
   });
+  store.dispatch({
+    type: "init/done",
+  });
+
   return store;
 }
 
