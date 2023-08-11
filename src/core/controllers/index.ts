@@ -1,1 +1,1 @@
-export * from "./history-command-controller";
+export * from "./history-controller";
