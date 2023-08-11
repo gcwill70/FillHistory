@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../core";
 import { HistoryItem } from "./model/history_item";
 
 const overlayStyle: React.CSSProperties = {
@@ -38,26 +40,31 @@ const listItemStyle: React.CSSProperties = {
   borderRadius: "3px",
 };
 
-export default function HistoryView(props: {
-  items: HistoryItem[];
-  onClick: (item: HistoryItem) => void;
-}) {
-  // const { getItems, items } = useViewModel();
-
-  // useEffect(() => {
-  //   getItems({ text: "" });
-  // }, []);
+export default function HistoryView() {
+  const { items } = useSelector((state: RootState) => state.history);
+  const { id } = useSelector((state: RootState) => state.activeElement);
 
   return (
     <div id="history-window" style={overlayStyle}>
       <div id="window" style={windowStyle}>
         <ul id="results-list" style={resultsListStyle}>
-          {props.items.map((item: HistoryItem, i: number) => {
+          {items.map((item: HistoryItem, i: number) => {
             return (
               <li
                 style={listItemStyle}
                 key={`results-list-${i}`}
-                onClick={() => props.onClick(item)}
+                onClick={() => {
+                  if (id) {
+                    let activeElement = document.getElementById(
+                      id
+                    ) as HTMLElement;
+                    if (activeElement.nodeName === "INPUT") {
+                      (activeElement as HTMLInputElement).value = item.url!;
+                    } else if (activeElement.nodeName === "TEXTAREA") {
+                      (activeElement as HTMLTextAreaElement).value = item.url!;
+                    }
+                  }
+                }}
               >
                 {item.url}
               </li>
