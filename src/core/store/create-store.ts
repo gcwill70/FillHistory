@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { historyController } from "../controllers";
+import historyController from "../controllers/history-controller";
 import { RootAction, RootState, rootReducer } from "./root-reducer";
 
 export function createStore(
@@ -8,7 +8,7 @@ export function createStore(
   const store = configureStore<RootState, RootAction>({
     reducer: rootReducer,
     preloadedState,
-    middleware: [historyController],
+    middleware: [historyController.middleware],
   });
 
   store.dispatch({
