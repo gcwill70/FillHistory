@@ -8,7 +8,7 @@ module.exports = {
     background: path.resolve(__dirname, "src/extension/background/index.ts"),
   },
   output: {
-    path: path.join(__dirname, "../dist"),
+    path: path.join(__dirname, "./dist"),
     filename: "[name].js",
     clean: true,
   },
