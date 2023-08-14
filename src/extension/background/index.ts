@@ -7,14 +7,14 @@ export * from "./listeners";
 export * from "./persist-state";
 
 (async () => {
-  const state = await getState();
+  const state = undefined; //await getState();
   const store = createStore(state);
 
   wrapStore(store);
 
-  store.subscribe(() => {
-    saveState();
-  });
+  // store.subscribe(() => {
+  //   saveState();
+  // });
 
   subscribeListeners(store);
 })();
