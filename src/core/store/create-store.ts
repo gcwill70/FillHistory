@@ -1,6 +1,6 @@
 import { Middleware, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
-import historyController from "../controllers/history-controller";
+import historyController from "../../history/history-controller";
 import { RootAction, RootState, rootReducer } from "./root-reducer";
 
 export function createStore(
