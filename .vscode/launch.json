@@ -17,7 +17,8 @@
         "--load-extension=${webRoot}",
         "--reload-extension=${webRoot}",
         "--auto-open-devtools-for-tabs"
-      ]
+      ],
+      "resolveSourceMapLocations": ["${webRoot}", "!**/node_modules/**"]
     }
   ]
 }
