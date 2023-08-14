@@ -1,14 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { Middleware, configureStore } from "@reduxjs/toolkit";
+import logger from "redux-logger";
 import historyController from "../controllers/history-controller";
 import { RootAction, RootState, rootReducer } from "./root-reducer";
 
 export function createStore(
   preloadedState: RootState = rootReducer(undefined, { type: "init" })
 ) {
-  const store = configureStore<RootState, RootAction>({
+  const store = configureStore<RootState, RootAction, Middleware[]>({
     reducer: rootReducer,
-    preloadedState,
-    middleware: [historyController.middleware],
+    middleware: (def) => def().concat(logger, historyController.middleware),
+    preloadedState: preloadedState,
   });
 
   store.dispatch({
