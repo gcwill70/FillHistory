@@ -1,6 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import HistoryApiChrome from "../../history/api/history_api_chrome";
-import { historySlice } from "../store/slices/history-slice";
+import HistoryApiChrome from "./api/history_api_chrome";
+import { historySlice } from "../core/store/slices/history-slice";
 
 const historyController = createListenerMiddleware();
 
