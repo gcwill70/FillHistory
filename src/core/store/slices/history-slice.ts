@@ -4,11 +4,13 @@ import { HistoryItem, HistoryQuery } from "../../../history";
 export type IHistoryState = {
   items: HistoryItem[];
   status: "idle" | "loading" | "error";
+  window: { show: boolean };
 };
 
 const initialHistoryState: IHistoryState = {
   items: [],
   status: "idle",
+  window: { show: false },
 };
 
 export const historySlice = createSlice({
@@ -24,6 +26,15 @@ export const historySlice = createSlice({
     },
     queryError: (state) => {
       state.status = "error";
+    },
+    showWindow: (state) => {
+      state.window.show = true;
+    },
+    hideWindow: (state) => {
+      state.window.show = false;
+    },
+    toggleWindow: (state) => {
+      state.window.show = !state.window.show;
     },
   },
 });
