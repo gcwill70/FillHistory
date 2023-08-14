@@ -14,7 +14,9 @@
       "webRoot": "${workspaceFolder}/dist",
       "runtimeArgs": [
         "--remote-debugging-port=9222",
-        "--load-extension=${webRoot}"
+        "--load-extension=${webRoot}",
+        "--reload-extension=${webRoot}",
+        "--auto-open-devtools-for-tabs"
       ]
     }
   ]
