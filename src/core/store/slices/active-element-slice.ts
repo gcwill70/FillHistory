@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export type IActiveElementState = {
+export type ActiveElementState = {
   id: string | undefined;
 };
 
-const initialActiveElementState: IActiveElementState = {
+const initialActiveElementState: ActiveElementState = {
   id: undefined,
 };
 

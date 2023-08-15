@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type ICommandState = {
+export type CommandState = {
   command: string | undefined;
 };
 
-const initialCommandState: ICommandState = {
+const initialCommandState: CommandState = {
   command: undefined,
 };
 

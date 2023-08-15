@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Tab } from "../../../browser";
 
-export interface ISetTabPayload {
+export interface SetTabPayload {
   tab: Tab;
 }
 
-export interface ITabsState {
+export interface TabsState {
   current: Tab;
 }
 
-const initialTabState: ITabsState = {
+const initialTabState: TabsState = {
   current: {
     id: -1,
   },
@@ -19,7 +19,7 @@ export const tabsSlice = createSlice({
   name: "tabs",
   initialState: initialTabState,
   reducers: {
-    setTab(state, action: PayloadAction<ISetTabPayload>) {
+    setTab(state, action: PayloadAction<SetTabPayload>) {
       state.current = action.payload.tab;
     },
   },
