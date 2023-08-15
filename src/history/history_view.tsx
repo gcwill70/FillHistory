@@ -21,6 +21,9 @@ const listItemStyle: React.CSSProperties = {
   backgroundColor: "#f5f5f5",
   marginBottom: "5px",
   borderRadius: "3px",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
 };
 
 export default function HistoryView() {
