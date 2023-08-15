@@ -1,11 +1,11 @@
 import { Middleware, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import historyController from "../../history/history-controller";
+import deinitDoneController from "../../lifecycle/deinit-done-controller";
+import initDoneController from "../../lifecycle/init-done-controller";
+import initloadHistoryController from "../../lifecycle/init-loadhistory-controller";
 import { RootAction, RootState, rootReducer } from "./root-reducer";
 import { lifecycleSlice } from "./slices";
-import initDoneController from "../../lifecycle/init-done-controller";
-import deinitDoneController from "../../lifecycle/deinit-done-controller";
-import initReloadController from "../../lifecycle/init-reload-controller";
 
 export function createStore(
   preloadedState: RootState = rootReducer(undefined, { type: "lifecycle" })
@@ -17,6 +17,7 @@ export function createStore(
       def().concat(
         logger,
         initDoneController.middleware,
+        initloadHistoryController.middleware,
         deinitDoneController.middleware,
         historyController.middleware
       ),

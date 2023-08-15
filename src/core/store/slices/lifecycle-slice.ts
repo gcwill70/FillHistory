@@ -5,7 +5,7 @@ export type LifecycleStatus = "initial" | "loading" | "done" | "error";
 export type LifecycleState = {
   init: {
     status: LifecycleStatus;
-    dependencies: { reload: LifecycleStatus };
+    dependencies: { loadHistory: LifecycleStatus };
   };
   deinit: {
     status: LifecycleStatus;
@@ -17,7 +17,7 @@ const initialLifecycleState: LifecycleState = {
   init: {
     status: "initial",
     dependencies: {
-      reload: "done", // disable reloading on startup
+      loadHistory: "initial",
     },
   },
   deinit: {
@@ -30,12 +30,14 @@ export const lifecycleSlice = createSlice({
   name: "lifecycle",
   initialState: initialLifecycleState,
   reducers: {
-    initStart() {},
-    initReloading(state) {
-      state.init.dependencies.reload = "loading";
+    initStart(state) {
+      state.init.status = "loading";
     },
-    initReloaded(state) {
-      state.init.dependencies.reload = "done";
+    initHistoryLoading(state) {
+      state.init.dependencies.loadHistory = "loading";
+    },
+    initHistoryLoaded(state) {
+      state.init.dependencies.loadHistory = "done";
     },
     initDone(state) {
       state.init.status = "done";

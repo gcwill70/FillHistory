@@ -7,10 +7,14 @@ initDoneController.startListening({
   predicate: (action) => action.type.startsWith("lifecycle/init"),
   effect: async (action, api) => {
     const state: RootState = api.getState();
-    if (
-      Object.values(state.lifecycle.init).every((value) => value === "done")
-    ) {
-      api.dispatch(lifecycleSlice.actions.initDone());
+    if (state.lifecycle.init.status !== "done") {
+      if (
+        Object.values(state.lifecycle.init.dependencies).every(
+          (value) => value === "done"
+        )
+      ) {
+        api.dispatch(lifecycleSlice.actions.initDone());
+      }
     }
   },
 });
