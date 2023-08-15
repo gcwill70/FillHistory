@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../core";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, historySlice } from "../core";
 import { HistoryItem } from "./model/history_item";
 
 const resultsListStyle: React.CSSProperties = {
@@ -18,6 +18,7 @@ const listItemStyle: React.CSSProperties = {
 };
 
 export default function HistoryView() {
+  const dispatch = useDispatch();
   const { items } = useSelector((state: RootState) => state.history);
   const { id } = useSelector((state: RootState) => state.activeElement);
 
@@ -37,6 +38,7 @@ export default function HistoryView() {
                   (activeElement as HTMLTextAreaElement).value = item.url!;
                 }
               }
+              dispatch(historySlice.actions.hideWindow());
             }}
           >
             {item.url}
