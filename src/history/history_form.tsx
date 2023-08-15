@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { historySlice } from "../core/store/slices/history-slice";
+import { RootState } from "../core";
 
 const formStyle: React.CSSProperties = {
   flex: "0 0 auto",
@@ -9,6 +10,15 @@ const formStyle: React.CSSProperties = {
 export default function HistoryForm() {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
+  const showWindow = useSelector(
+    (state: RootState) => state.history.window.show
+  );
+  useEffect(() => {
+    const inputElement = document.getElementById("history-form-input");
+    if (showWindow && inputElement) {
+      inputElement.focus();
+    }
+  }, [showWindow]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
