@@ -1,20 +1,26 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import { ActionType, EmptyAction } from "typesafe-actions";
-import { activeElementSlice, commandSlice, tabsSlice } from "./slices";
-import { historySlice } from "./slices/history-slice";
+import { AnyAction, combineReducers } from "@reduxjs/toolkit";
+import { ActionType } from "typesafe-actions";
+import {
+  activeElementSlice,
+  commandSlice,
+  historySlice,
+  lifecycleSlice,
+  tabsSlice,
+} from "./slices";
 
 export const rootReducer = combineReducers({
-  command: commandSlice.reducer,
-  tabs: tabsSlice.reducer,
-  history: historySlice.reducer,
   activeElement: activeElementSlice.reducer,
+  command: commandSlice.reducer,
+  history: historySlice.reducer,
+  lifecycle: lifecycleSlice.reducer,
+  tabs: tabsSlice.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type RootAction =
-  | EmptyAction<"init/start">
-  | EmptyAction<"init/done">
-  | ActionType<typeof tabsSlice.actions>
+  | AnyAction
+  | ActionType<typeof activeElementSlice.actions>
   | ActionType<typeof commandSlice.actions>
   | ActionType<typeof historySlice.actions>
-  | ActionType<typeof activeElementSlice.actions>;
+  | ActionType<typeof lifecycleSlice.actions>
+  | ActionType<typeof tabsSlice.actions>;
