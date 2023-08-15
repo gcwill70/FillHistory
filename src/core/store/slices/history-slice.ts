@@ -1,13 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { HistoryItem, HistoryQuery } from "../../../history";
 
-export type IHistoryState = {
+export type HistoryState = {
   items: HistoryItem[];
   status: "idle" | "loading" | "error";
   window: { show: boolean };
 };
 
-const initialHistoryState: IHistoryState = {
+const initialHistoryState: HistoryState = {
   items: [],
   status: "idle",
   window: { show: false },
