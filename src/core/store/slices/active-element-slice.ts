@@ -12,7 +12,7 @@ export const activeElementSlice = createSlice({
   name: "activeElement",
   initialState: initialActiveElementState,
   reducers: {
-    onChange: (state, action: PayloadAction<string>) => {
+    onChange(state, action: PayloadAction<string>) {
       state.id = action.payload;
     },
   },
