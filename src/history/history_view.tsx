@@ -7,6 +7,7 @@ const resultsListStyle: React.CSSProperties = {
   listStyle: "none",
   padding: "0",
   margin: "0",
+  flex: "1 1 auto",
 };
 
 const listItemStyle: React.CSSProperties = {

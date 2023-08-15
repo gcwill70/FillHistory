@@ -22,8 +22,14 @@ const windowStyle: React.CSSProperties = {
   padding: "20px",
   borderRadius: "5px",
   width: "400px",
-  maxHeight: "400px",
+  height: "600px",
   overflowY: "auto",
+};
+
+const containerStyle: React.CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  height: "100%",
 };
 
 export default function HistoryWindow() {
@@ -33,8 +39,10 @@ export default function HistoryWindow() {
       {show && (
         <div style={overlayStyle}>
           <div style={windowStyle}>
-            <HistoryForm />
-            <HistoryView />
+            <div style={containerStyle}>
+              <HistoryForm />
+              <HistoryView />
+            </div>
           </div>
         </div>
       )}

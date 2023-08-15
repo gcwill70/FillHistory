@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { historySlice } from "../core/store/slices/history-slice";
 
+const formStyle: React.CSSProperties = {
+  flex: "0 0 auto",
+};
+
 export default function HistoryForm() {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
@@ -12,7 +16,7 @@ export default function HistoryForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form style={formStyle} onSubmit={handleSubmit}>
       <input
         id="history-form-input"
         type="text"
