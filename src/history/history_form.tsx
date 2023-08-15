@@ -14,6 +14,7 @@ export default function HistoryForm() {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        id="history-form-input"
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
