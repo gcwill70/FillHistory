@@ -1,10 +1,19 @@
+import { throttle } from "@github/mini-throttle";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { historySlice } from "../core/store/slices/history-slice";
 import { RootState } from "../core";
 
-const formStyle: React.CSSProperties = {
-  flex: "0 0 auto",
+const containerStyle: React.CSSProperties = {
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+};
+
+const inputStyle: React.CSSProperties = {
+  flex: "1",
+  marginRight: "8px",
 };
 
 export default function HistoryForm() {
@@ -20,21 +29,26 @@ export default function HistoryForm() {
     }
   }, [showWindow]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    dispatch(historySlice.actions.queryStart({ text }));
+  const throttledSearch = throttle((queryText: string) => {
+    dispatch(historySlice.actions.queryStart({ text: queryText }));
+  }, 500);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newText = e.target.value;
+    setText(newText);
+    throttledSearch(newText);
   };
 
   return (
-    <form style={formStyle} onSubmit={handleSubmit}>
+    <div style={containerStyle}>
       <input
         id="history-form-input"
         type="text"
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={handleInputChange}
         placeholder="Search history"
+        style={inputStyle}
       />
-      <button type="submit">Search</button>
-    </form>
+    </div>
   );
 }
