@@ -7,6 +7,7 @@ export default function HistoryForm() {
   const [text, setText] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     dispatch(historySlice.actions.queryStart({ text }));
   };
 
