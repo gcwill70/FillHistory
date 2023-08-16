@@ -1,3 +1,5 @@
+https://github.com/gcwill70/fill-history/assets/25019832/9daf5926-575e-4eb8-b831-e1b3ea99cf73
+
 # Features
 * Open/close search window with `Ctrl+Shift+X`
 * Search through history. Results continuously update as you type.
