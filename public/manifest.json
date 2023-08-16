@@ -1,7 +1,7 @@
 {
     "name": "FillHistory",
-    "version": "0.1.0",
-    "description": "Displays browser history and fills in the link when selected",
+    "version": "1.0.0",
+    "description": "Quickly fill in links from browser history.",
     "manifest_version": 3,
     "permissions": [
         "history",
