@@ -1,5 +1,5 @@
 # Features
-* Open/close search window with `Ctrl+Shiift+X`
+* Open/close search window with `Ctrl+Shift+X`
 * Search through history. Results continuously update as you type.
 * URL is inserted into last text box you selected.
 
