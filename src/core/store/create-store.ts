@@ -6,7 +6,7 @@ import initDoneController from "../../lifecycle/init-done-controller";
 import initloadHistoryController from "../../lifecycle/init-loadhistory-controller";
 import { RootAction, RootState, rootReducer } from "./root-reducer";
 import { lifecycleSlice } from "./slices";
-import tabController from "../../browser/tab-controller";
+import tabController from "../../tabs/tab-controller";
 
 export function createStore(
   preloadedState: RootState = rootReducer(undefined, { type: "lifecycle" })
