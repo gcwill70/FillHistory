@@ -1,5 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { historySlice, tabsSlice } from "../core";
+import { tabsSlice } from "../core/store/slices/tabs-slice";
+import { historySlice } from "../core/store/slices/history-slice";
 
 const tabController = createListenerMiddleware();
 
