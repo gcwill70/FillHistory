@@ -1,7 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import HistoryApiChrome from "./api/history_api_chrome";
 import { historySlice } from "../core/store/slices/history-slice";
-import { tabsSlice } from "../core/store/slices/tabs-slice";
+import HistoryApiChrome from "./api/history_api_chrome";
 
 const historyController = createListenerMiddleware();
 
@@ -19,7 +18,7 @@ historyController.startListening({
 });
 
 historyController.startListening({
-  actionCreator: tabsSlice.actions.setTab,
+  actionCreator: historySlice.actions.hideWindow,
   effect: async (action, api) => {
     try {
       const results = await new HistoryApiChrome().search({ text: "" });
@@ -27,13 +26,6 @@ historyController.startListening({
     } catch (e) {
       api.dispatch(historySlice.actions.queryError());
     }
-  },
-});
-
-historyController.startListening({
-  actionCreator: tabsSlice.actions.setTab,
-  effect: async (action, api) => {
-    api.dispatch(historySlice.actions.hideWindow());
   },
 });
 
