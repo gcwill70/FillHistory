@@ -4,6 +4,5 @@
       "fileMatch": ["manifest.json"],
       "url": "http://json.schemastore.org/chrome-manifest"
     }
-  ],
-  "exportall.config.folderListener": ["/src", "/src/browser"]
+  ]
 }
