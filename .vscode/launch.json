@@ -10,7 +10,7 @@
       "request": "launch",
       "internalConsoleOptions": "openOnSessionStart",
       "preLaunchTask": "npm: build",
-      "url": "https://boards.greenhouse.io/mobilecoin/jobs/4063248004",
+      "url": "https://boards.greenhouse.io/github/jobs/5142414",
       "webRoot": "${workspaceFolder}/dist",
       "runtimeArgs": [
         "--remote-debugging-port=9222",
@@ -26,7 +26,7 @@
       "request": "launch",
       "internalConsoleOptions": "openOnSessionStart",
       "preLaunchTask": "npm: prod",
-      "url": "https://boards.greenhouse.io/mobilecoin/jobs/4063248004",
+      "url": "https://boards.greenhouse.io/github/jobs/5142414",
       "webRoot": "${workspaceFolder}/dist",
       "runtimeArgs": [
         "--remote-debugging-port=9222",
