@@ -19,6 +19,21 @@
         "--auto-open-devtools-for-tabs"
       ],
       "resolveSourceMapLocations": ["${webRoot}", "!**/node_modules/**"]
+    },
+    {
+      "name": "Debug: Content Script (Prod)",
+      "type": "chrome",
+      "request": "launch",
+      "internalConsoleOptions": "openOnSessionStart",
+      "preLaunchTask": "npm: prod",
+      "url": "https://boards.greenhouse.io/mobilecoin/jobs/4063248004",
+      "webRoot": "${workspaceFolder}/dist",
+      "runtimeArgs": [
+        "--remote-debugging-port=9222",
+        "--load-extension=${webRoot}",
+        "--reload-extension=${webRoot}"
+      ],
+      "resolveSourceMapLocations": ["${webRoot}", "!**/node_modules/**"]
     }
   ]
 }

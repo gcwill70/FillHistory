@@ -4,8 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "dev": "webpack --config webpack.config.js --watch"
+    "build": "webpack --config build/webpack.dev.config.js",
+    "dev": "webpack --config build/webpack.dev.config.js --watch",
+    "prod": "webpack --config build/webpack.prod.config.js"
   },
   "keywords": [],
   "author": "",

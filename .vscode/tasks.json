@@ -7,7 +7,15 @@
       "script": "build",
       "group": "build",
       "problemMatcher": [],
-      "detail": "webpack --config webpack.config.js"
+      "detail": "webpack --config build/webpack.dev.config.js"
+    },
+    {
+      "label": "npm: prod",
+      "type": "npm",
+      "script": "prod",
+      "group": "build",
+      "problemMatcher": [],
+      "detail": "webpack --config build/webpack.prod.config.js"
     }
   ]
 }
