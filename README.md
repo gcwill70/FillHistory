@@ -66,3 +66,6 @@ export type LifecycleState = {
   };
 };
 ```
+
+# Acknowledgements
+Credit to https://github.com/puemos/browser-extension-template for architecture and structure!
