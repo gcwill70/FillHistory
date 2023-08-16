@@ -7,7 +7,7 @@ export function activeElementListener(store: ReturnType<typeof createStore>) {
       activeElement.nodeName === "INPUT" ||
       activeElement.nodeName === "TEXTAREA"
     ) {
-      if (activeElement.id !== "history-form-input") {
+      if (!store.getState().history.window.show) {
         store.dispatch(activeElementSlice.actions.onChange(activeElement.id));
       }
     }
