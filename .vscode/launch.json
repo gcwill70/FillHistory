@@ -10,7 +10,7 @@
       "request": "launch",
       "internalConsoleOptions": "openOnSessionStart",
       "preLaunchTask": "npm: build",
-      "url": "https://boards.greenhouse.io/github/jobs/5142414",
+      "url": "${input:url}",
       "webRoot": "${workspaceFolder}/dist",
       "runtimeArgs": [
         "--remote-debugging-port=9222",
@@ -26,7 +26,7 @@
       "request": "launch",
       "internalConsoleOptions": "openOnSessionStart",
       "preLaunchTask": "npm: prod",
-      "url": "https://boards.greenhouse.io/github/jobs/5142414",
+      "url": "${input:url}",
       "webRoot": "${workspaceFolder}/dist",
       "runtimeArgs": [
         "--remote-debugging-port=9222",
@@ -34,6 +34,19 @@
         "--reload-extension=${webRoot}"
       ],
       "resolveSourceMapLocations": ["${webRoot}", "!**/node_modules/**"]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "url",
+      "type": "pickString",
+      "description": "URL to test",
+      "options": [
+        "https://payitgov.com/careers/?gh_jid=5697695003#Current-Openings",
+        "https://boards.greenhouse.io/github/jobs/5142414",
+        "https://boards.greenhouse.io/mobilecoin/jobs/4063248004",
+        "https://jobs.lever.co/1password/534453a7-f89a-48ed-8cd9-696131076c5e/apply"
+      ]
     }
   ]
 }
