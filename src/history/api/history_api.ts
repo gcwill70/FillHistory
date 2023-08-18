@@ -20,14 +20,16 @@ export default class HistoryApi {
         domains[domain].push(item);
       }
     }
-    // select best candidate from domain
+    // select best candidates from domain
     const filtered: HistoryItem[] = [];
     for (const domain in domains) {
-      const _items = domains[domain];
-      const selected = _items.reduce(this.selectShortest, _items[0]);
-      filtered.push(selected);
+      let _items = domains[domain];
+      let selected: HistoryItem[] = [];
+      selected.push(_items.reduce(this.selectShortest));
+      selected.push(_items.reduce(this.selectMostVisited));
+      selected.push(_items.reduce(this.selectMostRecent));
+      filtered.push(...selected);
     }
-
     return filtered;
   }
 
@@ -35,12 +37,15 @@ export default class HistoryApi {
     return (prev.url?.length || 0) > (curr.url?.length || 0) ? curr : prev;
   }
 
+  selectMostVisited(prev: HistoryItem, curr: HistoryItem): HistoryItem {
+    prev.visitCount ??= 0;
+    curr.visitCount ??= 0;
+    return curr.visitCount > prev.visitCount ? curr : prev;
+  }
+
   selectMostRecent(prev: HistoryItem, curr: HistoryItem): HistoryItem {
     prev.lastVisitTime ??= Number.MAX_SAFE_INTEGER;
     curr.lastVisitTime ??= Number.MAX_SAFE_INTEGER;
-    if (curr.lastVisitTime < prev.lastVisitTime) {
-      return curr;
-    }
-    return prev;
+    return curr.lastVisitTime < prev.lastVisitTime ? curr : prev;
   }
 }
