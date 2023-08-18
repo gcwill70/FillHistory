@@ -4,7 +4,7 @@ export function commandListener(store: ReturnType<typeof createStore>) {
   chrome.commands.onCommand.addListener(async function(command) {
     store.dispatch(commandSlice.actions.command(command));
     if (command === "showHistory") {
-      store.dispatch(historySlice.actions.toggleWindow());
+      store.dispatch(historySlice.actions.windowToggle());
     }
   });
 }

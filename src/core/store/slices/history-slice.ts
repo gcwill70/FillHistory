@@ -27,13 +27,13 @@ export const historySlice = createSlice({
     queryError(state) {
       state.status = "error";
     },
-    showWindow(state) {
+    windowShow(state) {
       state.window.show = true;
     },
-    hideWindow(state) {
+    windowHide(state) {
       state.window.show = false;
     },
-    toggleWindow(state) {
+    windowToggle(state) {
       state.window.show = !state.window.show;
     },
   },

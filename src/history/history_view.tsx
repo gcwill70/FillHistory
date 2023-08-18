@@ -43,7 +43,7 @@ export default function HistoryView() {
                 if (activeElement) {
                   activeElement.value = item.url!;
                 }
-                dispatch(historySlice.actions.hideWindow());
+                dispatch(historySlice.actions.windowHide());
               }}
             >
               {item.url}

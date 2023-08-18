@@ -7,7 +7,7 @@ const tabController = createListenerMiddleware();
 tabController.startListening({
   actionCreator: tabsSlice.actions.setTab,
   effect: async (action, api) => {
-    api.dispatch(historySlice.actions.hideWindow());
+    api.dispatch(historySlice.actions.windowHide());
   },
 });
 

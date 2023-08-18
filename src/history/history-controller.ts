@@ -1,8 +1,9 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { historySlice } from "../core/store/slices/history-slice";
 import HistoryApiChrome from "./api/history_api_chrome";
+import { RootState } from "../core";
 
-const historyController = createListenerMiddleware();
+const historyController = createListenerMiddleware<RootState>();
 const historyApi = new HistoryApiChrome();
 
 historyController.startListening({
@@ -19,8 +20,10 @@ historyController.startListening({
 });
 
 historyController.startListening({
-  actionCreator: historySlice.actions.hideWindow,
+  predicate: (action, state) =>
+    action.type.startsWith("history/window") && !state.history.window.show,
   effect: async (action, listenerApi) => {
+    console.debug("reset results middleware");
     try {
       const results = await historyApi.search({ text: "" });
       listenerApi.dispatch(historySlice.actions.queryDone(results));
