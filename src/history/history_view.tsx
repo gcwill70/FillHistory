@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, historySlice } from "../core";
 import { HistoryItem } from "./model/history_item";
+import { activeElement } from "../extension/content/listeners/active-element-listener";
 
 const historyViewStlye: React.CSSProperties = {
   flex: "1 1 auto",
@@ -29,7 +30,6 @@ const listItemStyle: React.CSSProperties = {
 export default function HistoryView() {
   const dispatch = useDispatch();
   const { items } = useSelector((state: RootState) => state.history);
-  const { id } = useSelector((state: RootState) => state.activeElement);
 
   return (
     <div style={historyViewStlye}>
@@ -40,15 +40,8 @@ export default function HistoryView() {
               style={listItemStyle}
               key={`results-list-${i}`}
               onClick={() => {
-                if (id) {
-                  let activeElement = document.getElementById(
-                    id
-                  ) as HTMLElement;
-                  if (activeElement.nodeName === "INPUT") {
-                    (activeElement as HTMLInputElement).value = item.url!;
-                  } else if (activeElement.nodeName === "TEXTAREA") {
-                    (activeElement as HTMLTextAreaElement).value = item.url!;
-                  }
+                if (activeElement) {
+                  activeElement.value = item.url!;
                 }
                 dispatch(historySlice.actions.hideWindow());
               }}
