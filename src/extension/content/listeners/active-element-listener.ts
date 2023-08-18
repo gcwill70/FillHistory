@@ -17,10 +17,10 @@ function captureElement(event: Event) {
     if (element.id !== "history-form-input") {
       if (element.nodeName === "INPUT") {
         activeElement = element as HTMLInputElement;
-        console.debug(`focusin: ${activeElement?.contentEditable}`);
+        console.log(`Active Element Change: ${activeElement?.type}`);
       } else if (element.nodeName === "TEXTAREA") {
         activeElement = element as HTMLTextAreaElement;
-        console.debug(`focusin: ${activeElement?.contentEditable}`);
+        console.log(`Active Element Change: ${activeElement?.type}`);
       }
     }
   } catch (e) {
