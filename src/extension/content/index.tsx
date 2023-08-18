@@ -9,6 +9,8 @@ export * from "./listeners";
 export * from "./App";
 
 (async () => {
+  console.log("content script");
+
   const store = new Store();
 
   await store.ready();

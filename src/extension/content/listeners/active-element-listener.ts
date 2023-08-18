@@ -11,17 +11,16 @@ export function activeElementListener(store: ReturnType<typeof createStore>) {
 }
 
 function captureElement(event: Event) {
-  console.log(`event: ${event.type}`);
+  console.debug(`event: ${event.type}`);
   try {
     const element = event.target as HTMLElement;
-    console.log(`focusin: ${element.attributes}`);
     if (element.id !== "history-form-input") {
       if (element.nodeName === "INPUT") {
         activeElement = element as HTMLInputElement;
-        console.log(`focusin: ${activeElement?.contentEditable}`);
+        console.debug(`focusin: ${activeElement?.contentEditable}`);
       } else if (element.nodeName === "TEXTAREA") {
         activeElement = element as HTMLTextAreaElement;
-        console.log(`focusin: ${activeElement?.contentEditable}`);
+        console.debug(`focusin: ${activeElement?.contentEditable}`);
       }
     }
   } catch (e) {
