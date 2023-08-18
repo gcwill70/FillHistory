@@ -10,6 +10,22 @@
       "request": "launch",
       "internalConsoleOptions": "openOnSessionStart",
       "preLaunchTask": "npm: build",
+      "url": "https://boards.greenhouse.io/mobilecoin/jobs/4063248004",
+      "webRoot": "${workspaceFolder}/dist",
+      "runtimeArgs": [
+        "--remote-debugging-port=9222",
+        "--load-extension=${webRoot}",
+        "--reload-extension=${webRoot}",
+        "--auto-open-devtools-for-tabs"
+      ],
+      "resolveSourceMapLocations": ["${webRoot}", "!**/node_modules/**"]
+    },
+    {
+      "name": "Debug: Content Script (Select)",
+      "type": "chrome",
+      "request": "launch",
+      "internalConsoleOptions": "openOnSessionStart",
+      "preLaunchTask": "npm: build",
       "url": "${input:url}",
       "webRoot": "${workspaceFolder}/dist",
       "runtimeArgs": [
@@ -42,10 +58,13 @@
       "type": "pickString",
       "description": "URL to test",
       "options": [
-        "https://payitgov.com/careers/?gh_jid=5697695003#Current-Openings",
+        // greenhouse
         "https://boards.greenhouse.io/github/jobs/5142414",
         "https://boards.greenhouse.io/mobilecoin/jobs/4063248004",
-        "https://jobs.lever.co/1password/534453a7-f89a-48ed-8cd9-696131076c5e/apply"
+        // lever.co
+        "https://jobs.lever.co/1password/534453a7-f89a-48ed-8cd9-696131076c5e/apply",
+        // weird
+        "https://payitgov.com/careers/?gh_jid=5697695003#Current-Openings"
       ]
     }
   ]
