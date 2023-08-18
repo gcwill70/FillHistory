@@ -30,7 +30,12 @@ export default function HistoryForm() {
   }, [showWindow]);
 
   const throttledSearch = throttle((queryText: string) => {
-    dispatch(historySlice.actions.queryStart({ text: queryText }));
+    dispatch(
+      historySlice.actions.queryStart({
+        text: queryText,
+        startTime: new Date("2000-01-01T00:00:00Z").getTime(),
+      })
+    );
   }, 500);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
