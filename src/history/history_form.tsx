@@ -33,6 +33,7 @@ export default function HistoryForm() {
     dispatch(
       historySlice.actions.queryStart({
         text: queryText,
+        maxResults: 250,
         startTime: new Date("2000-01-01T00:00:00Z").getTime(),
       })
     );
