@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../core";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, historySlice } from "../core";
 import HistoryForm from "./history_form";
 import HistoryView from "./history_view";
 
@@ -34,10 +34,20 @@ const containerStyle: React.CSSProperties = {
 
 export default function HistoryWindow() {
   const show = useSelector((state: RootState) => state.history.window.show);
+  const dispatch = useDispatch();
+
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Check if the click target is the overlay itself (not its children)
+    if (e.target === e.currentTarget) {
+      // Dispatch an action to hide the HistoryWindow
+      dispatch(historySlice.actions.windowHide());
+    }
+  };
+
   return (
     <div>
       {show && (
-        <div style={overlayStyle}>
+        <div style={overlayStyle} onClick={handleOverlayClick}>
           <div style={windowStyle}>
             <div style={containerStyle}>
               <HistoryForm />
