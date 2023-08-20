@@ -1,3 +1,4 @@
+import { remove } from "../../utils";
 import { HistoryItem } from "../model/history_item";
 import { HistoryQuery } from "../model/history_query";
 
@@ -13,24 +14,36 @@ export default class HistoryApi {
       if (item.url) {
         const url = new URL(item.url);
         const domain = url.hostname;
-        console.log(domain)
-        if (!domains[domain]) {
-          domains[domain] = [];
-        }
+        domains[domain] ??= [];
         domains[domain].push(item);
       }
     }
     // select best candidates from domain
-    const filtered: HistoryItem[] = [];
+    const best: HistoryItem[] = [];
     for (const domain in domains) {
       let _items = domains[domain];
-      let selected: HistoryItem[] = [];
-      selected.push(_items.reduce(this.selectShortest));
-      selected.push(_items.reduce(this.selectMostVisited));
-      selected.push(_items.reduce(this.selectMostRecent));
-      filtered.push(...selected);
+      this.select(this.selectShortest, best, _items, items);
+      this.select(this.selectMostVisited, best, _items, items);
+      this.select(this.selectMostRecent, best, _items, items);
     }
-    return filtered;
+
+    return [...best, ...items];
+  }
+
+  select(
+    selector: (prev: HistoryItem, curr: HistoryItem) => HistoryItem,
+    selected: HistoryItem[],
+    subarray: HistoryItem[],
+    array: HistoryItem[]
+  ) {
+    try {
+      const item = subarray.reduce(selector);
+      remove(subarray, item);
+      remove(array, item);
+      selected.push(item);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   selectShortest(prev: HistoryItem, curr: HistoryItem): HistoryItem {
