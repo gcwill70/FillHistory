@@ -12,7 +12,8 @@ historyController.startListening({
   effect: async (action, api) => {
     try {
       const query = action.payload;
-      const results = await repo.search({ ...query });
+      let results = await repo.search({ ...query });
+      results = await repo.filter(results);
       api.dispatch(historySlice.actions.queryDone(results));
     } catch (e) {
       api.dispatch(historySlice.actions.queryError());
