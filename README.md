@@ -1,4 +1,6 @@
-https://github.com/gcwill70/fill-history/assets/25019832/9daf5926-575e-4eb8-b831-e1b3ea99cf73
+https://github.com/gcwill70/FillHistory/assets/25019832/e5c57661-141f-477d-9e3c-3a7774331eab
+
+
 
 # Features
 * Open/close search window with `Ctrl+Shift+X`
