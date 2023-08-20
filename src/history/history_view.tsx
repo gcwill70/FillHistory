@@ -41,7 +41,11 @@ export default function HistoryView() {
               key={`results-list-${i}`}
               onClick={() => {
                 if (activeElement) {
-                  activeElement.value = item.url!;
+                  const old = activeElement.value;
+                  const start = activeElement.selectionStart ?? 0;
+                  const end = activeElement.selectionEnd ?? 0;
+                  activeElement.value =
+                    old.substring(0, start) + item.url! + old.substring(end);
                 }
                 dispatch(historySlice.actions.windowHide());
               }}
