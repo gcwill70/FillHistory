@@ -21,7 +21,8 @@ const windowStyle: React.CSSProperties = {
   backgroundColor: "white",
   padding: "20px",
   borderRadius: "5px",
-  width: "400px",
+  width: "80%",
+  maxWidth: "800px",
   height: "600px",
   overflowY: "auto",
 };
