@@ -19,6 +19,13 @@ export * from "./listeners";
 
   subscribeListeners(store);
 
+  // load tailwind
+  const tailwind = document.createElement("link");
+  tailwind.rel = "stylesheet";
+  tailwind.href = "../../dist/content.css";
+  document.head.appendChild(tailwind);
+
+  // load UI root
   const root = document.createElement("div");
   document.body.appendChild(root);
 
