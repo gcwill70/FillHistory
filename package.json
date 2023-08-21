@@ -4,9 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --config build/webpack.dev.config.js",
-    "dev": "webpack --config build/webpack.dev.config.js --watch",
-    "prod": "webpack --config build/webpack.prod.config.js"
+    "build:dev": "webpack --config build/webpack.dev.config.js",
+    "build:prod": "webpack --config build/webpack.prod.config.js"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +20,16 @@
     "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
     "@types/redux-logger": "^3.0.9",
+    "@types/tailwindcss": "^3.1.0",
+    "autoprefixer": "^10.4.15",
     "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss": "^8.4.28",
+    "postcss-loader": "^7.3.3",
+    "postcss-preset-env": "^9.1.1",
+    "style-loader": "^3.3.3",
+    "tailwindcss": "^3.3.3",
     "ts-loader": "^9.4.4",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"

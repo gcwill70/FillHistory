@@ -1,12 +1,14 @@
-import { Store } from "webext-redux";
-import { subscribeListeners } from "./listeners";
+import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import React from "react";
+import { Store } from "webext-redux";
 import App from "./App";
+import { subscribeListeners } from "./listeners";
 
-export * from "./listeners";
+import "../../assets/tailwind.css";
+
 export * from "./App";
+export * from "./listeners";
 
 (async () => {
   console.log("content script");

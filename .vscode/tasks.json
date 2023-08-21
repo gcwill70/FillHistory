@@ -2,20 +2,12 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "npm: build",
       "type": "npm",
-      "script": "build",
-      "group": "build",
-      "problemMatcher": [],
-      "detail": "webpack --config build/webpack.dev.config.js"
+      "script": "build:dev"
     },
     {
-      "label": "npm: prod",
       "type": "npm",
-      "script": "prod",
-      "group": "build",
-      "problemMatcher": [],
-      "detail": "webpack --config build/webpack.prod.config.js"
+      "script": "build:prod"
     }
   ]
 }
