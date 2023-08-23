@@ -41,7 +41,10 @@ module.exports = {
             options: {
               sourceMap: true,
               postcssOptions: {
-                plugins: [tailwind],
+                plugins: {
+                  tailwindcss: {},
+                  autoprefixer: {},
+                },
               },
             },
           },
