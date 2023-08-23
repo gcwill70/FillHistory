@@ -9,19 +9,29 @@ export default class HistoryApi {
 
   async filter(items: HistoryItem[]): Promise<HistoryItem[]> {
     // group by domain
-    const domains: Record<string, HistoryItem[]> = {};
+    const domains: {
+      domain: string;
+      count: number;
+      items: HistoryItem[];
+    }[] = [];
     for (const item of items) {
       if (item.url) {
-        const url = new URL(item.url);
-        const domain = url.hostname;
-        domains[domain] ??= [];
-        domains[domain].push(item);
+        const count = item.visitCount ?? 0;
+        const domain = new URL(item.url).hostname;
+        const existing = domains.find((d) => d.domain === domain);
+        if (existing) {
+          existing.items.push(item);
+          existing.count += count;
+        } else {
+          domains.push({ domain, items: [item], count: count });
+        }
       }
     }
-    // select best candidates from domain
+    // sort domains by visit count
+    domains.sort((a, b) => b.count - a.count);
+    // select best candidates from each domain
     const best: HistoryItem[] = [];
-    for (const domain in domains) {
-      let _items = domains[domain];
+    for (const { items: _items, count: count } of domains) {
       this.select(this.selectShortest, best, _items, items);
       this.select(this.selectMostVisited, best, _items, items);
       this.select(this.selectMostRecent, best, _items, items);
