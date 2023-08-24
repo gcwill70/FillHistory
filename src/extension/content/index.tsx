@@ -19,16 +19,8 @@ export * from "./listeners";
 
   subscribeListeners(store);
 
-  // load tailwind
-  const tailwind = document.createElement("link");
-  tailwind.rel = "stylesheet";
-  tailwind.href = "../../dist/content.css";
-  document.head.appendChild(tailwind);
-
-  // load UI root
+  // create UI root
   const root = document.createElement("div");
-  document.body.appendChild(root);
-
   createRoot(root).render(
     <Provider store={store}>
       <React.StrictMode>
@@ -36,4 +28,7 @@ export * from "./listeners";
       </React.StrictMode>
     </Provider>
   );
+
+  // inject into page
+  document.body.appendChild(root);
 })();
