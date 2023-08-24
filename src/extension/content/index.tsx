@@ -33,8 +33,6 @@ export * from "./listeners";
   const sRoot = document.createElement("div");
   document.body.appendChild(sRoot);
   sRoot.attachShadow({ mode: "open" });
-  if (sRoot?.shadowRoot) {
-    sRoot.shadowRoot.innerHTML = `<style>:host {all: initial;}</style>`;
-  }
+  sRoot.shadowRoot!.innerHTML = `<style>:host {all: initial;}</style>`;
   sRoot.shadowRoot!.appendChild(root);
 })();
