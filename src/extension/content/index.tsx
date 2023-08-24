@@ -5,7 +5,7 @@ import { Store } from "webext-redux";
 import App from "./App";
 import { subscribeListeners } from "./listeners";
 
-import "../../assets/tailwind.css";
+import "../../theme/tailwind.css";
 
 export * from "./App";
 export * from "./listeners";
