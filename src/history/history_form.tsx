@@ -9,11 +9,19 @@ const containerStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  padding: "0px",
+  backgroundColor: "#f6f8fa",
+  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+  borderRadius: "5px",
 };
 
 const inputStyle: React.CSSProperties = {
   flex: "1",
-  marginRight: "8px",
+  padding: "8px",
+  border: "none",
+  outline: "none",
+  backgroundColor: "transparent",
+  fontSize: "16px",
 };
 
 export default function HistoryForm() {

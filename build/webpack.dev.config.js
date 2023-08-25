@@ -58,7 +58,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
-      chunkFilename: "[id].css",
+      chunkFilename: "[name].css",
     }),
   ],
   optimization: {

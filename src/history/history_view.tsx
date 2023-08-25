@@ -17,14 +17,16 @@ const resultsListStyle: React.CSSProperties = {
 };
 
 const listItemStyle: React.CSSProperties = {
-  padding: "5px",
+  padding: "10px",
   cursor: "pointer",
-  backgroundColor: "#f5f5f5",
+  backgroundColor: "#fff",
+  border: "1px solid #ddd",
   marginBottom: "5px",
   borderRadius: "3px",
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
+  transition: "background-color 0.3s ease, color 0.3s ease",
 };
 
 export default function HistoryView() {
