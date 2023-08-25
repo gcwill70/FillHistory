@@ -5,8 +5,6 @@ import { Store } from "webext-redux";
 import App from "./App";
 import { subscribeListeners } from "./listeners";
 
-import "../../theme/tailwind.css";
-
 export * from "./App";
 export * from "./listeners";
 
@@ -14,13 +12,13 @@ export * from "./listeners";
   console.log("content script");
 
   const store = new Store();
-
   await store.ready();
-
   subscribeListeners(store);
 
   // create UI root
   const root = document.createElement("div");
+  root.className = "fh-root";
+  root.style.all = "initial";
   createRoot(root).render(
     <Provider store={store}>
       <React.StrictMode>
@@ -30,9 +28,5 @@ export * from "./listeners";
   );
 
   // inject into page
-  const sRoot = document.createElement("div");
-  document.body.appendChild(sRoot);
-  sRoot.attachShadow({ mode: "open" });
-  sRoot.shadowRoot!.innerHTML = `<style>:host {all: initial;}</style>`;
-  sRoot.shadowRoot!.appendChild(root);
+  document.body.appendChild(root);
 })();
