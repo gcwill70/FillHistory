@@ -1,3 +1,7 @@
+[Chrome Web Store](https://chrome.google.com/webstore/detail/fillhistory/nnbagffnngmfbogaajipjmaadglmjgjc)
+
+&nbsp;
+
 https://github.com/gcwill70/FillHistory/assets/25019832/e5c57661-141f-477d-9e3c-3a7774331eab
 
 
