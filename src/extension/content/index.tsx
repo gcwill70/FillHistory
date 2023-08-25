@@ -12,14 +12,11 @@ export * from "./App";
   console.log("content script");
 
   const store = new Store();
-
   await store.ready();
-
   subscribeListeners(store);
 
+  // create UI root
   const root = document.createElement("div");
-  document.body.appendChild(root);
-
   createRoot(root).render(
     <Provider store={store}>
       <React.StrictMode>
@@ -27,4 +24,11 @@ export * from "./App";
       </React.StrictMode>
     </Provider>
   );
+
+  // inject into page
+  const sRoot = document.createElement("div");
+  document.body.appendChild(sRoot);
+  sRoot.attachShadow({ mode: "open" });
+  sRoot.shadowRoot!.innerHTML = `<style>:host {all: initial;}</style>`;
+  sRoot.shadowRoot!.appendChild(root);
 })();
