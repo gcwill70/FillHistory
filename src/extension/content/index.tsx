@@ -1,12 +1,12 @@
-import { Store } from "webext-redux";
-import { subscribeListeners } from "./listeners";
+import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import React from "react";
+import { Store } from "webext-redux";
 import App from "./App";
+import { subscribeListeners } from "./listeners";
 
-export * from "./listeners";
 export * from "./App";
+export * from "./listeners";
 
 (async () => {
   console.log("content script");
@@ -17,6 +17,8 @@ export * from "./App";
 
   // create UI root
   const root = document.createElement("div");
+  root.className = "fh-root";
+  root.style.all = "initial";
   createRoot(root).render(
     <Provider store={store}>
       <React.StrictMode>
@@ -26,9 +28,5 @@ export * from "./App";
   );
 
   // inject into page
-  const sRoot = document.createElement("div");
-  document.body.appendChild(sRoot);
-  sRoot.attachShadow({ mode: "open" });
-  sRoot.shadowRoot!.innerHTML = `<style>:host {all: initial;}</style>`;
-  sRoot.shadowRoot!.appendChild(root);
+  document.body.appendChild(root);
 })();

@@ -1,5 +1,8 @@
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const tailwind = require("tailwindcss");
+
 module.exports = {
   mode: "production",
   entry: {
@@ -12,7 +15,7 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
   },
   module: {
     rules: [
@@ -21,11 +24,35 @@ module.exports = {
         loader: "ts-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              esModule: false,
+            },
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [tailwind],
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new CopyPlugin({
       patterns: [{ from: ".", to: ".", context: "public" }],
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css",
     }),
   ],
 };

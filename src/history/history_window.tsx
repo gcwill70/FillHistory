@@ -14,15 +14,16 @@ const overlayStyle: React.CSSProperties = {
 };
 
 const windowStyle: React.CSSProperties = {
-  position: "absolute",
+  position: "fixed",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   backgroundColor: "white",
+  borderRadius: "8px",
+  boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
   padding: "20px",
-  borderRadius: "5px",
   width: "80%",
-  maxWidth: "800px",
+  maxWidth: "1000px",
   height: "600px",
   overflowY: "auto",
 };
@@ -38,9 +39,7 @@ export default function HistoryWindow() {
   const dispatch = useDispatch();
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Check if the click target is the overlay itself (not its children)
     if (e.target === e.currentTarget) {
-      // Dispatch an action to hide the HistoryWindow
       dispatch(historySlice.actions.windowHide());
     }
   };
@@ -52,6 +51,7 @@ export default function HistoryWindow() {
           <div style={windowStyle}>
             <div style={containerStyle}>
               <HistoryForm />
+              <div style={{ marginBottom: "10px" }} />
               <HistoryView />
             </div>
           </div>
