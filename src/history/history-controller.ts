@@ -7,6 +7,7 @@ import HistoryRepo from "./repo/history_repo";
 const historyController = createListenerMiddleware<RootState>();
 const repo = new HistoryRepo(new HistoryApiChrome());
 
+// search start
 historyController.startListening({
   actionCreator: historySlice.actions.queryStart,
   effect: async (action, api) => {
@@ -21,17 +22,12 @@ historyController.startListening({
   },
 });
 
+// search finished
 historyController.startListening({
-  predicate: (action, state) =>
-    action.type.startsWith("history/window") && !state.history.window.show,
+  actionCreator: historySlice.actions.queryDone,
   effect: async (action, api) => {
     console.debug("reset results middleware");
-    try {
-      const results = await repo.search({ text: "" });
-      api.dispatch(historySlice.actions.queryDone(results));
-    } catch (e) {
-      api.dispatch(historySlice.actions.queryError());
-    }
+    api.dispatch(historySlice.actions.selectionReset());
   },
 });
 
