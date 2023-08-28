@@ -11,16 +11,13 @@ export function activeElementListener(store: ReturnType<typeof createStore>) {
 }
 
 function captureElement(event: Event) {
-  console.debug(`event: ${event.type}`);
   try {
     const element = event.target as HTMLElement;
     if (element.id !== "history-form-input") {
       if (element.nodeName === "INPUT") {
         activeElement = element as HTMLInputElement;
-        console.log(`Active Element Change: ${activeElement?.type}`);
       } else if (element.nodeName === "TEXTAREA") {
         activeElement = element as HTMLTextAreaElement;
-        console.log(`Active Element Change: ${activeElement?.type}`);
       }
     }
   } catch (e) {

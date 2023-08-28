@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, historySlice } from "../core";
 import HistoryForm from "./history_form";
 import HistoryView from "./history_view";
+import { activeElement } from "../extension/content/listeners/active-element-listener";
+import { useEffect } from "react";
 
 const overlayStyle: React.CSSProperties = {
   position: "fixed",
@@ -43,6 +45,15 @@ export default function HistoryWindow() {
       dispatch(historySlice.actions.windowHide());
     }
   };
+
+  useEffect(() => {
+    const inputElement = document.getElementById("history-form-input");
+    if (show && inputElement) {
+      inputElement.focus();
+    } else {
+      activeElement?.focus();
+    }
+  }, [show]);
 
   return (
     <div>

@@ -1,7 +1,6 @@
 import { throttle } from "@github/mini-throttle";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../core";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { historySlice } from "../core/store/slices/history-slice";
 
 const containerStyle: React.CSSProperties = {
@@ -27,15 +26,6 @@ const inputStyle: React.CSSProperties = {
 export default function HistoryForm() {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
-  const showWindow = useSelector(
-    (state: RootState) => state.history.window.show
-  );
-  useEffect(() => {
-    const inputElement = document.getElementById("history-form-input");
-    if (showWindow && inputElement) {
-      inputElement.focus();
-    }
-  }, [showWindow]);
 
   const throttledSearch = throttle((queryText: string) => {
     dispatch(
