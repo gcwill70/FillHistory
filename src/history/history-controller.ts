@@ -27,7 +27,9 @@ historyController.startListening({
   actionCreator: historySlice.actions.queryDone,
   effect: async (action, api) => {
     console.debug("reset results middleware");
-    api.dispatch(historySlice.actions.selectionReset());
+    if (api.getState().history.items.length > 0) {
+      api.dispatch(historySlice.actions.selectionReset());
+    }
   },
 });
 
