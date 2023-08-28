@@ -38,7 +38,10 @@ module.exports = {
             loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: [tailwind],
+                plugins: {
+                  tailwindcss: {},
+                  autoprefixer: {},
+                },
               },
             },
           },
@@ -52,7 +55,10 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
-      chunkFilename: "[id].css",
+      chunkFilename: "[name].css",
     }),
   ],
+  optimization: {
+    minimize: true,
+  },
 };
