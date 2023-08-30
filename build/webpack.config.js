@@ -7,8 +7,6 @@ const { debug } = require("console");
 
 const devMode = !(process.env.NODE_ENV === "production");
 
-debug(devMode);
-
 module.exports = {
   mode: devMode ? "development" : "production",
   devtool: "source-map",
