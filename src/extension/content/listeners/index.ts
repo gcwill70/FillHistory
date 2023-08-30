@@ -1,8 +1,8 @@
 import { createStore } from "../../../core";
 import { activeElementListener } from "./active-element-listener";
-import { itemSelectListener } from "./item-select-listener";
+import { keydownListener } from "./keydown-listener";
 
 export function subscribeListeners(store: ReturnType<typeof createStore>) {
   activeElementListener(store);
-  itemSelectListener(store);
+  keydownListener(store);
 }

@@ -1,6 +1,6 @@
 import { createStore, historySlice } from "../../../core";
 
-export function itemSelectListener(store: ReturnType<typeof createStore>) {
+export function keydownListener(store: ReturnType<typeof createStore>) {
   document.addEventListener("keydown", (e: KeyboardEvent) => {
     const state = store.getState();
     if (state.history.window.show) {
@@ -10,6 +10,9 @@ export function itemSelectListener(store: ReturnType<typeof createStore>) {
       } else if (e.key === "ArrowDown") {
         e.preventDefault();
         store.dispatch(historySlice.actions.selectionIncrement());
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        store.dispatch(historySlice.actions.windowHide());
       }
     }
   });
