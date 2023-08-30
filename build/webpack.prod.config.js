@@ -2,9 +2,11 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const tailwind = require("tailwindcss");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: "production",
+  devtool: "source-map",
   entry: {
     content: [path.resolve(__dirname, "../src/extension/content/index.tsx")],
     background: path.resolve(__dirname, "../src/extension/background/index.ts"),
@@ -32,11 +34,13 @@ module.exports = {
             loader: "css-loader",
             options: {
               esModule: false,
+              sourceMap: false,
             },
           },
           {
             loader: "postcss-loader",
             options: {
+              sourceMap: true,
               postcssOptions: {
                 plugins: {
                   tailwindcss: {},
@@ -60,5 +64,14 @@ module.exports = {
   ],
   optimization: {
     minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+          },
+        },
+      }),
+    ],
   },
 };
