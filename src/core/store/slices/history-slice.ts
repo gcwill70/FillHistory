@@ -19,6 +19,7 @@ export const historySlice = createSlice({
   name: "history",
   initialState: initialHistoryState,
   reducers: {
+    reset(state) {},
     queryStart(state, action: PayloadAction<HistoryQuery>) {
       state.status = "loading";
     },
@@ -28,9 +29,6 @@ export const historySlice = createSlice({
     },
     queryError(state) {
       state.status = "error";
-    },
-    windowShow(state) {
-      state.window.show = true;
     },
     windowHide(state) {
       state.window.show = false;

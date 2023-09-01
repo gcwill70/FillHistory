@@ -18,7 +18,6 @@ export function createStore(
       def().concat(
         logger,
         initDoneController.middleware,
-        initloadHistoryController.middleware,
         deinitDoneController.middleware,
         historyController.middleware,
         tabController.middleware

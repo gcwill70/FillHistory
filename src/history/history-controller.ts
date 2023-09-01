@@ -26,10 +26,24 @@ historyController.startListening({
 historyController.startListening({
   actionCreator: historySlice.actions.queryDone,
   effect: async (action, api) => {
-    console.debug("reset results middleware");
     if (api.getState().history.items.length > 0) {
       api.dispatch(historySlice.actions.selectionReset());
     }
+  },
+});
+
+// reset
+historyController.startListening({
+  actionCreator: historySlice.actions.reset,
+  effect: async (action, api) => {
+    api.dispatch(historySlice.actions.windowHide());
+    api.dispatch(
+      historySlice.actions.queryStart({
+        text: "",
+        maxResults: 250,
+        startTime: new Date("2000-01-01T00:00:00Z").getTime(),
+      })
+    );
   },
 });
 
