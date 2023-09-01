@@ -8,6 +8,19 @@
     {
       "type": "npm",
       "script": "build:prod"
+    },
+    {
+      "type": "shell",
+      "label": "zip",
+      "command": "zip ~/Downloads/FillHistory-${input:version}.zip dist/",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "version",
+      "type": "promptString",
+      "description": "version"
     }
   ]
 }
