@@ -11,7 +11,8 @@
     "showHistory": {
       "description": "Show browser history",
       "suggested_key": {
-        "default": "Ctrl+Shift+X"
+        "default": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X"
       }
     }
   },
