@@ -1,9 +1,8 @@
-[Chrome Web Store](https://chrome.google.com/webstore/detail/fillhistory/nnbagffnngmfbogaajipjmaadglmjgjc)
+ [Chrome Web Store](https://chrome.google.com/webstore/detail/fillhistory/nnbagffnngmfbogaajipjmaadglmjgjc)
 
 &nbsp;
 
-https://github.com/gcwill70/FillHistory/assets/25019832/e5c57661-141f-477d-9e3c-3a7774331eab
-
+https://github.com/gcwill70/FillHistory/assets/25019832/3cc9b2d4-bd5c-4ff7-b3a8-42d4ebf8b411
 
 
 # Features
