@@ -13,7 +13,7 @@ const initialCommandState: CommandsState = {
   commands: [],
 };
 
-export const commandSlice = createSlice({
+export const commandsSlice = createSlice({
   name: "command",
   initialState: initialCommandState,
   reducers: {

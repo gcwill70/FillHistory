@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, commandSlice } from "../core";
+import { RootState, commandsSlice } from "../core";
 
 const rowStyle: React.CSSProperties = {
   display: "flex",
@@ -25,14 +25,14 @@ const shortcutNotSetStyle: React.CSSProperties = {
   whiteSpace: "nowrap",
 };
 
-function CommandView() {
+function CommandsView() {
   const command = useSelector((state: RootState) =>
-    state.command.commands.find((command) => command.name === "showHistory")
+    state.commands.commands.find((command) => command.name === "showHistory")
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(commandSlice.actions.getCommands());
+    dispatch(commandsSlice.actions.getCommands());
   }, []);
 
   const handleChangeShortcut = () => {
@@ -56,4 +56,4 @@ function CommandView() {
   );
 }
 
-export default CommandView;
+export default CommandsView;

@@ -1,6 +1,6 @@
 import { Middleware, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
-import commandController from "../../commands/commands-controller";
+import commandsController from "../../commands/commands-controller";
 import historyController from "../../history/history-controller";
 import deinitDoneController from "../../lifecycle/deinit-done-controller";
 import initDoneController from "../../lifecycle/init-done-controller";
@@ -21,7 +21,7 @@ export function createStore(
         deinitDoneController.middleware,
         historyController.middleware,
         tabController.middleware,
-        commandController.middleware
+        commandsController.middleware
       ),
   });
 

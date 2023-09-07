@@ -6,8 +6,9 @@ https://github.com/gcwill70/FillHistory/assets/25019832/3cc9b2d4-bd5c-4ff7-b3a8-
 
 
 # Features
-* Open/close search window with `Ctrl+Shift+X`
+* Open/close search window with `Ctrl+Shift+X`.
 * Search through history. Results continuously update as you type.
+* Use keyboard arrows to select a result.
 * URL is inserted into last text box you selected.
 
 # Tech Stack

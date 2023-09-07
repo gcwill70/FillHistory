@@ -3,6 +3,7 @@ import { createStore, historySlice } from "../../../core";
 export function runtimeListener(store: ReturnType<typeof createStore>) {
   chrome.runtime.onInstalled.addListener((details) => {
     console.debug(`onInstalled: ${details.reason}`);
+    chrome.action.openPopup();
   });
   chrome.runtime.onStartup.addListener(() => {
     console.debug(`onStartup`);

@@ -1,16 +1,15 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { commandSlice } from "../core/store/slices/command-slice";
+import { commandsSlice } from "../core/store/slices/commands-slice";
 
-const commandController = createListenerMiddleware();
+const commandsController = createListenerMiddleware();
 
-commandController.startListening({
-  actionCreator: commandSlice.actions.getCommands,
+commandsController.startListening({
+  actionCreator: commandsSlice.actions.getCommands,
   effect: async (action, api) => {
     chrome.commands.getAll(function(commands) {
-      commands.forEach((command) => console.debug(`${command}`));
-      api.dispatch(commandSlice.actions.setCommands({ commands: commands }));
+      api.dispatch(commandsSlice.actions.setCommands({ commands: commands }));
     });
   },
 });
 
-export default commandController;
+export default commandsController;

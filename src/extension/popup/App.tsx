@@ -1,4 +1,4 @@
-import CommandView from "../../commands/command_view";
+import CommandsView from "../../commands/commands_view";
 
 const appStyle: React.CSSProperties = {
   fontFamily: "Arial, sans-serif",
@@ -9,7 +9,7 @@ const appStyle: React.CSSProperties = {
 export default function App() {
   return (
     <div style={appStyle}>
-      <CommandView />
+      <CommandsView />
     </div>
   );
 }
