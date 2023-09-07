@@ -1,27 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, commandSlice } from "../../core";
-import { useEffect } from "react";
+import CommandView from "../../commands/command_view";
 
-function App() {
-  const command = useSelector((state: RootState) =>
-    state.command.commands.find((command) => command.name === "showHistory")
-  );
-  const dispatch = useDispatch();
+const appStyle: React.CSSProperties = {
+  fontFamily: "Arial, sans-serif",
+  backgroundColor: "#f6f8fa",
+  color: "#333",
+};
 
-  useEffect(() => {
-    dispatch(commandSlice.actions.getCommands());
-  }, []);
-
-  const handleChangeShortcut = () => {
-    chrome.tabs.create({ url: "chrome://extensions/shortcuts" });
-  };
-
+export default function App() {
   return (
-    <div>
-      <p>Shortcut: {command?.shortcut ?? "Not Set"}</p>
-      <button onClick={handleChangeShortcut}>Change Shortcut</button>
+    <div style={appStyle}>
+      <CommandView />
     </div>
   );
 }
-
-export default App;
