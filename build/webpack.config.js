@@ -3,7 +3,6 @@ const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const tailwind = require("tailwindcss");
 const TerserPlugin = require("terser-webpack-plugin");
-const { debug } = require("console");
 
 const devMode = !(process.env.NODE_ENV === "production");
 
@@ -12,6 +11,7 @@ module.exports = {
   devtool: "source-map",
   entry: {
     content: [path.resolve(__dirname, "../src/extension/content/index.tsx")],
+    popup: [path.resolve(__dirname, "../src/extension/popup/index.tsx")],
     background: path.resolve(__dirname, "../src/extension/background/index.ts"),
   },
   output: {
