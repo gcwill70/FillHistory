@@ -41,8 +41,8 @@ export default function HistoryView() {
       const end = activeElement.selectionEnd ?? 0;
       activeElement.value =
         old.substring(0, start) + item.url! + old.substring(end);
-      dispatch(historySlice.actions.reset());
     }
+    dispatch(historySlice.actions.reset());
   };
 
   // handle item selection
