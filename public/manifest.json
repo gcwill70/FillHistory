@@ -4,6 +4,9 @@
   "description": "Quickly fill in links from browser history.",
   "manifest_version": 3,
   "permissions": ["history", "activeTab"],
+  "icons": {
+    "256": "icon256.png"
+  },
   "background": {
     "service_worker": "background.js"
   },
