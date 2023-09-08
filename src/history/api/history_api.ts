@@ -52,7 +52,6 @@ export default class HistoryApi {
       remove(array, item);
       selected.push(item);
     } catch (e) {
-      console.error(e);
     }
   }
 
