@@ -17,8 +17,6 @@ export function createStore(
     middleware: (def) =>
       def().concat(
         logger,
-        initDoneController.middleware,
-        deinitDoneController.middleware,
         historyController.middleware,
         tabController.middleware,
         commandsController.middleware
