@@ -23,8 +23,6 @@ export function createStore(
       ),
   });
 
-  store.dispatch(lifecycleSlice.actions.initStart());
-
   return store;
 }
 
