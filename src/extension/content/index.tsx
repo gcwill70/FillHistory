@@ -9,8 +9,6 @@ export * from "./App";
 export * from "./listeners";
 
 (async () => {
-  console.debug("content script");
-
   const store = new Store();
   await store.ready();
   subscribeListeners(store);
