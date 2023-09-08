@@ -16,23 +16,14 @@ historyController.startListening({
       let results = await repo.search({ ...query });
       results = await repo.filter(results);
       api.dispatch(historySlice.actions.queryDone(results));
+      api.dispatch(historySlice.actions.selectionReset());
     } catch (e) {
       api.dispatch(historySlice.actions.queryError());
     }
   },
 });
 
-// search finished
-historyController.startListening({
-  actionCreator: historySlice.actions.queryDone,
-  effect: async (action, api) => {
-    if (api.getState().history.items.length > 0) {
-      api.dispatch(historySlice.actions.selectionReset());
-    }
-  },
-});
-
-// reset
+// reset handler
 historyController.startListening({
   actionCreator: historySlice.actions.reset,
   effect: async (action, api) => {
