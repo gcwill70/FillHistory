@@ -6,8 +6,6 @@ export * from "./listeners";
 export * from "./persist-state";
 
 (async () => {
-  console.log("background script");
-
   const state = undefined; //await getState();
   const store = createStore(state);
 
