@@ -2,8 +2,7 @@
 
 &nbsp;
 
-https://github.com/gcwill70/FillHistory/assets/25019832/3cc9b2d4-bd5c-4ff7-b3a8-42d4ebf8b411
-
+https://github.com/gcwill70/FillHistory/assets/25019832/026d6cbc-8c6e-4dc4-b2fc-62675f27d3b5
 
 # Features
 * Open/close search window right-click or keyboard shortcut (defaults to `Ctrl+Shift+X`).
