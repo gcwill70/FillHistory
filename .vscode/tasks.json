@@ -2,10 +2,12 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "npm - build:dev",
       "type": "npm",
       "script": "build:dev"
     },
     {
+      "label": "npm - build:prod",
       "type": "npm",
       "script": "build:prod"
     },
@@ -13,6 +15,7 @@
       "type": "shell",
       "label": "zip",
       "command": "zip",
+      "dependsOn": "npm - build:prod",
       "args": ["-r", "~/Downloads/FillHistory-${input:version}.zip", "dist/"],
       "problemMatcher": []
     }
