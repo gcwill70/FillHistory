@@ -30,7 +30,7 @@ historyController.startListening({
 historyController.startListening({
   actionCreator: historySlice.actions.reset,
   effect: (action, api) => {
-    api.dispatch(historySlice.actions.windowHide());
+    api.dispatch(historySlice.actions.window(false));
     api.dispatch(
       historySlice.actions.queryStart({
         text: "",

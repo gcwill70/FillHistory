@@ -12,7 +12,7 @@ export function keydownListener(store: ReturnType<typeof createStore>) {
         store.dispatch(historySlice.actions.selectionIncrement());
       } else if (e.key === "Escape") {
         e.preventDefault();
-        store.dispatch(historySlice.actions.windowHide());
+        store.dispatch(historySlice.actions.window(false));
       }
     }
   });

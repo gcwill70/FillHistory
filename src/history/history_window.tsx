@@ -42,7 +42,7 @@ export default function HistoryWindow() {
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
-      dispatch(historySlice.actions.windowHide());
+      dispatch(historySlice.actions.window(false));
     }
   };
 
