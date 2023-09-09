@@ -42,6 +42,7 @@ export default function HistoryView() {
       activeElement.value =
         old.substring(0, start) + item.url! + old.substring(end);
     }
+    dispatch(historySlice.actions.window(false));
     dispatch(historySlice.actions.reset());
   };
 
