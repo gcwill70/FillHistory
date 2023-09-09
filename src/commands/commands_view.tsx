@@ -29,11 +29,6 @@ function CommandsView() {
   const command = useSelector((state: RootState) =>
     state.commands.commands.find((command) => command.name === "showHistory")
   );
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(commandsSlice.actions.getCommands());
-  }, []);
 
   const handleChangeShortcut = () => {
     chrome.tabs.create({ url: "chrome://extensions/shortcuts" });

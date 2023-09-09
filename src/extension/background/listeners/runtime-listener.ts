@@ -1,4 +1,4 @@
-import { createStore, historySlice } from "../../../core";
+import { commandsSlice, createStore, historySlice } from "../../../core";
 
 export function runtimeListener(store: ReturnType<typeof createStore>) {
   chrome.runtime.onInstalled.addListener((details) => {
@@ -10,6 +10,7 @@ export function runtimeListener(store: ReturnType<typeof createStore>) {
   });
   chrome.runtime.onConnect.addListener((details) => {
     console.debug(`onConnect: ${details.name}`);
+    store.dispatch(commandsSlice.actions.getCommands());
     details.onDisconnect.addListener((port) => {
       console.debug(`onDisconnect`);
     });
