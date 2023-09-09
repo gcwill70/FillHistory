@@ -6,7 +6,7 @@ https://github.com/gcwill70/FillHistory/assets/25019832/3cc9b2d4-bd5c-4ff7-b3a8-
 
 
 # Features
-* Open/close search window with `Ctrl+Shift+X`.
+* Open/close search window right-click or keyboard shortcut (defaults to `Ctrl+Shift+X`).
 * Search through history. Results continuously update as you type.
 * Use keyboard arrows to select a result.
 * URL is inserted into last text box you selected.
@@ -19,6 +19,9 @@ https://github.com/gcwill70/FillHistory/assets/25019832/3cc9b2d4-bd5c-4ff7-b3a8-
 * webext-redux (background and content script state syncing)
 
 # Architecture
+
+## `src/commands`
+Stores and updates current command keyboard shortcuts.
 
 ## `src/core`
 All logic for app infrastructure including Redux store creation.
@@ -54,24 +57,8 @@ export type HistoryState = {
 };
 ```
 
-## `src/lifecycle`
-Logic that is executed based on the lifecycle of the extension itself.
-* Dependencies can be added for lifecycle events that will execute when the lifecycle event occurs.
-* Slice definition:
-```typescript
-export type LifecycleStatus = "initial" | "loading" | "done" | "error";
-
-export type LifecycleState = {
-  init: {
-    status: LifecycleStatus;
-    dependencies: { loadHistory: LifecycleStatus };
-  };
-  deinit: {
-    status: LifecycleStatus;
-    dependencies: {};
-  };
-};
-```
+## `src/tabs`
+Stores the currently active tab in the Redux store.
 
 # Acknowledgements
 Credit to https://github.com/puemos/browser-extension-template for architecture and structure!
