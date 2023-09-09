@@ -1,8 +1,9 @@
-import { createStore } from "../../../core";
+import { createStore, historySlice } from "../../../core";
 
 export function runtimeListener(store: ReturnType<typeof createStore>) {
   chrome.runtime.onInstalled.addListener((details) => {
     console.debug(`onInstalled. reason: ${details.reason}`);
+    store.dispatch(historySlice.actions.reset());
   });
   chrome.runtime.onStartup.addListener(() => {
     console.debug(`onStartup`);
