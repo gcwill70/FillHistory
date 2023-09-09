@@ -5,8 +5,6 @@ import { Store } from "webext-redux";
 import App from "./App";
 
 (async () => {
-  console.debug("popup");
-
   const store = new Store();
   await store.ready();
 
