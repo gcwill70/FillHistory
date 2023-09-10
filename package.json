@@ -3,8 +3,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build:dev": "export NODE_ENV=development && webpack --config build/webpack.config.js",
-    "build:prod": "export NODE_ENV=production && webpack --config build/webpack.config.js"
+    "build:dev": "export NODE_ENV=development && webpack",
+    "build:prod": "export NODE_ENV=production && webpack"
   },
   "keywords": [],
   "author": "",
