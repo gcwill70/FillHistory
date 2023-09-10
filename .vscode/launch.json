@@ -9,7 +9,7 @@
       "type": "chrome",
       "request": "launch",
       "internalConsoleOptions": "openOnSessionStart",
-      "preLaunchTask": "npm: build:dev",
+      "preLaunchTask": "npm - build:dev",
       "url": "https://boards.greenhouse.io/mobilecoin/jobs/4063248004",
       "webRoot": "${workspaceFolder}/dist",
       "runtimeArgs": [
@@ -25,7 +25,7 @@
       "type": "chrome",
       "request": "launch",
       "internalConsoleOptions": "openOnSessionStart",
-      "preLaunchTask": "npm: build:dev",
+      "preLaunchTask": "npm - build:dev",
       "url": "${input:url}",
       "webRoot": "${workspaceFolder}/dist",
       "runtimeArgs": [
