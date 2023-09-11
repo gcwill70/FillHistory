@@ -1,5 +1,6 @@
 import { wrapStore } from "webext-redux";
-import { createStore, paymentSlice } from "../../core";
+import { createStore } from "../../core";
+import { paymentSlice } from "../../payment/payment-slice";
 import { subscribeListeners } from "./listeners";
 
 export * from "./listeners";

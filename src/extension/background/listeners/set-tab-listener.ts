@@ -1,4 +1,5 @@
-import { createStore, tabsSlice } from "../../../core";
+import { createStore } from "../../../core";
+import { tabsSlice } from "../../../tabs/tabs-slice";
 
 export function setTabListener(store: ReturnType<typeof createStore>) {
   chrome.tabs.onActivated.addListener(async (details) => {

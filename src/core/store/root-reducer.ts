@@ -1,12 +1,10 @@
 import { AnyAction, combineReducers } from "@reduxjs/toolkit";
 import { ActionType } from "typesafe-actions";
-import {
-  commandsSlice,
-  historySlice,
-  lifecycleSlice,
-  tabsSlice,
-  paymentSlice,
-} from "./slices";
+import { commandsSlice } from "../../commands/commands-slice";
+import { historySlice } from "../../history/history-slice";
+import { lifecycleSlice } from "../../lifecycle/lifecycle-slice";
+import { paymentSlice } from "../../payment/payment-slice";
+import { tabsSlice } from "../../tabs/tabs-slice";
 
 export const rootReducer = combineReducers({
   commands: commandsSlice.reducer,

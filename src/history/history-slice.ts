@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { HistoryItem, HistoryQuery } from "../../../history";
+import { HistoryItem, HistoryQuery } from ".";
 
 export type HistoryState = {
   items: HistoryItem[];

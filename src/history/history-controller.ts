@@ -1,6 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { RootState } from "../core";
-import { historySlice } from "../core/store/slices/history-slice";
+import { historySlice } from "./history-slice";
 import HistoryApiChrome from "./api/history_api_chrome";
 import HistoryRepo from "./repo/history_repo";
 

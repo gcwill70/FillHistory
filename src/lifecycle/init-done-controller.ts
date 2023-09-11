@@ -1,5 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { RootState, lifecycleSlice } from "../core";
+import { RootState } from "../core";
+import { lifecycleSlice } from "./lifecycle-slice";
 
 const initDoneController = createListenerMiddleware<RootState>();
 

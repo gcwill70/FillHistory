@@ -1,4 +1,5 @@
-import { createStore, historySlice } from "../../../core";
+import { createStore } from "../../../core";
+import { historySlice } from "../../../history/history-slice";
 
 export function contextmenuListener(store: ReturnType<typeof createStore>) {
   chrome.contextMenus.onClicked.addListener((info, tab) => {
