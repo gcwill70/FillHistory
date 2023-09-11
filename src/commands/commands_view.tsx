@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, commandsSlice } from "../core";
+import { useSelector } from "react-redux";
+import { RootState } from "../core";
 
 const rowStyle: React.CSSProperties = {
   display: "flex",
