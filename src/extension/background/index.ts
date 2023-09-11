@@ -1,19 +1,13 @@
 import { wrapStore } from "webext-redux";
-import { createStore } from "../../core";
+import { createStore, paymentSlice } from "../../core";
 import { subscribeListeners } from "./listeners";
 
 export * from "./listeners";
 export * from "./persist-state";
 
 (async () => {
-  const state = undefined; //await getState();
-  const store = createStore(state);
-
+  const store = createStore();
   wrapStore(store);
-
-  // store.subscribe(() => {
-  //   saveState();
-  // });
-
   subscribeListeners(store);
+  store.dispatch(paymentSlice.actions.setup());
 })();
