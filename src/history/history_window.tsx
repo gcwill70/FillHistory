@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../core";
 import HistoryForm from "./history_form";
 import HistoryView from "./history_view";
-import { activeElement } from "../extension/content/listeners/active-element-listener";
+import { activeElement } from "../extension/content/listeners/active_element_listener";
 import { useEffect } from "react";
 import { historySlice } from "./history-slice";
 

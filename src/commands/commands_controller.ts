@@ -1,5 +1,5 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { commandsSlice } from "./commands-slice";
+import { commandsSlice } from "./commands_slice";
 
 const commandsController = createListenerMiddleware();
 

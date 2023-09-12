@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../core";
 import { HistoryItem } from "./model/history_item";
-import { activeElement } from "../extension/content/listeners/active-element-listener";
+import { activeElement } from "../extension/content/listeners/active_element_listener";
 import { historySlice } from "./history-slice";
 
 const historyViewStyle: React.CSSProperties = {

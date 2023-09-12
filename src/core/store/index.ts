@@ -1,2 +1,2 @@
-export * from "./create-store";
-export * from "./root-reducer";
+export * from "./create_store";
+export * from "./root_reducer";

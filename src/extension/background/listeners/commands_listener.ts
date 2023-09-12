@@ -1,4 +1,4 @@
-import { commandsSlice } from "../../../commands/commands-slice";
+import { commandsSlice } from "../../../commands/commands_slice";
 import { createStore } from "../../../core";
 import { historySlice } from "../../../history/history-slice";
 

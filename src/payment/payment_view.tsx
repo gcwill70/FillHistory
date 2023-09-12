@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { paymentSlice } from "./payment-slice";
+import { paymentSlice } from "./payment_slice";
 
 const rowStyle: React.CSSProperties = {
   display: "flex",
