@@ -1,6 +1,6 @@
 import { createStore } from "../../../core";
 import { commandsListener } from "./commands_listener";
-import { contextmenuListener } from "./contextmenu-listener";
+import { contextmenuListener } from "./contextmenu_listener";
 import { runtimeListener } from "./runtime_listener";
 import { setTabListener } from "./tab_listener";
 import { storageListener } from "./storage_listener";
