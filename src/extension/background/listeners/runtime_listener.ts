@@ -1,6 +1,6 @@
 import { commandsSlice } from "../../../commands/commands_slice";
 import { createStore } from "../../../core";
-import { historySlice } from "../../../history/history-slice";
+import { historySlice } from "../../../history/history_slice";
 import { paymentSlice } from "../../../payment/payment_slice";
 
 export function runtimeListener(store: ReturnType<typeof createStore>) {

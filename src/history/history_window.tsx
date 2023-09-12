@@ -4,7 +4,7 @@ import HistoryForm from "./history_form";
 import HistoryView from "./history_view";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
 import { useEffect } from "react";
-import { historySlice } from "./history-slice";
+import { historySlice } from "./history_slice";
 
 const overlayStyle: React.CSSProperties = {
   position: "fixed",

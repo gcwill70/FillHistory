@@ -1,7 +1,7 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { RootState } from "../core";
-import { lifecycleSlice } from "./lifecycle-slice";
-import { historySlice } from "../history/history-slice";
+import { lifecycleSlice } from "./lifecycle_slice";
+import { historySlice } from "../history/history_slice";
 
 const initloadHistoryController = createListenerMiddleware<RootState>();
 

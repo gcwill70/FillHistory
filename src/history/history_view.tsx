@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../core";
 import { HistoryItem } from "./model/history_item";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
-import { historySlice } from "./history-slice";
+import { historySlice } from "./history_slice";
 
 const historyViewStyle: React.CSSProperties = {
   flex: "1 1 auto",

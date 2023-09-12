@@ -1,3 +1,3 @@
-export * from "./deinit-done-controller";
-export * from "./init-done-controller";
-export * from "./init-loadhistory-controller";
+export * from "./deinit_done_controller";
+export * from "./init_done_controller";
+export * from "./init_loadhistory_controller";

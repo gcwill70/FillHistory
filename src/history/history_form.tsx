@@ -1,7 +1,7 @@
 import { throttle } from "@github/mini-throttle";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { historySlice } from "./history-slice";
+import { historySlice } from "./history_slice";
 
 const containerStyle: React.CSSProperties = {
   width: "100%",

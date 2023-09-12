@@ -1,8 +1,8 @@
 import { AnyAction, combineReducers } from "@reduxjs/toolkit";
 import { ActionType } from "typesafe-actions";
 import { commandsSlice } from "../../commands/commands_slice";
-import { historySlice } from "../../history/history-slice";
-import { lifecycleSlice } from "../../lifecycle/lifecycle-slice";
+import { historySlice } from "../../history/history_slice";
+import { lifecycleSlice } from "../../lifecycle/lifecycle_slice";
 import { paymentSlice } from "../../payment/payment_slice";
 import { tabsSlice } from "../../tabs/tabs_slice";
 

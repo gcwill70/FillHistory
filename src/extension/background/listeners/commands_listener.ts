@@ -1,6 +1,6 @@
 import { commandsSlice } from "../../../commands/commands_slice";
 import { createStore } from "../../../core";
-import { historySlice } from "../../../history/history-slice";
+import { historySlice } from "../../../history/history_slice";
 
 export function commandsListener(store: ReturnType<typeof createStore>) {
   chrome.commands.onCommand.addListener(async function(command) {
