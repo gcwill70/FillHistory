@@ -13,7 +13,7 @@ export type LifecycleState = {
   };
 };
 
-const initialLifecycleState: LifecycleState = {
+const initial: LifecycleState = {
   init: {
     status: "initial",
     dependencies: {
@@ -28,7 +28,7 @@ const initialLifecycleState: LifecycleState = {
 
 export const lifecycleSlice = createSlice({
   name: "lifecycle",
-  initialState: initialLifecycleState,
+  initialState: initial,
   reducers: {
     initStart(state) {
       state.init.status = "loading";

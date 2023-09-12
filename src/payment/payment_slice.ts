@@ -5,7 +5,7 @@ export interface PaymentState {
   user: User;
 }
 
-const initialPaymentState: PaymentState = {
+const initial: PaymentState = {
   user: {
     paid: false,
   },
@@ -13,7 +13,7 @@ const initialPaymentState: PaymentState = {
 
 export const paymentSlice = createSlice({
   name: "payment",
-  initialState: initialPaymentState,
+  initialState: initial,
   reducers: {
     setup(state) {},
     getUser(state) {},

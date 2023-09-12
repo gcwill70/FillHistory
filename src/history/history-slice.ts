@@ -8,7 +8,7 @@ export type HistoryState = {
   window: { show: boolean };
 };
 
-const initialHistoryState: HistoryState = {
+const initial: HistoryState = {
   items: [],
   selected: undefined,
   status: "idle",
@@ -17,7 +17,7 @@ const initialHistoryState: HistoryState = {
 
 export const historySlice = createSlice({
   name: "history",
-  initialState: initialHistoryState,
+  initialState: initial,
   reducers: {
     reset(state) {},
     queryStart(state, action: PayloadAction<HistoryQuery>) {

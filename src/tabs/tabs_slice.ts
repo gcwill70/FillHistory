@@ -9,7 +9,7 @@ export interface TabsState {
   current: Tab;
 }
 
-const initialTabState: TabsState = {
+const initial: TabsState = {
   current: {
     id: -1,
   },
@@ -17,7 +17,7 @@ const initialTabState: TabsState = {
 
 export const tabsSlice = createSlice({
   name: "tabs",
-  initialState: initialTabState,
+  initialState: initial,
   reducers: {
     setTab(state, action: PayloadAction<SetTabPayload>) {
       state.current = action.payload.tab;

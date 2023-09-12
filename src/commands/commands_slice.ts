@@ -9,13 +9,13 @@ export interface CommandsState {
   commands: Command[];
 }
 
-const initialCommandState: CommandsState = {
+const initial: CommandsState = {
   commands: [],
 };
 
 export const commandsSlice = createSlice({
   name: "command",
-  initialState: initialCommandState,
+  initialState: initial,
   reducers: {
     command(state, action: PayloadAction<string>) {},
     getCommands(state) {},
