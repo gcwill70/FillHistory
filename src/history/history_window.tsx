@@ -5,6 +5,7 @@ import HistoryView from "./history_view";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
 import { useEffect } from "react";
 import { historySlice } from "./history_slice";
+import PremiumCtaView from "../premium/premium_cta_view";
 
 const overlayStyle: React.CSSProperties = {
   position: "fixed",
@@ -65,6 +66,7 @@ export default function HistoryWindow() {
               <HistoryForm />
               <div style={{ marginBottom: "10px" }} />
               <HistoryView />
+              <PremiumCtaView />
             </div>
           </div>
         </div>
