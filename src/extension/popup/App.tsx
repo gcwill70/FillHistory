@@ -2,7 +2,6 @@ import CommandsView from "../../commands/commands_view";
 
 const appStyle: React.CSSProperties = {
   fontFamily: "Arial, sans-serif",
-  backgroundColor: "#f6f8fa",
   color: "#333",
 };
 
