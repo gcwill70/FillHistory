@@ -1,7 +1,7 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { RootState } from "../core";
-import { historySlice } from "./history_slice";
 import HistoryApiChrome from "./api/history_api_chrome";
+import { historySlice } from "./history_slice";
 import HistoryRepo from "./repo/history_repo";
 
 const historyController = createListenerMiddleware<RootState>();
@@ -11,18 +11,18 @@ const repo = new HistoryRepo(new HistoryApiChrome());
 historyController.startListening({
   actionCreator: historySlice.actions.queryStart,
   effect: (action, api) => {
-    repo.search({ ...action.payload }).then(
-      (results) => {
-        repo.filter(results).then(
-          (results) => {
-            api.dispatch(historySlice.actions.queryDone(results));
-            api.dispatch(historySlice.actions.selectionReset());
-          },
-          (reason) => api.dispatch(historySlice.actions.queryError())
-        );
-      },
-      (reason) => api.dispatch(historySlice.actions.queryError())
-    );
+    (async () => {
+      try {
+        let results = await repo.search({ ...action.payload });
+        if (api.getState().payment.user.paid) {
+          results = await repo.filter(results);
+        }
+        api.dispatch(historySlice.actions.queryDone(results));
+        api.dispatch(historySlice.actions.selectionReset());
+      } catch (e) {
+        api.dispatch(historySlice.actions.queryError());
+      }
+    })();
   },
 });
 
