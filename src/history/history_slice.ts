@@ -31,7 +31,11 @@ export const historySlice = createSlice({
       state.status = "error";
     },
     window(state, action: PayloadAction<boolean | undefined>) {
-      state.window.show = action.payload || !state.window.show;
+      if (action.payload !== undefined) {
+        state.window.show = action.payload;
+      } else {
+        state.window.show = !state.window.show;
+      }
     },
     selectionReset(state) {
       state.selected = 0;
