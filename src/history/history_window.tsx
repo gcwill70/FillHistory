@@ -65,7 +65,9 @@ export default function HistoryWindow() {
             <div style={containerStyle}>
               <HistoryForm />
               <div style={{ marginBottom: "10px" }} />
-              <HistoryView />
+              <div style={{ flex: "1 1 auto", overflowY: "auto" }}>
+                <HistoryView />
+              </div>
               <PremiumCtaView />
             </div>
           </div>

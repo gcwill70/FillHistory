@@ -5,11 +5,6 @@ import { HistoryItem } from "./model/history_item";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
 import { historySlice } from "./history_slice";
 
-const historyViewStyle: React.CSSProperties = {
-  flex: "1 1 auto",
-  overflowY: "auto",
-};
-
 const resultsListStyle: React.CSSProperties = {
   listStyle: "none",
   padding: "0",
@@ -75,22 +70,20 @@ export default function HistoryView() {
   }, [selected]);
 
   return (
-    <div style={historyViewStyle}>
-      <ul id="results-list" style={resultsListStyle} ref={listRef}>
-        {items.map((item: HistoryItem, i: number) => (
-          <li
-            key={`results-list-${i}`}
-            style={{
-              ...listItemStyle,
-              backgroundColor: selected === i ? "#007bff" : "#f5f5f5",
-              color: selected === i ? "white" : "black",
-            }}
-            onClick={() => select(item)}
-          >
-            {item.url}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul id="results-list" style={resultsListStyle} ref={listRef}>
+      {items.map((item: HistoryItem, i: number) => (
+        <li
+          key={`results-list-${i}`}
+          style={{
+            ...listItemStyle,
+            backgroundColor: selected === i ? "#007bff" : "#f5f5f5",
+            color: selected === i ? "white" : "black",
+          }}
+          onClick={() => select(item)}
+        >
+          {item.url}
+        </li>
+      ))}
+    </ul>
   );
 }
