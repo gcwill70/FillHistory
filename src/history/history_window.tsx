@@ -38,6 +38,12 @@ const containerStyle: React.CSSProperties = {
   height: "100%",
 };
 
+const listStyle: React.CSSProperties = {
+  flex: "1 1 auto",
+  overflowY: "auto",
+  padding: "5px",
+};
+
 export default function HistoryWindow() {
   const show = useSelector((state: RootState) => state.history.window.show);
   const dispatch = useDispatch();
@@ -65,7 +71,7 @@ export default function HistoryWindow() {
             <div style={containerStyle}>
               <HistoryForm />
               <div style={{ marginBottom: "10px" }} />
-              <div style={{ flex: "1 1 auto", overflowY: "auto" }}>
+              <div style={listStyle}>
                 <HistoryView />
               </div>
               <PremiumCtaView />

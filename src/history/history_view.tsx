@@ -7,8 +7,8 @@ import { historySlice } from "./history_slice";
 
 const resultsListStyle: React.CSSProperties = {
   listStyle: "none",
-  padding: "0",
-  margin: "0",
+  padding: "0px",
+  margin: "0px",
   flex: "1 1 auto",
 };
 
