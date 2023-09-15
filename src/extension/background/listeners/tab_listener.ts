@@ -1,4 +1,5 @@
 import { createStore } from "../../../core";
+import { historySlice } from "../../../history/history_slice";
 import { tabsSlice } from "../../../tabs/tabs_slice";
 
 export function setTabListener(store: ReturnType<typeof createStore>) {
@@ -10,5 +11,6 @@ export function setTabListener(store: ReturnType<typeof createStore>) {
         },
       })
     );
+    store.dispatch(historySlice.actions.window(false));
   });
 }
