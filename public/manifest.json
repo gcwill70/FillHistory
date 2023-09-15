@@ -3,7 +3,7 @@
   "version": "1.5.0",
   "description": "Quickly fill in links from browser history.",
   "manifest_version": 3,
-  "permissions": ["history", "activeTab", "contextMenus", "storage"],
+  "permissions": ["history", "activeTab", "contextMenus", "storage", "tabs"],
   "icons": {
     "256": "icon256.png"
   },

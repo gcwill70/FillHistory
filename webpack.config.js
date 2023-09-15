@@ -10,8 +10,9 @@ module.exports = {
   devtool: "source-map",
   entry: {
     content: path.resolve(__dirname, "src/extension/content/index.tsx"),
-    popup: path.resolve(__dirname, "/src/extension/popup/index.tsx"),
-    background: path.resolve(__dirname, "/src/extension/background/index.ts"),
+    popup: path.resolve(__dirname, "src/extension/popup/index.tsx"),
+    background: path.resolve(__dirname, "src/extension/background/index.ts"),
+    premium: path.resolve(__dirname, "src/premium/index.tsx"),
   },
   output: {
     path: path.join(__dirname, "dist"),
