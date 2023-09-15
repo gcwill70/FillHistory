@@ -3,8 +3,15 @@ import { RootState } from "../core";
 import { premiumSlice } from "./premium_slice";
 
 const layoutStyle: React.CSSProperties = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "flex-start",
+};
+
+const textStyle: React.CSSProperties = {
+  fontSize: "15px",
   margin: "0px",
-  fontSize: "12px",
+  padding: "0px",
 };
 
 const linkStyle: React.CSSProperties = {
@@ -25,7 +32,7 @@ function PremiumCtaView() {
     <></>
   ) : (
     <div style={layoutStyle}>
-      <p>
+      <p style={textStyle}>
         Want to save even more keystrokes?{" "}
         <span style={linkStyle} onClick={handleClick}>
           Get Premium!

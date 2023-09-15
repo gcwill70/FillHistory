@@ -1,11 +1,11 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../core";
-import HistoryForm from "./history_form";
-import HistoryView from "./history_view";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
-import { useEffect } from "react";
-import { historySlice } from "./history_slice";
 import PremiumCtaView from "../premium/premium_cta_view";
+import HistoryForm from "./history_form";
+import { historySlice } from "./history_slice";
+import HistoryView from "./history_view";
 
 const overlayStyle: React.CSSProperties = {
   position: "fixed",
@@ -41,7 +41,7 @@ const containerStyle: React.CSSProperties = {
 const listStyle: React.CSSProperties = {
   flex: "1 1 auto",
   overflowY: "auto",
-  padding: "5px",
+  padding: "5px 0px",
 };
 
 export default function HistoryWindow() {
@@ -74,6 +74,7 @@ export default function HistoryWindow() {
               <div style={listStyle}>
                 <HistoryView />
               </div>
+              <div style={{ marginBottom: "13px" }} />
               <PremiumCtaView />
             </div>
           </div>
