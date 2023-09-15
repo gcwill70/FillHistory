@@ -1,15 +1,12 @@
-import { useDispatch } from "react-redux";
-import { paymentSlice } from "../payment/payment_slice";
+import { extpay } from "../payment";
 
 function App() {
-  const dispatch = useDispatch();
-
   const handlePay = () => {
-    dispatch(paymentSlice.actions.pay());
+    extpay.openPaymentPage();
   };
 
   const handleRestore = () => {
-    dispatch(paymentSlice.actions.restore());
+    extpay.openLoginPage();
   };
 
   return (
