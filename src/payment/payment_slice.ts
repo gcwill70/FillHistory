@@ -20,7 +20,7 @@ export const paymentSlice = createSlice({
     setUser(state, action: PayloadAction<User>) {
       state.user = action.payload;
     },
-    register(state) {},
+    pay(state) {},
     restore(state) {},
   },
 });

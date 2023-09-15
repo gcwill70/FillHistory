@@ -22,7 +22,7 @@ paymentController.startListening({
 });
 
 paymentController.startListening({
-  actionCreator: paymentSlice.actions.register,
+  actionCreator: paymentSlice.actions.pay,
   effect: (action, api) => {
     extpay.openPaymentPage();
   },
