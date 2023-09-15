@@ -10,6 +10,9 @@ premiumController.startListening({
     console.debug("premiumController.openPage");
     chrome.windows.create({
       url: "premium.html",
+      type: "popup",
+      width: 780,
+      height: 800,
     });
   },
 });
