@@ -15,8 +15,7 @@
       "runtimeArgs": [
         "--remote-debugging-port=9222",
         "--load-extension=${webRoot}",
-        "--reload-extension=${webRoot}",
-        "--auto-open-devtools-for-tabs"
+        "--reload-extension=${webRoot}"
       ],
       "resolveSourceMapLocations": ["${webRoot}", "!**/node_modules/**"]
     },
