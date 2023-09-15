@@ -5,9 +5,6 @@ import { historySlice } from "./history_slice";
 
 const containerStyle: React.CSSProperties = {
   width: "100%",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
   padding: "0px",
   backgroundColor: "#f6f8fa",
   boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
