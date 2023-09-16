@@ -72,8 +72,8 @@ function App() {
           </div>
           <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-4 mb-8 flex justify-center items-center">
             <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                with more to come!
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+                ...and more to come!
               </h2>
             </div>
           </div>
