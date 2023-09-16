@@ -12,7 +12,7 @@ module.exports = {
     content: path.resolve(__dirname, "src/extension/content/index.tsx"),
     popup: path.resolve(__dirname, "src/extension/popup/index.tsx"),
     background: path.resolve(__dirname, "src/extension/background/index.ts"),
-    premium: path.resolve(__dirname, "src/premium/index.tsx"),
+    premium: path.resolve(__dirname, "src/premium/popup/index.tsx"),
   },
   output: {
     path: path.join(__dirname, "dist"),

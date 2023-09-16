@@ -5,7 +5,7 @@ import { historySlice } from "../../history/history_slice";
 import { lifecycleSlice } from "../../lifecycle/lifecycle_slice";
 import { paymentSlice } from "../../payment/payment_slice";
 import { tabsSlice } from "../../tabs/tabs_slice";
-import { premiumSlice } from "../../premium";
+import { premiumSlice } from "../../premium/premium_slice";
 
 export const rootReducer = combineReducers({
   commands: commandsSlice.reducer,
