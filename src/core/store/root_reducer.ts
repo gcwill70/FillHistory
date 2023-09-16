@@ -13,7 +13,7 @@ export const rootReducer = combineReducers({
   lifecycle: lifecycleSlice.reducer,
   tabs: tabsSlice.reducer,
   payment: paymentSlice.reducer,
-  premiumSlice: premiumSlice.reducer,
+  premium: premiumSlice.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
