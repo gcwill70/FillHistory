@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../core";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
 import PremiumCtaView from "../premium/premium_cta_view";
-import HistoryForm from "./history_form";
-import { historySlice } from "./history_slice";
-import HistoryView from "./history_view";
+import SearchForm from "./search_form";
+import { searchSlice } from "./search_slice";
+import SearchView from "./search_view";
 
 const overlayStyle: React.CSSProperties = {
   position: "fixed",
@@ -44,18 +44,18 @@ const listStyle: React.CSSProperties = {
   padding: "5px 0px",
 };
 
-export default function HistoryWindow() {
-  const show = useSelector((state: RootState) => state.history.window.show);
+export default function SearchWindow() {
+  const show = useSelector((state: RootState) => state.search.window.show);
   const dispatch = useDispatch();
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
-      dispatch(historySlice.actions.window(false));
+      dispatch(searchSlice.actions.window(false));
     }
   };
 
   useEffect(() => {
-    const inputElement = document.getElementById("history-form-input");
+    const inputElement = document.getElementById("search-form-input");
     if (show && inputElement) {
       inputElement.focus();
     } else {
@@ -69,10 +69,10 @@ export default function HistoryWindow() {
         <div style={overlayStyle} onClick={handleOverlayClick}>
           <div style={windowStyle}>
             <div style={containerStyle}>
-              <HistoryForm />
+              <SearchForm />
               <div style={{ marginBottom: "10px" }} />
               <div style={listStyle}>
-                <HistoryView />
+                <SearchView />
               </div>
               <div style={{ marginBottom: "13px" }} />
               <PremiumCtaView />

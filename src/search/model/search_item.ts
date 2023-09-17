@@ -1,4 +1,4 @@
-export interface HistoryItem {
+export interface SearchItem {
   /** Optional. The number of times the user has navigated to this page by typing in the address. */
   typedCount?: number | undefined;
   /** Optional. The title of the page when it was last loaded. */

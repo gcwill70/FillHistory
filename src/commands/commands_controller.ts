@@ -18,7 +18,7 @@ commandsController.startListening({
   actionCreator: commandsSlice.actions.setCommands,
   effect: (action, api) => {
     const shortcut = action.payload.commands.find(
-      (command) => command.name == "showHistory"
+      (command) => command.name == "search"
     )?.shortcut;
     if (shortcut) {
       chrome.contextMenus.update("fh-1", {

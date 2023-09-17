@@ -1,11 +1,11 @@
 import { Middleware, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import commandsController from "../../commands/commands_controller";
-import historyController from "../../history/history_controller";
 import paymentController from "../../payment/payment_controller";
+import premiumController from "../../premium/premium_controller";
+import searchController from "../../search/search_controller";
 import tabController from "../../tabs/tab_controller";
 import { RootAction, RootState, rootReducer } from "./root_reducer";
-import premiumController from "../../premium/premium_controller";
 
 export function createStore(
   preloadedState: RootState = rootReducer(undefined, { type: "lifecycle" })
@@ -16,7 +16,7 @@ export function createStore(
     middleware: (def) =>
       def().concat(
         logger,
-        historyController.middleware,
+        searchController.middleware,
         tabController.middleware,
         commandsController.middleware,
         paymentController.middleware,

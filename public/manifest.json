@@ -11,8 +11,8 @@
     "service_worker": "background.js"
   },
   "commands": {
-    "showHistory": {
-      "description": "Show browser history",
+    "search": {
+      "description": "Search for a link",
       "suggested_key": {
         "default": "Ctrl+Shift+X",
         "mac": "Command+Shift+X"

@@ -43,10 +43,10 @@ Content script for the extension that:
 * Listens for the `focusin` DOM event to update the currently selected text box in the Redux store.
 
 
-## `src/history`
+## `src/search`
 All logic to interact with the browser history API:
 * Searching history given a query
-* `history-controller` middleware that will execute the query and update the results in the store.
+* `search_controller` middleware that will execute the query and update the results in the store.
 * Slice definition:
 ```typescript
 export type HistoryState = {

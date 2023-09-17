@@ -1,18 +1,18 @@
 import { remove } from "../../utils";
-import { HistoryItem } from "../model/history_item";
-import { HistoryQuery } from "../model/history_query";
+import { SearchItem } from "../../search/model/search_item";
+import { SearchQuery } from "../../search/model/search_query";
 
 export default class HistoryApi {
-  search(query: HistoryQuery): Promise<HistoryItem[]> {
+  search(query: SearchQuery): Promise<SearchItem[]> {
     throw new Error("Not implemented");
   }
 
-  async filter(items: HistoryItem[]): Promise<HistoryItem[]> {
+  async filter(items: SearchItem[]): Promise<SearchItem[]> {
     // group by domain
     const domains: {
       domain: string;
       count: number;
-      items: HistoryItem[];
+      items: SearchItem[];
     }[] = [];
     for (const item of items) {
       if (item.url) {
@@ -30,7 +30,7 @@ export default class HistoryApi {
     // sort domains by visit count
     domains.sort((a, b) => b.count - a.count);
     // select best candidates from each domain
-    const best: HistoryItem[] = [];
+    const best: SearchItem[] = [];
     for (const { items: _items, count: count } of domains) {
       this.select(this.selectShortest, best, _items, items);
       this.select(this.selectMostVisited, best, _items, items);
@@ -41,10 +41,10 @@ export default class HistoryApi {
   }
 
   select(
-    selector: (prev: HistoryItem, curr: HistoryItem) => HistoryItem,
-    selected: HistoryItem[],
-    subarray: HistoryItem[],
-    array: HistoryItem[]
+    selector: (prev: SearchItem, curr: SearchItem) => SearchItem,
+    selected: SearchItem[],
+    subarray: SearchItem[],
+    array: SearchItem[]
   ) {
     try {
       const item = subarray.reduce(selector);
@@ -55,17 +55,17 @@ export default class HistoryApi {
     }
   }
 
-  selectShortest(prev: HistoryItem, curr: HistoryItem): HistoryItem {
+  selectShortest(prev: SearchItem, curr: SearchItem): SearchItem {
     return (prev.url?.length || 0) > (curr.url?.length || 0) ? curr : prev;
   }
 
-  selectMostVisited(prev: HistoryItem, curr: HistoryItem): HistoryItem {
+  selectMostVisited(prev: SearchItem, curr: SearchItem): SearchItem {
     prev.visitCount ??= 0;
     curr.visitCount ??= 0;
     return curr.visitCount > prev.visitCount ? curr : prev;
   }
 
-  selectMostRecent(prev: HistoryItem, curr: HistoryItem): HistoryItem {
+  selectMostRecent(prev: SearchItem, curr: SearchItem): SearchItem {
     prev.lastVisitTime ??= Number.MAX_SAFE_INTEGER;
     curr.lastVisitTime ??= Number.MAX_SAFE_INTEGER;
     return curr.lastVisitTime < prev.lastVisitTime ? curr : prev;

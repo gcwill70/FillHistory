@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../core";
-import { HistoryItem } from "./model/history_item";
+import { SearchItem } from "./model/search_item";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
-import { historySlice } from "./history_slice";
+import { searchSlice } from "./search_slice";
 
 const resultsListStyle: React.CSSProperties = {
   listStyle: "none",
@@ -25,12 +25,12 @@ const listItemStyle: React.CSSProperties = {
   transition: "background-color 0.3s ease, color 0.3s ease",
 };
 
-export default function HistoryView() {
+export default function SearchView() {
   const dispatch = useDispatch();
-  const { items, selected } = useSelector((state: RootState) => state.history);
+  const { items, selected } = useSelector((state: RootState) => state.search);
   const listRef = useRef<HTMLUListElement | null>(null);
 
-  const select = (item: HistoryItem) => {
+  const select = (item: SearchItem) => {
     if (activeElement) {
       const old = activeElement.value;
       const start = activeElement.selectionStart ?? 0;
@@ -38,8 +38,8 @@ export default function HistoryView() {
       activeElement.value =
         old.substring(0, start) + item.url! + old.substring(end);
     }
-    dispatch(historySlice.actions.window(false));
-    dispatch(historySlice.actions.reset());
+    dispatch(searchSlice.actions.window(false));
+    dispatch(searchSlice.actions.reset());
   };
 
   // handle item selection
@@ -71,7 +71,7 @@ export default function HistoryView() {
 
   return (
     <ul id="results-list" style={resultsListStyle} ref={listRef}>
-      {items.map((item: HistoryItem, i: number) => (
+      {items.map((item: SearchItem, i: number) => (
         <li
           key={`results-list-${i}`}
           style={{

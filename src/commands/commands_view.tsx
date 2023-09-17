@@ -26,7 +26,7 @@ const shortcutNotSetStyle: React.CSSProperties = {
 
 function CommandsView() {
   const command = useSelector((state: RootState) =>
-    state.commands.commands.find((command) => command.name === "showHistory")
+    state.commands.commands.find((command) => command.name === "search")
   );
 
   const handleChangeShortcut = () => {

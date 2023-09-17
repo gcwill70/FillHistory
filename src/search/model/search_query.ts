@@ -1,4 +1,4 @@
-export interface HistoryQuery {
+export interface SearchQuery {
   /** A free-text query to the history service. Leave empty to retrieve all pages. */
   text: string;
   /** Optional. The maximum number of results to retrieve. Defaults to 100. */

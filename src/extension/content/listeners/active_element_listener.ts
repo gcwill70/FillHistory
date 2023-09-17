@@ -13,7 +13,7 @@ export function activeElementListener(store: ReturnType<typeof createStore>) {
 function captureElement(event: Event) {
   try {
     const element = event.target as HTMLElement;
-    if (element.id !== "history-form-input") {
+    if (element.id !== "search-form-input") {
       if (element.nodeName === "INPUT") {
         activeElement = element as HTMLInputElement;
       } else if (element.nodeName === "TEXTAREA") {

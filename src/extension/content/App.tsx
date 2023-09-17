@@ -1,4 +1,4 @@
-import HistoryWindow from "../../history/history_window";
+import SearchWindow from "../../search/search_window";
 
 const appStyle: React.CSSProperties = {
   fontFamily: "Arial, sans-serif",
@@ -9,7 +9,7 @@ const appStyle: React.CSSProperties = {
 export default function App() {
   return (
     <div style={appStyle}>
-      <HistoryWindow />
+      <SearchWindow />
     </div>
   );
 }

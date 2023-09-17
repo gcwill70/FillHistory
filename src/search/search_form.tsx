@@ -1,7 +1,7 @@
 import { throttle } from "@github/mini-throttle";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { historySlice } from "./history_slice";
+import { searchSlice } from "./search_slice";
 
 const containerStyle: React.CSSProperties = {
   width: "100%",
@@ -20,13 +20,13 @@ const inputStyle: React.CSSProperties = {
   fontSize: "16px",
 };
 
-export default function HistoryForm() {
+export default function SearchForm() {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
 
   const throttledSearch = throttle((queryText: string) => {
     dispatch(
-      historySlice.actions.queryStart({
+      searchSlice.actions.queryStart({
         text: queryText,
         maxResults: 250,
         startTime: new Date("2000-01-01T00:00:00Z").getTime(),
@@ -43,11 +43,11 @@ export default function HistoryForm() {
   return (
     <div style={containerStyle}>
       <input
-        id="history-form-input"
+        id="search-form-input"
         type="text"
         value={text}
         onChange={handleInputChange}
-        placeholder="Search history"
+        placeholder=""
         style={inputStyle}
       />
     </div>

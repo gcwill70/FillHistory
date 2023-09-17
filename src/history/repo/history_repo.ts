@@ -1,7 +1,7 @@
 import HistoryApi from "../api/history_api";
 import HistoryApiChrome from "../api/history_api_chrome";
-import { HistoryItem } from "../model/history_item";
-import { HistoryQuery } from "../model/history_query";
+import { SearchItem } from "../../search/model/search_item";
+import { SearchQuery } from "../../search/model/search_query";
 
 export default class HistoryRepo {
   private api: HistoryApi;
@@ -10,7 +10,7 @@ export default class HistoryRepo {
     this.api = api;
   }
 
-  async search(query: HistoryQuery): Promise<HistoryItem[]> {
+  async search(query: SearchQuery): Promise<SearchItem[]> {
     try {
       return await this.api.search(query);
     } catch (e) {
@@ -19,7 +19,7 @@ export default class HistoryRepo {
     }
   }
 
-  async filter(items: HistoryItem[]): Promise<HistoryItem[]> {
+  async filter(items: SearchItem[]): Promise<SearchItem[]> {
     try {
       return await this.api.filter(items);
     } catch (e) {

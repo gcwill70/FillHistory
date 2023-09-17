@@ -1,7 +1,7 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { RootState } from "../core";
 import { lifecycleSlice } from "./lifecycle_slice";
-import { historySlice } from "../history/history_slice";
+import { searchSlice } from "../search/search_slice";
 
 const initloadHistoryController = createListenerMiddleware<RootState>();
 
@@ -11,7 +11,7 @@ initloadHistoryController.startListening({
     const state: RootState = api.getState();
     if (state.lifecycle.init.dependencies.loadHistory === "initial") {
       api.dispatch(lifecycleSlice.actions.initHistoryLoading());
-      api.dispatch(historySlice.actions.queryStart({ text: "" }));
+      api.dispatch(searchSlice.actions.queryStart({ text: "" }));
       api.dispatch(lifecycleSlice.actions.initHistoryLoaded());
     }
   },

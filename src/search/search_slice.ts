@@ -1,29 +1,29 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { HistoryItem, HistoryQuery } from ".";
+import { SearchItem, SearchQuery } from ".";
 
-export type HistoryState = {
-  items: HistoryItem[];
+export type SearchState = {
+  items: SearchItem[];
   selected: number | undefined;
   status: "idle" | "loading" | "error";
   window: { show: boolean };
 };
 
-const initial: HistoryState = {
+const initial: SearchState = {
   items: [],
   selected: undefined,
   status: "idle",
   window: { show: false },
 };
 
-export const historySlice = createSlice({
-  name: "history",
+export const searchSlice = createSlice({
+  name: "search",
   initialState: initial,
   reducers: {
     reset(state) {},
-    queryStart(state, action: PayloadAction<HistoryQuery>) {
+    queryStart(state, action: PayloadAction<SearchQuery>) {
       state.status = "loading";
     },
-    queryDone(state, action: PayloadAction<HistoryItem[]>) {
+    queryDone(state, action: PayloadAction<SearchItem[]>) {
       state.items = action.payload;
       state.status = "idle";
     },
