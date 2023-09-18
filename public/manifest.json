@@ -1,7 +1,7 @@
 {
-  "name": "FillHistory",
+  "name": "Autofill Plus",
   "version": "1.5.0",
-  "description": "Quickly fill in links from browser history.",
+  "description": "The extension you need when autofill doesn't work.",
   "manifest_version": 3,
   "permissions": ["history", "activeTab", "contextMenus", "storage", "tabs"],
   "icons": {
@@ -14,8 +14,8 @@
     "search": {
       "description": "Search for a link",
       "suggested_key": {
-        "default": "Ctrl+Shift+X",
-        "mac": "Command+Shift+X"
+        "default": "Ctrl+Shift+L",
+        "mac": "Command+Shift+L"
       }
     }
   },
