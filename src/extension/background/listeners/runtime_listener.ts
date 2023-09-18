@@ -1,7 +1,7 @@
 import { commandsSlice } from "../../../commands/commands_slice";
 import { createStore } from "../../../core";
-import { searchSlice } from "../../../search/search_slice";
 import { paymentSlice } from "../../../payment/payment_slice";
+import { searchSlice } from "../../../search/search_slice";
 
 export function runtimeListener(store: ReturnType<typeof createStore>) {
   chrome.runtime.onInstalled.addListener((details) => {
@@ -19,11 +19,11 @@ export function runtimeListener(store: ReturnType<typeof createStore>) {
   chrome.runtime.onStartup.addListener(() => {
     console.debug(`onStartup`);
   });
-  chrome.runtime.onConnect.addListener((details) => {
-    console.debug(`onConnect: ${details.name}`);
+  chrome.runtime.onConnect.addListener((port) => {
+    console.debug(`onConnect: ${port.name}`);
     store.dispatch(commandsSlice.actions.getCommands());
     store.dispatch(paymentSlice.actions.getUser());
-    details.onDisconnect.addListener((port) => {
+    port.onDisconnect.addListener((port) => {
       console.debug(`onDisconnect`);
     });
   });
