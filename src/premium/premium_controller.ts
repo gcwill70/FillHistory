@@ -7,7 +7,6 @@ const premiumController = createListenerMiddleware<RootState>();
 premiumController.startListening({
   actionCreator: premiumSlice.actions.openPage,
   effect: (action, api) => {
-    console.debug("premiumController.openPage");
     chrome.windows.create({
       url: "premium.html",
       type: "popup",
