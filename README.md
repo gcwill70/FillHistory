@@ -15,30 +15,22 @@ https://github.com/gcwill70/FillHistory/assets/25019832/026d6cbc-8c6e-4dc4-b2fc-
 * webpack
 * React (ui)
 * Redux (state management)
-* webext-redux (background and content script state syncing)
 
 # Architecture
 
 ## `src/commands`
 Stores and updates current command keyboard shortcuts.
 
-## `src/core`
-All logic for app infrastructure including Redux store creation.
-Includes slice definitions for:
-* Selected element on the page
-* Last extension command that was dispatched
-* History query results
-* Lifecycle state for each lifecycle event
-* Currently active tab
-
 ## `src/extension/background`
 Background service worker that executes background browser logic.
 Includes:
+* The Redux store needed for the background script.
 * Registering listener for `tabs.onActivated` and updating Redux store with active tab.
 * Listening for `comands.onCommand` and dispatching actions to Redux store.
 
 ## `src/extension/content`
 Content script for the extension that:
+* The Redux store needed for the content script.
 * Renders the `src/content/App.tsx` React component
 * Listens for the `focusin` DOM event to update the currently selected text box in the Redux store.
 

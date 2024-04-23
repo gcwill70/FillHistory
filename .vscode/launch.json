@@ -9,8 +9,8 @@
       "type": "chrome",
       "request": "launch",
       "internalConsoleOptions": "openOnSessionStart",
-      "preLaunchTask": "npm - build:dev",
-      "url": "https://jobs.lever.co/atlassian/5ae5a750-aa46-4dce-8910-9164d24f9115/apply",
+      "preLaunchTask": "npm build:dev",
+      "url": "https://boards.greenhouse.io/affirm/jobs/5937979003",
       "webRoot": "${workspaceFolder}/dist",
       "runtimeArgs": [
         "--remote-debugging-port=9222",
@@ -24,7 +24,7 @@
       "type": "chrome",
       "request": "launch",
       "internalConsoleOptions": "openOnSessionStart",
-      "preLaunchTask": "npm - build:dev",
+      "preLaunchTask": "npm build:dev",
       "url": "${input:url}",
       "webRoot": "${workspaceFolder}/dist",
       "runtimeArgs": [
@@ -43,12 +43,8 @@
       "description": "URL to test",
       "options": [
         // greenhouse
-        "https://boards.greenhouse.io/github/jobs/5142414",
+        "https://boards.greenhouse.io/affirm/jobs/5937979003",
         // lever.co
-        "https://jobs.lever.co/1password/534453a7-f89a-48ed-8cd9-696131076c5e/apply",
-        "https://jobs.lever.co/atlassian/5ae5a750-aa46-4dce-8910-9164d24f9115/apply",
-        // weird
-        "https://payitgov.com/careers/?gh_jid=5697695003#Current-Openings"
       ]
     }
   ]
