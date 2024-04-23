@@ -1,7 +1,7 @@
 import { commandsSlice } from "../../../commands/commands_slice";
-import { createStore } from "../../../core";
 import { paymentSlice } from "../../../payment/payment_slice";
 import { searchSlice } from "../../../search/search_slice";
+import { createStore } from "../store/create_store";
 
 export function runtimeListener(store: ReturnType<typeof createStore>) {
   chrome.runtime.onInstalled.addListener((details) => {
