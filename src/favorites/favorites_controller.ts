@@ -1,7 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { RootState } from "../core";
 
-const favoritesConroller = createListenerMiddleware<RootState>();
+const favoritesConroller = createListenerMiddleware();
 
 // favoritesConroller.startListening({
 //     actionCreator: favoritesConroller.actions.queryStart,
