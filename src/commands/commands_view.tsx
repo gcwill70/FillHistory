@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../core";
 
 const rowStyle: React.CSSProperties = {
   display: "flex",
@@ -25,8 +24,8 @@ const shortcutNotSetStyle: React.CSSProperties = {
 };
 
 function CommandsView() {
-  const command = useSelector((state: RootState) =>
-    state.commands.commands.find((command) => command.name === "search")
+  const command = useSelector((state: any) =>
+    state.commands.commands.find((command: any) => command.name === "search")
   );
 
   const handleChangeShortcut = () => {
