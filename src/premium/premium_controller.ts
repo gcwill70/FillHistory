@@ -1,8 +1,7 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { RootState } from "../core/store/root_reducer";
 import { premiumSlice } from "./premium_slice";
 
-const premiumController = createListenerMiddleware<RootState>();
+const premiumController = createListenerMiddleware();
 
 premiumController.startListening({
   actionCreator: premiumSlice.actions.openPage,

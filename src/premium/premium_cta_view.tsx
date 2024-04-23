@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../core";
 import { premiumSlice } from "./premium_slice";
 
 const layoutStyle: React.CSSProperties = {
@@ -21,7 +20,7 @@ const linkStyle: React.CSSProperties = {
 };
 
 function PremiumCtaView() {
-  const paid = useSelector((state: RootState) => state.payment.user.paid);
+  const paid = useSelector((state: any) => state.payment.user.paid);
   const dispatch = useDispatch();
 
   const handleClick = () => {
