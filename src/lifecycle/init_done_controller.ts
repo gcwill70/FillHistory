@@ -1,13 +1,12 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { RootState } from "../core";
 import { lifecycleSlice } from "./lifecycle_slice";
 
-const initDoneController = createListenerMiddleware<RootState>();
+const initDoneController = createListenerMiddleware();
 
 initDoneController.startListening({
   predicate: (action) => action.type.startsWith("lifecycle/init"),
   effect: async (action, api) => {
-    const state: RootState = api.getState();
+    const state: any = api.getState();
     if (state.lifecycle.init.status !== "done") {
       if (
         Object.values(state.lifecycle.init.dependencies).every(
