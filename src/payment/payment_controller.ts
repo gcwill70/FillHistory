@@ -1,9 +1,8 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { extpay } from ".";
-import { RootState } from "../core/store/root_reducer";
 import { paymentSlice } from "./payment_slice";
 
-const paymentController = createListenerMiddleware<RootState>();
+const paymentController = createListenerMiddleware();
 
 paymentController.startListening({
   actionCreator: paymentSlice.actions.setup,
