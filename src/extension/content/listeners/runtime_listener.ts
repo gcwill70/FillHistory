@@ -1,4 +1,4 @@
-import { createStore } from "../../../core";
+import { createStore } from "../store/create_store";
 
 export function runtimeListener(store: ReturnType<typeof createStore>) {
   chrome.runtime.onConnect.addListener((port) => {

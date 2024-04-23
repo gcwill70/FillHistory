@@ -1,4 +1,4 @@
-import { createStore } from "../../../core";
+import { createStore } from "../store/create_store";
 
 export let activeElement: HTMLInputElement | HTMLTextAreaElement | undefined;
 

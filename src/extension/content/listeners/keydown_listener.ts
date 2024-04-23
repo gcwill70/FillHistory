@@ -1,5 +1,5 @@
-import { createStore } from "../../../core";
 import { searchSlice } from "../../../search/search_slice";
+import { createStore } from "../store/create_store";
 
 export function keydownListener(store: ReturnType<typeof createStore>) {
   document.addEventListener("keydown", (e: KeyboardEvent) => {
