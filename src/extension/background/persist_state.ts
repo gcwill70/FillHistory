@@ -1,4 +1,4 @@
-import { RootState } from "../../core/store";
+import { BackgroundState } from "./store/reducer";
 
 export async function saveState() {
   const state = getState();
@@ -8,9 +8,9 @@ export async function saveState() {
   await chrome.storage.local.set({ state });
 }
 
-export async function getState(): Promise<RootState | undefined> {
+export async function getState(): Promise<BackgroundState | undefined> {
   const res = await chrome.storage.local.get(["state"]);
-  const state: RootState = res.state;
+  const state: BackgroundState = res.state;
   if (!state) {
     return;
   }
