@@ -1,10 +1,9 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { RootState } from "../core";
 import HistoryApiChrome from "../history/api/history_api_chrome";
 import HistoryRepo from "../history/repo/history_repo";
 import { searchSlice } from "./search_slice";
 
-const searchController = createListenerMiddleware<RootState>();
+const searchController = createListenerMiddleware();
 const repo = new HistoryRepo(new HistoryApiChrome());
 
 // search
@@ -13,8 +12,9 @@ searchController.startListening({
   effect: (action, api) => {
     (async () => {
       try {
+        const state: any = api.getState();
         let results = await repo.search({ ...action.payload });
-        if (api.getState().payment.user.paid) {
+        if (state.payment.user.paid) {
           results = await repo.filter(results);
         }
         api.dispatch(searchSlice.actions.queryDone(results));

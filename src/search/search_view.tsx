@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../core";
 import { SearchItem } from "./model/search_item";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
 import { searchSlice } from "./search_slice";
@@ -27,7 +26,7 @@ const listItemStyle: React.CSSProperties = {
 
 export default function SearchView() {
   const dispatch = useDispatch();
-  const { items, selected } = useSelector((state: RootState) => state.search);
+  const { items, selected } = useSelector((state: any) => state.search);
   const listRef = useRef<HTMLUListElement | null>(null);
 
   const select = (item: SearchItem) => {

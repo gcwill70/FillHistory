@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../core";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
 import PremiumCtaView from "../premium/premium_cta_view";
 import SearchForm from "./search_form";
@@ -45,7 +44,7 @@ const listStyle: React.CSSProperties = {
 };
 
 export default function SearchWindow() {
-  const show = useSelector((state: RootState) => state.search.window.show);
+  const show = useSelector((state: any) => state.search.window.show);
   const dispatch = useDispatch();
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
