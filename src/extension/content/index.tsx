@@ -1,16 +1,15 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { Store } from "webext-redux";
 import App from "./App";
 import { subscribeListeners } from "./listeners";
+import { createStore } from "./store/create_store";
 
 export * from "./App";
 export * from "./listeners";
 
 (async () => {
-  const store = new Store();
-  await store.ready();
+  const store = createStore();
   subscribeListeners(store);
 
   // create UI root
