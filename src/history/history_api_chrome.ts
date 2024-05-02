@@ -1,5 +1,5 @@
-import { SearchItem } from "../../search/model/search_item";
-import { SearchQuery } from "../../search/model/search_query";
+import { SearchItem } from "../search/model/search_item";
+import { SearchQuery } from "../search/model/search_query";
 import HistoryApi from "./history_api";
 
 export default class HistoryApiChrome extends HistoryApi {

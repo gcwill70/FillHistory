@@ -1,7 +1,7 @@
-import HistoryApi from "../api/history_api";
-import HistoryApiChrome from "../api/history_api_chrome";
-import { SearchItem } from "../../search/model/search_item";
-import { SearchQuery } from "../../search/model/search_query";
+import { SearchItem } from "../search/model/search_item";
+import { SearchQuery } from "../search/model/search_query";
+import HistoryApi from "./history_api";
+import HistoryApiChrome from "./history_api_chrome";
 
 export default class HistoryRepo {
   private api: HistoryApi;

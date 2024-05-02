@@ -1,7 +1,7 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import HistoryApiChrome from "../history/api/history_api_chrome";
-import HistoryRepo from "../history/repo/history_repo";
 import { searchSlice } from "./search_slice";
+import HistoryRepo from "../history/history_repo";
+import HistoryApiChrome from "../history/history_api_chrome";
 
 const searchController = createListenerMiddleware();
 const repo = new HistoryRepo(new HistoryApiChrome());
