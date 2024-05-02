@@ -21,6 +21,7 @@ messageController.startListening({
   actionCreator: lifecycleSlice.actions.initStart,
   effect: async (action, api) => {
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      console.log("onMessage", request, sender);
       api.dispatch(messageSlice.actions.onMessage({ request, sender }));
     });
   },
