@@ -1,12 +1,14 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { extpay } from ".";
+import { lifecycleSlice } from "../lifecycle/lifecycle_slice";
 import { paymentSlice } from "./payment_slice";
 
 const paymentController = createListenerMiddleware();
 
 paymentController.startListening({
-  actionCreator: paymentSlice.actions.setup,
+  actionCreator: lifecycleSlice.actions.initStart,
   effect: (action, api) => {
+    console.log("payment init");
     extpay.startBackground();
   },
 });
