@@ -3,7 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
-const devMode = !(process.env.NODE_ENV === "production");
+const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   mode: devMode ? "development" : "production",
