@@ -4,8 +4,6 @@ import React from "react";
 import { Store } from "webext-redux";
 import { Provider } from "react-redux";
 
-export * from "./App";
-
 (async () => {
   const store = new Store();
   await store.ready();

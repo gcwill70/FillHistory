@@ -1,6 +1,8 @@
 import { Middleware, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
-import commandsController from "../../../commands/commands_controller";
+import commandsController from "../../../commands-background/commands_controller";
+import lifecycleController from "../../../lifecycle-background/lifecycle_controller";
+import messageController from "../../../message/message_controller";
 import paymentController from "../../../payment/payment_controller";
 import premiumController from "../../../premium/premium_controller";
 import searchController from "../../../search/search_controller";
@@ -10,8 +12,6 @@ import {
   BackgroundState,
   backgroundReducer,
 } from "./reducer";
-import lifecycleController from "../../../lifecycle/lifecycle_controller";
-import messageController from "../../../message/message_controller";
 
 export function createStore(
   preloadedState: BackgroundState = backgroundReducer(undefined, {

@@ -1,5 +1,7 @@
 import { Middleware, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
+import lifecycleController from "../../../lifecycle-content/lifecycle_controller";
+import messageController from "../../../message/message_controller";
 import { ContentAction, ContentState, rootReducer } from "./root_reducer";
 
 export function createStore(
@@ -11,11 +13,8 @@ export function createStore(
     middleware: (def) =>
       def().concat(
         logger,
-        // searchController.middleware,
-        // tabController.middleware,
-        // commandsController.middleware,
-        // paymentController.middleware,
-        // premiumController.middleware
+        lifecycleController.middleware,
+        messageController.middleware,
       ),
   });
 

@@ -5,9 +5,6 @@ import App from "./App";
 import { subscribeListeners } from "./listeners";
 import { createStore } from "./store/create_store";
 
-export * from "./App";
-export * from "./listeners";
-
 (async () => {
   const store = createStore();
   subscribeListeners(store);

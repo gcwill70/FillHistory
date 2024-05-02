@@ -1,12 +1,12 @@
 import { AnyAction, combineReducers } from "@reduxjs/toolkit";
 import { ActionType } from "typesafe-actions";
-import { commandsSlice } from "../../../commands/commands_slice";
-import { lifecycleSlice } from "../../../lifecycle/lifecycle_slice";
+import { commandsSlice } from "../../../commands-background/commands_slice";
+import { lifecycleSlice } from "../../../lifecycle-background/lifecycle_slice";
+import { messageSlice } from "../../../message/message_slice";
 import { paymentSlice } from "../../../payment/payment_slice";
 import { premiumSlice } from "../../../premium/premium_slice";
 import { searchSlice } from "../../../search/search_slice";
 import { tabsSlice } from "../../../tabs/tabs_slice";
-import { messageSlice } from "../../../message/message_slice";
 
 export const backgroundReducer = combineReducers({
   lifecycle: lifecycleSlice.reducer,

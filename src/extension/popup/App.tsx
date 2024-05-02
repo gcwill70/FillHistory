@@ -1,4 +1,4 @@
-import CommandsView from "../../commands/commands_view";
+import CommandsView from "../../commands-content/commands_view";
 
 const appStyle: React.CSSProperties = {
   fontFamily: "Arial, sans-serif",

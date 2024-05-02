@@ -1,6 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { messageSlice } from "./message_slice";
-import { lifecycleSlice } from "../lifecycle/lifecycle_slice";
+import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
 
 const messageController = createListenerMiddleware();
 

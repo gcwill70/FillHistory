@@ -1,4 +1,4 @@
-import { lifecycleSlice } from "../../lifecycle/lifecycle_slice";
+import { lifecycleSlice } from "../../lifecycle-background/lifecycle_slice";
 import { subscribeListeners } from "./listeners";
 import { createStore } from "./store/create_store";
 
