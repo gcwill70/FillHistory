@@ -1,4 +1,4 @@
-import { remove } from "../utils";
+import { remove } from "../utils/array";
 import { SearchItem } from "../search/model/search_item";
 import { SearchQuery } from "../search/model/search_query";
 
