@@ -11,6 +11,7 @@ import {
   backgroundReducer,
 } from "./reducer";
 import lifecycleController from "../../../lifecycle/lifecycle_controller";
+import messageController from "../../../message/message_controller";
 
 export function createStore(
   preloadedState: BackgroundState = backgroundReducer(undefined, {
@@ -25,6 +26,7 @@ export function createStore(
         def().concat(
           logger,
           lifecycleController.middleware,
+          messageController.middleware,
           searchController.middleware,
           tabController.middleware,
           commandsController.middleware,

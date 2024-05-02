@@ -9,7 +9,6 @@ lifecycleController.startListening({
   effect: async (action, api) => {
     const state: any = api.getState();
     if (state.lifecycle.init.status !== "done") {
-      console.debug(JSON.stringify(state.lifecycle.init.dependencies));
       if (
         state.lifecycle.init.dependencies.length === 0 ||
         state.lifecycle.init.dependencies.every(

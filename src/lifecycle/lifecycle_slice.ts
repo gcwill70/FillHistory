@@ -39,7 +39,9 @@ export const lifecycleSlice = createSlice({
     initDone(state) {
       state.init.status = "done";
     },
-    deinitStart() {},
+    deinitStart(state) {
+      state.deinit.status = "loading";
+    },
     deinitDone(state) {
       state.deinit.status = "done";
     },
