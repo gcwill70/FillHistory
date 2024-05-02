@@ -2,27 +2,30 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export type LifecycleStatus = "initial" | "loading" | "done" | "error";
 
+export type LifecycleDependency = {
+  name: string;
+  status: LifecycleStatus;
+};
+
 export type LifecycleState = {
   init: {
     status: LifecycleStatus;
-    dependencies: { loadHistory: LifecycleStatus };
+    dependencies: LifecycleDependency[];
   };
   deinit: {
     status: LifecycleStatus;
-    dependencies: {};
+    dependencies: LifecycleDependency[];
   };
 };
 
 const initial: LifecycleState = {
   init: {
     status: "initial",
-    dependencies: {
-      loadHistory: "initial",
-    },
+    dependencies: [],
   },
   deinit: {
     status: "initial",
-    dependencies: {},
+    dependencies: [],
   },
 };
 
@@ -32,12 +35,6 @@ export const lifecycleSlice = createSlice({
   reducers: {
     initStart(state) {
       state.init.status = "loading";
-    },
-    initHistoryLoading(state) {
-      state.init.dependencies.loadHistory = "loading";
-    },
-    initHistoryLoaded(state) {
-      state.init.dependencies.loadHistory = "done";
     },
     initDone(state) {
       state.init.status = "done";

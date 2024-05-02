@@ -8,9 +8,9 @@ import { searchSlice } from "../../../search/search_slice";
 import { tabsSlice } from "../../../tabs/tabs_slice";
 
 export const backgroundReducer = combineReducers({
+  lifecycle: lifecycleSlice.reducer,
   commands: commandsSlice.reducer,
   search: searchSlice.reducer,
-  lifecycle: lifecycleSlice.reducer,
   tabs: tabsSlice.reducer,
   payment: paymentSlice.reducer,
   premium: premiumSlice.reducer,
