@@ -1,5 +1,6 @@
-export type Message = any;
+export type Message = {
+  type: string;
+  payload: any;
+};
 
 export type MessageSendResponse = any;
-
-export type MessageResponse = any;
