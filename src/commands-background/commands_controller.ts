@@ -1,10 +1,29 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { commandsSlice } from "./commands_slice";
 import { messageSlice } from "../message/message_slice";
+import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
 
 const commandsController = createListenerMiddleware();
 
-// Redux store update
+// init
+commandsController.startListening({
+  actionCreator: lifecycleSlice.actions.initStart,
+  effect: (action, api) => {
+    chrome.commands.onCommand.addListener(async function(command) {
+      api.dispatch(commandsSlice.actions.command(command));
+    });
+  },
+});
+
+// message
+commandsController.startListening({
+  predicate: (action) => action.type.startsWith("command/"),
+  effect: (action, api) => {
+    // api.dispatch(messageSlice.actions.sendMessage({ ...action }));
+  },
+});
+
+// get all
 commandsController.startListening({
   actionCreator: commandsSlice.actions.getCommands,
   effect: (action, api) => {
@@ -14,7 +33,7 @@ commandsController.startListening({
   },
 });
 
-// Context Menu update
+// context menu
 commandsController.startListening({
   actionCreator: commandsSlice.actions.setCommands,
   effect: (action, api) => {
