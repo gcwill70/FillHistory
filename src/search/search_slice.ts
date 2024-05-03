@@ -17,7 +17,7 @@ const initial: SearchState = {
 };
 
 export const searchSlice = createSlice({
-  name: "search",
+  name: "message/search",
   initialState: initial,
   reducers: {
     reset(state) {},
