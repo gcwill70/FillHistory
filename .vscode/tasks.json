@@ -24,11 +24,9 @@
       "type": "shell",
       "command": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
       "args": [
-        "--disable-extensions",
         "--remote-debugging-port=9222",
         "--user-data-dir=/tmp/chrome-dev-profile",
-        "--no-first-run",
-        "--disable-web-security",
+        // "--no-first-run",
         "--load-extension=${workspaceFolder}/dist",
         "--reload-extension=${workspaceFolder}/dist",
         "--auto-open-devtools-for-tabs",
