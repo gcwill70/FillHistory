@@ -1,5 +1,7 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
+import { PayloadAction, PayloadMetaAction } from "typesafe-actions";
+import { Message, MessageMeta } from "./message";
 
 const messageController = createListenerMiddleware();
 
@@ -8,10 +10,12 @@ messageController.startListening({
   actionCreator: lifecycleSlice.actions.initStart,
   effect: async (action, api) => {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-      api.dispatch({
+      const action: PayloadMetaAction<string, Message, MessageMeta> = {
         type: message.type,
         payload: message.payload,
-      });
+        meta: { external: true },
+      };
+      api.dispatch(action);
     });
   },
 });
@@ -20,12 +24,19 @@ messageController.startListening({
 messageController.startListening({
   predicate: (action) => action.type.startsWith("message/"),
   effect: async (action, api) => {
-    // send to content scripts
+    if (action["meta"]?.external) return;
+
+    const message: Message = {
+      type: action.type,
+      payload: action.payload,
+    };
+
+    // send to active content script
     try {
       const state = api.getState() as any;
       if (state.tabs.current.id >= 0) {
         chrome.tabs
-          .sendMessage(state.tabs.current.id, action)
+          .sendMessage(state.tabs.current.id, message)
           .then((response) => {})
           .catch((error) => {});
       }
@@ -33,11 +44,15 @@ messageController.startListening({
       console.error(e);
     }
 
-    // send to non-content scripts
-    chrome.runtime
-      .sendMessage(action)
-      .then((response) => {})
-      .catch((error) => {});
+    // send to other scripts
+    try {
+      chrome.runtime
+        .sendMessage(message)
+        .then((response) => {})
+        .catch((error) => {});
+    } catch (e) {
+      console.error(e);
+    }
   },
 });
 

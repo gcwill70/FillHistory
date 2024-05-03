@@ -7,8 +7,6 @@ import { subscribeListeners } from "./listeners";
 import { createStore } from "./store";
 
 (async () => {
-  console.debug("content script loaded");
-  
   const store = createStore();
   subscribeListeners(store);
   store.dispatch(lifecycleSlice.actions.initStart());
