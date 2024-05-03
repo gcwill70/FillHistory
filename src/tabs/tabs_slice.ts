@@ -1,4 +1,4 @@
-import { Tab } from './models/tab';
+import { Tab } from './tab';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface SetTabPayload {
