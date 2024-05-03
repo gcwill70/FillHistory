@@ -1,7 +1,7 @@
 import { Middleware, configureStore } from "@reduxjs/toolkit";
-import logger from "redux-logger";
 import commandsController from "../../../commands-background/commands_controller";
 import lifecycleController from "../../../lifecycle-background/lifecycle_controller";
+import loggerController from "../../../logger/logger_controller";
 import messageController from "../../../message/message_controller";
 import paymentController from "../../../payment/payment_controller";
 import premiumController from "../../../premium/premium_controller";
@@ -24,7 +24,7 @@ export function createStore(
       preloadedState: preloadedState,
       middleware: (def) =>
         def().concat(
-          // logger,
+          loggerController.middleware,
           lifecycleController.middleware,
           messageController.middleware,
           searchController.middleware,
