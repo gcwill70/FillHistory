@@ -8,7 +8,6 @@ const paymentController = createListenerMiddleware();
 paymentController.startListening({
   actionCreator: lifecycleSlice.actions.initStart,
   effect: (action, api) => {
-    console.log("payment init");
     extpay.startBackground();
   },
 });
