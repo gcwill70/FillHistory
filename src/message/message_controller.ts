@@ -1,39 +1,44 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
-import { messageSlice } from "./message_slice";
 
 const messageController = createListenerMiddleware();
-
-// send messages
-messageController.startListening({
-  actionCreator: messageSlice.actions.sendMessage,
-  effect: async (action, api) => {
-    console.debug("message.sendMessage: ", JSON.stringify(action));
-    try {
-      chrome.runtime.sendMessage({ ...action.payload });
-    } catch (e) {
-      api.dispatch(messageSlice.actions.messageError());
-    }
-  },
-});
 
 // receive messages
 messageController.startListening({
   actionCreator: lifecycleSlice.actions.initStart,
   effect: async (action, api) => {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-      console.debug("message.onMessage: ", JSON.stringify(sender));
-      api.dispatch(messageSlice.actions.onMessage(message));
+      api.dispatch({
+        type: message.type,
+        payload: message.payload,
+      });
     });
   },
 });
+
+// send messages
 messageController.startListening({
-  actionCreator: messageSlice.actions.onMessage,
-  effect: async (messageAction, api) => {
-    console.debug("message.sendMessage: ", JSON.stringify(messageAction));
-    const { type, payload } = messageAction.payload;
-    console.debug("message forwarding: ", { type, payload });
-    // api.dispatch({ type, payload });
+  predicate: (action) => action.type.startsWith("message/"),
+  effect: async (action, api) => {
+    // send to content scripts
+    try {
+      const state = api.getState() as any;
+      if (state.tabs.current.id >= 0) {
+        console.debug(state.tabs.current.id);
+        chrome.tabs
+          .sendMessage(state.tabs.current.id, action)
+          .then((response) => {})
+          .catch((error) => {});
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
+    // send to non-content scripts
+    chrome.runtime
+      .sendMessage(action)
+      .then((response) => {})
+      .catch((error) => {});
   },
 });
 

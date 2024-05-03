@@ -1,5 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Message } from "./message";
+import { createSlice } from "@reduxjs/toolkit";
 
 export type MessageState = {};
 
@@ -8,9 +7,5 @@ const initial: MessageState = {};
 export const messageSlice = createSlice({
   name: "message",
   initialState: initial,
-  reducers: {
-    sendMessage(state, action: PayloadAction<Message>) {},
-    messageError(state) {},
-    onMessage(state, action: PayloadAction<Message>) {},
-  },
+  reducers: {},
 });
