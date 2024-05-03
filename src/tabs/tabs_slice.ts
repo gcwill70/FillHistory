@@ -16,7 +16,7 @@ const initial: TabsState = {
 };
 
 export const tabsSlice = createSlice({
-  name: "tabs",
+  name: "message/tabs",
   initialState: initial,
   reducers: {
     setTab(state, action: PayloadAction<SetTabPayload>) {
