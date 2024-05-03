@@ -4,12 +4,12 @@ import {
   combineReducers,
   configureStore,
 } from "@reduxjs/toolkit";
+import logger from "redux-logger";
 import { ActionType } from "typesafe-actions";
 import commandsController from "../../commands-content/commands_controller";
 import { commandsSlice } from "../../commands-content/commands_slice";
 import lifecycleController from "../../lifecycle-content/lifecycle_controller";
 import { lifecycleSlice } from "../../lifecycle-content/lifecycle_slice";
-import loggerController from "../../logger/logger_controller";
 import messageController from "../../message/message_controller";
 import { messageSlice } from "../../message/message_slice";
 import { searchSlice } from "../../search/search_slice";
@@ -42,7 +42,7 @@ export function createStore(
     preloadedState: preloadedState,
     middleware: (def) =>
       def().concat(
-        loggerController.middleware,
+        logger,
         lifecycleController.middleware,
         messageController.middleware,
         commandsController.middleware
