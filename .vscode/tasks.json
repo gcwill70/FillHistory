@@ -22,6 +22,7 @@
     {
       "label": "launch chrome",
       "type": "shell",
+      "dependsOn": "npm build:dev",
       "command": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
       "args": [
         "--remote-debugging-port=9222",
