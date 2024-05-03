@@ -24,7 +24,7 @@ export function createStore(
       preloadedState: preloadedState,
       middleware: (def) =>
         def().concat(
-          logger,
+          // logger,
           lifecycleController.middleware,
           messageController.middleware,
           searchController.middleware,
