@@ -1,5 +1,3 @@
-import { BackgroundState } from "./store/reducer";
-
 export async function saveState() {
   const state = getState();
   if (!state) {
@@ -8,11 +6,7 @@ export async function saveState() {
   await chrome.storage.local.set({ state });
 }
 
-export async function getState(): Promise<BackgroundState | undefined> {
+export async function getState(): Promise<any> {
   const res = await chrome.storage.local.get(["state"]);
-  const state: BackgroundState = res.state;
-  if (!state) {
-    return;
-  }
-  return state;
+  return res.statete;
 }

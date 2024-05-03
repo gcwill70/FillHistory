@@ -8,7 +8,6 @@ messageController.startListening({
   actionCreator: lifecycleSlice.actions.initStart,
   effect: async (action, api) => {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-      console.debug("onMessage: ", message);
       api.dispatch({
         type: message.type,
         payload: message.payload,
