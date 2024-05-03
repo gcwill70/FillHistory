@@ -39,4 +39,4 @@ export function createStore(
   return store;
 }
 
-export type Store = ReturnType<typeof createStore>;
+export type BackgroundStore = ReturnType<typeof createStore>;
