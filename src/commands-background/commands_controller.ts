@@ -1,7 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { commandsSlice } from "./commands_slice";
-import { messageSlice } from "../message/message_slice";
 import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
+import { commandsSlice } from "./commands_slice";
 
 const commandsController = createListenerMiddleware();
 
@@ -12,14 +11,6 @@ commandsController.startListening({
     chrome.commands.onCommand.addListener(async function(command) {
       api.dispatch(commandsSlice.actions.command(command));
     });
-  },
-});
-
-// message
-commandsController.startListening({
-  predicate: (action) => action.type.startsWith("command/"),
-  effect: (action, api) => {
-    // api.dispatch(messageSlice.actions.sendMessage({ ...action }));
   },
 });
 
