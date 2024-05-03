@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
+import { lifecycleSlice } from "../../lifecycle-content/lifecycle_slice";
 import App from "./App";
 import { subscribeListeners } from "./listeners";
 import { createStore } from "./store";
@@ -10,6 +11,7 @@ import { createStore } from "./store";
   
   const store = createStore();
   subscribeListeners(store);
+  store.dispatch(lifecycleSlice.actions.initStart());
 
   // create UI root
   const root = document.createElement("div");
