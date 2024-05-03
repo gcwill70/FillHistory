@@ -8,6 +8,7 @@ messageController.startListening({
   actionCreator: lifecycleSlice.actions.initStart,
   effect: async (action, api) => {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      console.debug("onMessage: ", message);
       api.dispatch({
         type: message.type,
         payload: message.payload,
@@ -24,14 +25,13 @@ messageController.startListening({
     try {
       const state = api.getState() as any;
       if (state.tabs.current.id >= 0) {
-        console.debug(state.tabs.current.id);
         chrome.tabs
           .sendMessage(state.tabs.current.id, action)
           .then((response) => {})
           .catch((error) => {});
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
 
     // send to non-content scripts
