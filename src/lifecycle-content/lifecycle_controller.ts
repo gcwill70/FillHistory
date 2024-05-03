@@ -26,10 +26,16 @@ lifecycleController.startListening({
   predicate: (action) => action.type.startsWith("lifecycle/deinit"),
   effect: async (action, api) => {
     const state: any = api.getState();
-    if (
-      Object.values(state.lifecycle.deinit).every((value) => value === "done")
-    ) {
-      api.dispatch(lifecycleSlice.actions.deinitDone());
+    if (state.lifecycle.deinit.status !== "done") {
+      if (
+        state.lifecycle.deinit.dependencies.length === 0 ||
+        state.lifecycle.deinit.dependencies.every(
+          (value: any) => value.status === "done"
+        )
+      ) {
+        console.debug("deinitDone");
+        api.dispatch(lifecycleSlice.actions.deinitDone());
+      }
     }
   },
 });
