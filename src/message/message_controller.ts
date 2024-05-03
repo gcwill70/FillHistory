@@ -4,22 +4,7 @@ import { messageSlice } from "./message_slice";
 
 const messageController = createListenerMiddleware();
 
-// init
-messageController.startListening({
-  actionCreator: lifecycleSlice.actions.initStart,
-  effect: async (action, api) => {
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-      console.debug(
-        "message.onMessage: ",
-        JSON.stringify(message),
-        JSON.stringify(sender)
-      );
-      api.dispatch(messageSlice.actions.onMessage(message));
-    });
-  },
-});
-
-// sendMessage handler
+// send messages
 messageController.startListening({
   actionCreator: messageSlice.actions.sendMessage,
   effect: async (action, api) => {
@@ -32,7 +17,16 @@ messageController.startListening({
   },
 });
 
-// message forwarding
+// receive messages
+messageController.startListening({
+  actionCreator: lifecycleSlice.actions.initStart,
+  effect: async (action, api) => {
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      console.debug("message.onMessage: ", JSON.stringify(sender));
+      api.dispatch(messageSlice.actions.onMessage(message));
+    });
+  },
+});
 messageController.startListening({
   actionCreator: messageSlice.actions.onMessage,
   effect: async (messageAction, api) => {
