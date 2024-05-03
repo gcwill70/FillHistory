@@ -6,7 +6,7 @@ import { messageSlice } from "../../../message/message_slice";
 import { searchSlice } from "../../../search/search_slice";
 import { tabsSlice } from "../../../tabs/tabs_slice";
 
-export const rootReducer = combineReducers({
+export const contentReducer = combineReducers({
   lifecycle: lifecycleSlice.reducer,
   message: messageSlice.reducer,
   commands: commandsSlice.reducer,
@@ -14,7 +14,7 @@ export const rootReducer = combineReducers({
   tabs: tabsSlice.reducer,
 });
 
-export type ContentState = ReturnType<typeof rootReducer>;
+export type ContentState = ReturnType<typeof contentReducer>;
 export type ContentAction =
   | AnyAction
   | ActionType<typeof lifecycleSlice.actions>

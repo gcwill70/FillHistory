@@ -6,6 +6,8 @@ import { subscribeListeners } from "./listeners";
 import { createStore } from "./store/create_store";
 
 (async () => {
+  console.debug("content script loaded");
+  
   const store = createStore();
   subscribeListeners(store);
 
