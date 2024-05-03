@@ -1,4 +1,4 @@
-import { createStore } from "../store/create_store";
+import { createStore } from "../store";
 import { contextmenuListener } from "./contextmenu_listener";
 import { runtimeListener } from "./runtime_listener";
 import { storageListener } from "./storage_listener";

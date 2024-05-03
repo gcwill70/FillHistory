@@ -1,4 +1,4 @@
-import { createStore } from "../store/create_store";
+import { createStore } from "../store";
 
 export function storageListener(store: ReturnType<typeof createStore>) {
   chrome.storage.onChanged.addListener((changes, name) => {
