@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import App from "./App";
 import { subscribeListeners } from "./listeners";
-import { createStore } from "./store/create_store";
+import { createStore } from "./store";
 
 (async () => {
   console.debug("content script loaded");
