@@ -6,7 +6,7 @@ const loggerController = createListenerMiddleware();
 loggerController.startListening({
   predicate: (action) => true,
   effect: async (action, api) => {
-    console.debug(action.type, action.payload);
+    console.debug({ type: action.type, payload: action.payload });
   },
 });
 
