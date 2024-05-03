@@ -14,7 +14,7 @@ messageController.startListening({
         JSON.stringify(message),
         JSON.stringify(sender)
       );
-      api.dispatch(messageSlice.actions.onMessage({ message, sender }));
+      api.dispatch(messageSlice.actions.onMessage(message));
     });
   },
 });
@@ -29,6 +29,17 @@ messageController.startListening({
     } catch (e) {
       api.dispatch(messageSlice.actions.messageError());
     }
+  },
+});
+
+// message forwarding
+messageController.startListening({
+  actionCreator: messageSlice.actions.onMessage,
+  effect: async (messageAction, api) => {
+    console.debug("message.sendMessage: ", JSON.stringify(messageAction));
+    const { type, payload } = messageAction.payload;
+    console.debug("message forwarding: ", { type, payload });
+    // api.dispatch({ type, payload });
   },
 });
 

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Message, MessageResponse } from "./message";
+import { Message } from "./message";
 
 export type MessageState = {};
 
@@ -11,6 +11,6 @@ export const messageSlice = createSlice({
   reducers: {
     sendMessage(state, action: PayloadAction<Message>) {},
     messageError(state) {},
-    onMessage(state, action: PayloadAction<MessageResponse>) {},
+    onMessage(state, action: PayloadAction<Message>) {},
   },
 });
