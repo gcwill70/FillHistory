@@ -1,12 +1,15 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { messageSlice } from "../message/message_slice";
+import { commandsSlice } from "./commands_slice";
+import { searchSlice } from "../search/search_slice";
 
 const commandsController = createListenerMiddleware();
 
 commandsController.startListening({
-  actionCreator: messageSlice.actions.onMessage,
+  actionCreator: commandsSlice.actions.command,
   effect: (action, api) => {
-    console.debug("commands.onMessage (content)", action.payload);
+    if (action.payload === "search") {
+      api.dispatch(searchSlice.actions.window());
+    }
   },
 });
 
