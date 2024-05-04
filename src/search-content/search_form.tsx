@@ -1,7 +1,7 @@
 import { throttle } from "@github/mini-throttle";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchSlice } from "./search_slice";
+import { searchSlice } from "../search/search_slice";
 
 const containerStyle: React.CSSProperties = {
   width: "100%",

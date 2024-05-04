@@ -1,4 +1,4 @@
-import SearchWindow from "../../search/search_window";
+import SearchWindow from "../../search-content/search_window";
 
 const appStyle: React.CSSProperties = {
   fontFamily: "Arial, sans-serif",

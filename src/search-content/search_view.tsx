@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SearchItem } from "./model/search_item";
+import { SearchItem } from "../search/model/search_item";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
-import { searchSlice } from "./search_slice";
+import { searchSlice } from "../search/search_slice";
 
 const resultsListStyle: React.CSSProperties = {
   listStyle: "none",
