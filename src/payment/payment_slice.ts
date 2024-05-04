@@ -12,7 +12,7 @@ const initial: PaymentState = {
 };
 
 export const paymentSlice = createSlice({
-  name: "payment",
+  name: "message/payment",
   initialState: initial,
   reducers: {
     getUser(state) {},
