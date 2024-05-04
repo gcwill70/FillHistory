@@ -1,5 +1,4 @@
 import { commandsSlice } from "../../../commands-background/commands_slice";
-import { paymentSlice } from "../../../payment/payment_slice";
 import { searchSlice } from "../../../search/search_slice";
 import { createStore } from "../store";
 
@@ -22,7 +21,6 @@ export function runtimeListener(store: ReturnType<typeof createStore>) {
   chrome.runtime.onConnect.addListener((port) => {
     console.debug(`onConnect: ${port.name}`);
     store.dispatch(commandsSlice.actions.getCommands());
-    store.dispatch(paymentSlice.actions.getUser());
     port.onDisconnect.addListener((port) => {
       console.debug(`onDisconnect`);
     });

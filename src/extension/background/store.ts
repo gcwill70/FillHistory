@@ -12,7 +12,7 @@ import lifecycleController from "../../lifecycle-background/lifecycle_controller
 import { lifecycleSlice } from "../../lifecycle-background/lifecycle_slice";
 import messageController from "../../message/message_controller";
 import { messageSlice } from "../../message/message_slice";
-import paymentController from "../../payment/payment_controller";
+import paymentController from "../../payment-background/payment_controller";
 import { paymentSlice } from "../../payment/payment_slice";
 import premiumController from "../../premium/premium_controller";
 import { premiumSlice } from "../../premium/premium_slice";
