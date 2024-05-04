@@ -12,6 +12,8 @@ import lifecycleController from "../../lifecycle-content/lifecycle_controller";
 import { lifecycleSlice } from "../../lifecycle-content/lifecycle_slice";
 import messageController from "../../message/message_controller";
 import { messageSlice } from "../../message/message_slice";
+import paymentController from "../../payment-content/payment_controller";
+import { paymentSlice } from "../../payment/payment_slice";
 import { searchSlice } from "../../search/search_slice";
 import { tabsSlice } from "../../tabs/tabs_slice";
 
@@ -21,6 +23,7 @@ const contentReducer = combineReducers({
   commands: commandsSlice.reducer,
   search: searchSlice.reducer,
   tabs: tabsSlice.reducer,
+  payment: paymentSlice.reducer,
 });
 
 export type ContentState = ReturnType<typeof contentReducer>;
@@ -45,7 +48,8 @@ export function createStore(
         logger,
         lifecycleController.middleware,
         messageController.middleware,
-        commandsController.middleware
+        commandsController.middleware,
+        paymentController.middleware
       ),
   });
 
