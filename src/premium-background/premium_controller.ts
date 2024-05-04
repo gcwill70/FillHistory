@@ -1,5 +1,5 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { premiumSlice } from "./premium_slice";
+import { premiumSlice } from "../premium/premium_slice";
 
 const premiumController = createListenerMiddleware();
 

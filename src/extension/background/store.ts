@@ -14,7 +14,7 @@ import messageController from "../../message/message_controller";
 import { messageSlice } from "../../message/message_slice";
 import paymentController from "../../payment-background/payment_controller";
 import { paymentSlice } from "../../payment/payment_slice";
-import premiumController from "../../premium/premium_controller";
+import premiumController from "../../premium-background/premium_controller";
 import { premiumSlice } from "../../premium/premium_slice";
 import searchController from "../../search/search_controller";
 import { searchSlice } from "../../search/search_slice";
