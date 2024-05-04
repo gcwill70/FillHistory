@@ -1,3 +1,14 @@
+export interface SearchQuery {
+  /** A free-text query to the history service. Leave empty to retrieve all pages. */
+  text: string;
+  /** Optional. The maximum number of results to retrieve. Defaults to 100. */
+  maxResults?: number | undefined;
+  /** Optional. Limit results to those visited after this date, represented in milliseconds since the epoch. */
+  startTime?: number | undefined;
+  /** Optional. Limit results to those visited before this date, represented in milliseconds since the epoch. */
+  endTime?: number | undefined;
+}
+
 export interface SearchItem {
   /** Optional. The number of times the user has navigated to this page by typing in the address. */
   typedCount?: number | undefined;

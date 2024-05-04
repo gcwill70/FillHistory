@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { SearchItem } from "./model/search_item";
-import { SearchQuery } from "./model/search_query";
+import { SearchItem, SearchQuery } from "./search.types";
 
 export type SearchState = {
   items: SearchItem[];

@@ -1,6 +1,5 @@
+import { SearchItem, SearchQuery } from "../search/search.types";
 import { remove } from "../utils/array";
-import { SearchItem } from "../search/model/search_item";
-import { SearchQuery } from "../search/model/search_query";
 
 export default class HistoryApi {
   search(query: SearchQuery): Promise<SearchItem[]> {
