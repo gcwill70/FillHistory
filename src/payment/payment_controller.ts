@@ -1,7 +1,9 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { extpay } from ".";
 import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
 import { paymentSlice } from "./payment_slice";
+import ExtPay from "extpay";
+
+const extpay = ExtPay("fillhistory");
 
 const paymentController = createListenerMiddleware();
 
