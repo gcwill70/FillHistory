@@ -7,7 +7,7 @@ import {
 import logger from "redux-logger";
 import { ActionType } from "typesafe-actions";
 import commandsController from "../../commands-content/commands_controller";
-import { commandsSlice } from "../../commands-content/commands_slice";
+import { commandsSlice } from "../../commands/commands_slice";
 import lifecycleController from "../../lifecycle-content/lifecycle_controller";
 import { lifecycleSlice } from "../../lifecycle-content/lifecycle_slice";
 import messageController from "../../message/message_controller";

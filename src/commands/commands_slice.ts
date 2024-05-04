@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Command } from "../commands/command";
+import { Command } from "./command";
 
 export interface SetCommandsPayload {
   commands: Command[];
