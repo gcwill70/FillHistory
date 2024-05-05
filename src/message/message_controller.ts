@@ -1,13 +1,12 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
-import { PayloadAction, PayloadMetaAction } from "typesafe-actions";
+import { PayloadMetaAction } from "typesafe-actions";
 import { Message, MessageMeta } from "./message";
 
 const messageController = createListenerMiddleware();
 
 // receive messages
 messageController.startListening({
-  actionCreator: lifecycleSlice.actions.initStart,
+  predicate: (action) => action.type.startsWith("lifecycle/initStart"),
   effect: async (action, api) => {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       const action: PayloadMetaAction<string, Message, MessageMeta> = {
