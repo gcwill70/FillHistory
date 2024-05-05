@@ -33,7 +33,7 @@ messageController.startListening({
     // send to active content script
     try {
       const state = api.getState() as any;
-      if (state.tabs.current.id >= 0) {
+      if (chrome.tabs && state.tabs.current.id >= 0) {
         chrome.tabs
           .sendMessage(state.tabs.current.id, message)
           .then((response) => {})
