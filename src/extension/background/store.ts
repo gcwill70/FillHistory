@@ -18,7 +18,7 @@ import premiumController from "../../premium-background/premium_controller";
 import { premiumSlice } from "../../premium/premium_slice";
 import searchController from "../../search-background/search_controller";
 import { searchSlice } from "../../search/search_slice";
-import tabController from "../../tabs/tab_controller";
+import tabController from "../../tabs-background/tab_controller";
 import { tabsSlice } from "../../tabs/tabs_slice";
 
 const reducer = combineReducers({
