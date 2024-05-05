@@ -17,6 +17,7 @@ import { paymentSlice } from "../../payment/payment_slice";
 import { searchSlice } from "../../search/search_slice";
 import { tabsSlice } from "../../tabs/tabs_slice";
 import { premiumSlice } from "../../premium/premium_slice";
+import searchController from "../../search-content/search_controller";
 
 const contentReducer = combineReducers({
   lifecycle: lifecycleSlice.reducer,
@@ -51,6 +52,7 @@ export function createStore(
         lifecycleController.middleware,
         messageController.middleware,
         commandsController.middleware,
+        searchController.middleware,
         paymentController.middleware
       ),
   });
