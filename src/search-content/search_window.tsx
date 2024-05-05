@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { activeElement } from "../extension/content/listeners/active_element_listener";
-import PremiumCtaView from "../premium/premium_cta_view";
+import PremiumCtaView from "../premium-content/premium_cta_view";
 import SearchForm from "./search_form";
 import { searchSlice } from "../search/search_slice";
 import SearchView from "./search_view";

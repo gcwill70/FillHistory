@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { premiumSlice } from "./premium_slice";
+import { premiumSlice } from "../premium/premium_slice";
 
 const layoutStyle: React.CSSProperties = {
   display: "flex",
