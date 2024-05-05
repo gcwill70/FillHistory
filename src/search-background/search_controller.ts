@@ -1,5 +1,5 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { searchSlice } from "./search_slice";
+import { searchSlice } from "../search/search_slice";
 import HistoryRepo from "../history/history_repo";
 import HistoryApiChrome from "../history/history_api_chrome";
 
