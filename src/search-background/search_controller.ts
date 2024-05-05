@@ -2,9 +2,22 @@ import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { searchSlice } from "../search/search_slice";
 import HistoryRepo from "../history/history_repo";
 import HistoryApiChrome from "../history/history_api_chrome";
+import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
 
 const searchController = createListenerMiddleware();
 const repo = new HistoryRepo(new HistoryApiChrome());
+
+// context menu
+searchController.startListening({
+  actionCreator: lifecycleSlice.actions.initStart,
+  effect: (action, api) => {
+    chrome.contextMenus.onClicked.addListener((info, tab) => {
+      if (info.menuItemId === "fh-1") {
+        api.dispatch(searchSlice.actions.window(true));
+      }
+    });
+  },
+});
 
 // search
 searchController.startListening({
