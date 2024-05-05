@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { paymentSlice } from "../../payment/payment_slice";
+import { paymentSlice } from "../payment/payment_slice";
 
-function App() {
+export default function PremiumWindow() {
   const dispatch = useDispatch();
 
   const handlePay = () => {
@@ -13,7 +13,7 @@ function App() {
   };
 
   return (
-    <div className="bg-gray-100 font-sans">
+    <div className="min-w-[100%] min-h-[100%] bg-gray-100 font-sans">
       <section className="bg-blue-100 py-16">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl font-semibold text-gray-800 mb-4">
@@ -82,5 +82,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
