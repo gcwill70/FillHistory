@@ -11,6 +11,17 @@ const repo = new HistoryRepo(new HistoryApiChrome());
 searchController.startListening({
   actionCreator: lifecycleSlice.actions.initStart,
   effect: (action, api) => {
+    chrome.runtime.onInstalled.addListener((details) => {
+      api.dispatch(searchSlice.actions.reset());
+      chrome.contextMenus.remove("fh-1");
+      chrome.contextMenus.create({
+        title: "Search Links",
+        contexts: ["all"],
+        type: "normal",
+        id: "fh-1",
+        visible: true,
+      });
+    });
     chrome.contextMenus.onClicked.addListener((info, tab) => {
       if (info.menuItemId === "fh-1") {
         api.dispatch(searchSlice.actions.window(true));

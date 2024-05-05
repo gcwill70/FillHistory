@@ -11,6 +11,9 @@ commandsController.startListening({
     chrome.commands.onCommand.addListener(async function(command) {
       api.dispatch(commandsSlice.actions.command(command));
     });
+    chrome.runtime.onConnect.addListener((port) => {
+      api.dispatch(commandsSlice.actions.getCommands());
+    });
   },
 });
 
