@@ -16,6 +16,7 @@ import paymentController from "../../payment-content/payment_controller";
 import { paymentSlice } from "../../payment/payment_slice";
 import { searchSlice } from "../../search/search_slice";
 import { tabsSlice } from "../../tabs/tabs_slice";
+import { premiumSlice } from "../../premium/premium_slice";
 
 const contentReducer = combineReducers({
   lifecycle: lifecycleSlice.reducer,
@@ -24,6 +25,7 @@ const contentReducer = combineReducers({
   search: searchSlice.reducer,
   tabs: tabsSlice.reducer,
   payment: paymentSlice.reducer,
+  premium: premiumSlice.reducer,
 });
 
 export type ContentState = ReturnType<typeof contentReducer>;
