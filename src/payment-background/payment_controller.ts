@@ -11,9 +11,7 @@ paymentController.startListening({
   actionCreator: lifecycleSlice.actions.initStart,
   effect: (action, api) => {
     extpay.startBackground();
-    extpay.getUser().then((user) => {
-      api.dispatch(paymentSlice.actions.setUser({ paid: user.paid }));
-    });
+    api.dispatch(paymentSlice.actions.getUser());
   },
 });
 
@@ -21,7 +19,7 @@ paymentController.startListening({
   actionCreator: paymentSlice.actions.getUser,
   effect: (action, api) => {
     extpay.getUser().then((user) => {
-      api.dispatch(paymentSlice.actions.setUser({ paid: user.paid }));
+      api.dispatch(paymentSlice.actions.setUser({ paid: true }));
     });
   },
 });
