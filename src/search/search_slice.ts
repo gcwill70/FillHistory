@@ -26,6 +26,7 @@ export const searchSlice = createSlice({
     queryDone(state, action: PayloadAction<SearchItem[]>) {
       state.items = action.payload;
       state.status = "idle";
+      state.selected = 0;
     },
     queryError(state) {
       state.status = "error";
@@ -36,9 +37,6 @@ export const searchSlice = createSlice({
       } else {
         state.window.show = !state.window.show;
       }
-    },
-    selectionReset(state) {
-      state.selected = 0;
     },
     selectionIncrement(state) {
       if (state.items.length > 0) {
