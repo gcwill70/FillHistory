@@ -6,8 +6,8 @@ import {
 } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import { ActionType } from "typesafe-actions";
-import commandsController from "../../commands-popup/commands_controller";
-import { commandsSlice } from "../../commands/commands_slice";
+import commandController from "../../command-popup/command_controller";
+import { commandSlice } from "../../command/command_slice";
 import lifecycleController from "../../lifecycle-popup/lifecycle_controller";
 import messageController from "../../message/message_controller";
 import { messageSlice } from "../../message/message_slice";
@@ -20,7 +20,7 @@ import { lifecycleSlice } from "../../lifecycle-popup/lifecycle_slice";
 const reducer = combineReducers({
   lifecycle: lifecycleSlice.reducer,
   message: messageSlice.reducer,
-  commands: commandsSlice.reducer,
+  commands: commandSlice.reducer,
   search: searchSlice.reducer,
   tabs: tabsSlice.reducer,
   payment: paymentSlice.reducer,
@@ -31,7 +31,7 @@ export type PopupState = ReturnType<typeof reducer>;
 export type PopupAction =
   | AnyAction
   | ActionType<typeof lifecycleSlice.actions>
-  | ActionType<typeof commandsSlice.actions>
+  | ActionType<typeof commandSlice.actions>
   | ActionType<typeof searchSlice.actions>
   | ActionType<typeof lifecycleSlice.actions>
   | ActionType<typeof tabsSlice.actions>;
@@ -49,7 +49,7 @@ export function createStore(
         logger,
         lifecycleController.middleware,
         messageController.middleware,
-        commandsController.middleware
+        commandController.middleware
       ),
   });
 

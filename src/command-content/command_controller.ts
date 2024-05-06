@@ -1,11 +1,11 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { commandsSlice } from "../commands/commands_slice";
+import { commandSlice } from "../command/command_slice";
 import { searchSlice } from "../search/search_slice";
 
-const commandsController = createListenerMiddleware();
+const commandController = createListenerMiddleware();
 
-commandsController.startListening({
-  actionCreator: commandsSlice.actions.command,
+commandController.startListening({
+  actionCreator: commandSlice.actions.command,
   effect: (action, api) => {
     if (action.payload === "search") {
       api.dispatch(searchSlice.actions.window());
@@ -13,4 +13,4 @@ commandsController.startListening({
   },
 });
 
-export default commandsController;
+export default commandController;

@@ -18,7 +18,7 @@ https://github.com/gcwill70/FillHistory/assets/25019832/026d6cbc-8c6e-4dc4-b2fc-
 
 # Architecture
 
-## `src/commands`
+## `src/command`
 Stores and updates current command keyboard shortcuts.
 
 ## `src/extension/background`

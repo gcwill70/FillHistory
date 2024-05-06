@@ -1,35 +1,35 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
-import { commandsSlice } from "../commands/commands_slice";
+import { commandSlice } from "../command/command_slice";
 
-const commandsController = createListenerMiddleware();
+const commandController = createListenerMiddleware();
 
 // init
-commandsController.startListening({
+commandController.startListening({
   actionCreator: lifecycleSlice.actions.initStart,
   effect: (action, api) => {
     chrome.commands.onCommand.addListener(async function(command) {
-      api.dispatch(commandsSlice.actions.command(command));
+      api.dispatch(commandSlice.actions.command(command));
     });
     chrome.runtime.onConnect.addListener((port) => {
-      api.dispatch(commandsSlice.actions.getCommands());
+      api.dispatch(commandSlice.actions.getCommands());
     });
   },
 });
 
 // get all
-commandsController.startListening({
-  actionCreator: commandsSlice.actions.getCommands,
+commandController.startListening({
+  actionCreator: commandSlice.actions.getCommands,
   effect: (action, api) => {
     chrome.commands.getAll(function(commands) {
-      api.dispatch(commandsSlice.actions.setCommands({ commands: commands }));
+      api.dispatch(commandSlice.actions.setCommands({ commands: commands }));
     });
   },
 });
 
 // context menu
-commandsController.startListening({
-  actionCreator: commandsSlice.actions.setCommands,
+commandController.startListening({
+  actionCreator: commandSlice.actions.setCommands,
   effect: (action, api) => {
     const shortcut = action.payload.commands.find(
       (command) => command.name == "search"
@@ -42,4 +42,4 @@ commandsController.startListening({
   },
 });
 
-export default commandsController;
+export default commandController;

@@ -7,8 +7,8 @@ import {
 import logger from "redux-logger";
 import { ActionType } from "typesafe-actions";
 import activeElementController from "../../active-element-content/active_element_controller";
-import commandsController from "../../commands-content/commands_controller";
-import { commandsSlice } from "../../commands/commands_slice";
+import commandController from "../../command-content/command_controller";
+import { commandSlice } from "../../command/command_slice";
 import lifecycleController from "../../lifecycle-content/lifecycle_controller";
 import { lifecycleSlice } from "../../lifecycle-content/lifecycle_slice";
 import messageController from "../../message/message_controller";
@@ -23,7 +23,7 @@ import { tabsSlice } from "../../tabs/tabs_slice";
 const contentReducer = combineReducers({
   lifecycle: lifecycleSlice.reducer,
   message: messageSlice.reducer,
-  commands: commandsSlice.reducer,
+  commands: commandSlice.reducer,
   search: searchSlice.reducer,
   tabs: tabsSlice.reducer,
   payment: paymentSlice.reducer,
@@ -34,7 +34,7 @@ export type ContentState = ReturnType<typeof contentReducer>;
 export type ContentAction =
   | AnyAction
   | ActionType<typeof lifecycleSlice.actions>
-  | ActionType<typeof commandsSlice.actions>
+  | ActionType<typeof commandSlice.actions>
   | ActionType<typeof searchSlice.actions>
   | ActionType<typeof lifecycleSlice.actions>
   | ActionType<typeof tabsSlice.actions>;
@@ -52,7 +52,7 @@ export function createStore(
         logger,
         lifecycleController.middleware,
         messageController.middleware,
-        commandsController.middleware,
+        commandController.middleware,
         activeElementController.middleware,
         searchController.middleware,
         paymentController.middleware

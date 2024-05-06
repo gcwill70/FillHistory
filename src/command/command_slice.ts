@@ -13,8 +13,8 @@ const initial: CommandsState = {
   commands: [],
 };
 
-export const commandsSlice = createSlice({
-  name: "message/commands",
+export const commandSlice = createSlice({
+  name: "message/command",
   initialState: initial,
   reducers: {
     command(state, action: PayloadAction<string>) {},
