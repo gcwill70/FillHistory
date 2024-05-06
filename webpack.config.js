@@ -3,7 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
-const devMode = !(process.env.NODE_ENV === "production");
+const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   mode: devMode ? "development" : "production",
@@ -12,7 +12,7 @@ module.exports = {
     content: path.resolve(__dirname, "src/extension/content/index.tsx"),
     popup: path.resolve(__dirname, "src/extension/popup/index.tsx"),
     background: path.resolve(__dirname, "src/extension/background/index.ts"),
-    premium: path.resolve(__dirname, "src/premium/popup/index.tsx"),
+    premium: path.resolve(__dirname, "src/extension/premium/index.tsx"),
   },
   output: {
     path: path.join(__dirname, "dist"),

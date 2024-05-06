@@ -5,7 +5,7 @@ export interface PremiumState {}
 const initial: PremiumState = {};
 
 export const premiumSlice = createSlice({
-  name: "premium",
+  name: "message/premium",
   initialState: initial,
   reducers: {
     openPage(state) {},

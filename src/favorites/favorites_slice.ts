@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SearchItem } from "../search/model/search_item";
+import { SearchItem } from "../search/search.types";
 
 export type FavoritesState = {
   items: SearchItem[];

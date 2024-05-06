@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { SearchItem, SearchQuery } from ".";
+import { SearchItem, SearchQuery } from "./search.types";
 
 export type SearchState = {
   items: SearchItem[];
@@ -16,7 +16,7 @@ const initial: SearchState = {
 };
 
 export const searchSlice = createSlice({
-  name: "search",
+  name: "message/search",
   initialState: initial,
   reducers: {
     reset(state) {},

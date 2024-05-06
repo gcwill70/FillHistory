@@ -2,22 +2,39 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "npm - build:dev",
+      "label": "npm build:dev",
       "type": "npm",
       "script": "build:dev"
     },
     {
-      "label": "npm - build:prod",
+      "label": "npm build:prod",
       "type": "npm",
       "script": "build:prod"
     },
     {
-      "type": "shell",
       "label": "zip",
+      "type": "shell",
       "command": "zip",
-      "dependsOn": "npm - build:prod",
+      "dependsOn": "npm build:prod",
       "args": ["-r", "~/Downloads/FillHistory-${input:version}.zip", "dist/"],
       "problemMatcher": []
+    },
+    {
+      "label": "launch chrome",
+      "type": "shell",
+      "dependsOn": "npm build:dev",
+      "command": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "args": [
+        "--remote-debugging-port=9222",
+        "--user-data-dir=/tmp/chrome-dev-profile",
+        // "--no-first-run",
+        "--load-extension=${workspaceFolder}/dist",
+        "--reload-extension=${workspaceFolder}/dist",
+        "--auto-open-devtools-for-tabs",
+        "--new-tab",
+        "https://boards.greenhouse.io/affirm/jobs/5937979003",
+      ],
+      "problemMatcher": [],
     }
   ],
   "inputs": [

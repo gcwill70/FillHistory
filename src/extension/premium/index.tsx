@@ -1,9 +1,9 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
+import PremiumWindow from "../../premium-window/PremiumWindow";
+import { createStore } from "../content/store";
 import { lifecycleSlice } from "../../lifecycle-content/lifecycle_slice";
-import App from "./App";
-import { createStore } from "./store";
+import { Provider } from "react-redux";
 
 (async () => {
   const store = createStore();
@@ -11,16 +11,14 @@ import { createStore } from "./store";
 
   // create UI root
   const root = document.createElement("div");
-  root.className = "fh-content";
-  root.style.all = "initial";
   createRoot(root).render(
     <Provider store={store}>
       <React.StrictMode>
-        <App />
+        <PremiumWindow />
       </React.StrictMode>
     </Provider>
   );
 
   // inject into page
-  document.body.appendChild(root);
+  document.getElementById("fh-premium")!.appendChild(root);
 })();

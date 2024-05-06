@@ -1,5 +1,5 @@
+import { Tab } from './tab';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Tab } from ".";
 
 export interface SetTabPayload {
   tab: Tab;
@@ -16,7 +16,7 @@ const initial: TabsState = {
 };
 
 export const tabsSlice = createSlice({
-  name: "tabs",
+  name: "message/tabs",
   initialState: initial,
   reducers: {
     setTab(state, action: PayloadAction<SetTabPayload>) {

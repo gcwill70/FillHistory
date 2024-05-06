@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { User } from "./model";
+import { User } from "./payment.types";
 
 export interface PaymentState {
   user: User;
@@ -12,10 +12,9 @@ const initial: PaymentState = {
 };
 
 export const paymentSlice = createSlice({
-  name: "payment",
+  name: "message/payment",
   initialState: initial,
   reducers: {
-    setup(state) {},
     getUser(state) {},
     setUser(state, action: PayloadAction<User>) {
       state.user = action.payload;
