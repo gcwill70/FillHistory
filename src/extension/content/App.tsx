@@ -1,8 +1,14 @@
 import SearchWindow from "../../search-content/search_window";
 
+const appStyle: React.CSSProperties = {
+  fontFamily: "Arial, sans-serif",
+  backgroundColor: "#f6f8fa",
+  color: "#333",
+};
+
 export default function App() {
   return (
-    <div className="font-[Arial, sans-serif] bg-[#f6f8fa] color-[#333]">
+    <div style={appStyle}>
       <SearchWindow />
     </div>
   );

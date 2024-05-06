@@ -1,8 +1,10 @@
-import CommandsView from "../../commands-content/commands_view";
+import CommandsView from "../../commands-content/CommandsView";
 
 const appStyle: React.CSSProperties = {
   fontFamily: "Arial, sans-serif",
+  backgroundColor: "#f6f8fa",
   color: "#333",
+  padding: "10px",
 };
 
 export default function App() {
