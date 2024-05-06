@@ -1,11 +1,10 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { searchSlice } from "../search/search_slice";
-import HistoryRepo from "../history/history_repo";
 import HistoryApiChrome from "../history/history_api_chrome";
 import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
 
 const searchController = createListenerMiddleware();
-const repo = new HistoryRepo(new HistoryApiChrome());
+const repo = new HistoryApiChrome();
 
 // context menu
 searchController.startListening({
@@ -42,7 +41,6 @@ searchController.startListening({
           results = await repo.filter(results);
         }
         api.dispatch(searchSlice.actions.queryDone(results));
-        api.dispatch(searchSlice.actions.selectionReset());
       } catch (e) {
         api.dispatch(searchSlice.actions.queryError());
       }
