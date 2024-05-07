@@ -16,6 +16,8 @@ import paymentController from "../../payment-background/payment_controller";
 import { paymentSlice } from "../../payment/payment_slice";
 import premiumController from "../../premium-background/premium_controller";
 import { premiumSlice } from "../../premium/premium_slice";
+import persistController from "../../presist/persist_controller";
+import { persistSlice } from "../../presist/persist_slice";
 import searchController from "../../search-background/search_controller";
 import { searchSlice } from "../../search/search_slice";
 import tabController from "../../tabs-background/tab_controller";
@@ -23,6 +25,7 @@ import { tabsSlice } from "../../tabs/tabs_slice";
 
 const reducer = combineReducers({
   lifecycle: lifecycleSlice.reducer,
+  persist: persistSlice.reducer,
   message: messageSlice.reducer,
   commands: commandSlice.reducer,
   search: searchSlice.reducer,
@@ -55,6 +58,7 @@ export function createStore(
         def().concat(
           logger,
           lifecycleController.middleware,
+          persistController.middleware,
           messageController.middleware,
           searchController.middleware,
           tabController.middleware,
