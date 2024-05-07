@@ -21,6 +21,17 @@ lifecycleController.startListening({
   },
 });
 
+// deinit event
+lifecycleController.startListening({
+  actionCreator: lifecycleSlice.actions.initStart,
+  effect: async (action, api) => {
+    chrome.runtime.onSuspend.addListener(() => {
+      console.debug("onSuspend");
+      api.dispatch(lifecycleSlice.actions.deinitStart());
+    });
+  },
+});
+
 // deinit
 lifecycleController.startListening({
   predicate: (action) => action.type.startsWith("lifecycle/deinit"),
