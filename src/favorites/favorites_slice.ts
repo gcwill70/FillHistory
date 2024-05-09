@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SearchItem } from "../search/search.types";
+import { remove } from "../utils/array";
+
+export type FavoriteItem = {
+  url?: string;
+};
 
 export type FavoritesState = {
-  items: SearchItem[];
+  items: FavoriteItem[];
 };
 
 const initial: FavoritesState = {
@@ -12,5 +16,15 @@ const initial: FavoritesState = {
 export const favoritesSlice = createSlice({
   name: "favorites",
   initialState: initial,
-  reducers: {},
+  reducers: {
+    add: (state, action) => {
+      state.items.push(action.payload);
+    },
+    remove: (state, action) => {
+      remove(state.items, action.payload);
+    },
+    restore: (state, action) => {
+      state.items = action.payload;
+    },
+  },
 });
