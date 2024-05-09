@@ -7,7 +7,7 @@ const persistController = createListenerMiddleware();
 
 // save
 persistController.startListening({
-  actionCreator: persistSlice.actions.restore,
+  actionCreator: persistSlice.actions.save,
   effect: async (action, api) => {
     const state = api.getState();
     await chrome.storage.local.set({ state });
