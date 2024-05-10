@@ -1,10 +1,11 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { searchSlice } from "../search/search_slice";
 import HistoryApiChrome from "../history/history_api_chrome";
 import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
+import SearchApi from "../search/search_api";
+import { searchSlice } from "../search/search_slice";
 
 const searchController = createListenerMiddleware();
-const repo = new HistoryApiChrome();
+const repo = new SearchApi(new HistoryApiChrome());
 
 // context menu
 searchController.startListening({
