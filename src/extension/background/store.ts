@@ -8,6 +8,7 @@ import logger from "redux-logger";
 import { ActionType } from "typesafe-actions";
 import commandController from "../../command-background/command_controller";
 import { commandSlice } from "../../command/command_slice";
+import { favoritesSlice } from "../../favorites/favorites_slice";
 import lifecycleController from "../../lifecycle-background/lifecycle_controller";
 import { lifecycleSlice } from "../../lifecycle-background/lifecycle_slice";
 import messageController from "../../message/message_controller";
@@ -32,6 +33,7 @@ const reducer = combineReducers({
   tabs: tabsSlice.reducer,
   payment: paymentSlice.reducer,
   premium: premiumSlice.reducer,
+  favorites: favoritesSlice.reducer,
 });
 
 export type BackgroundState = ReturnType<typeof reducer>;

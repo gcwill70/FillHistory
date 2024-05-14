@@ -9,6 +9,7 @@ import { ActionType } from "typesafe-actions";
 import activeElementController from "../../active-element-content/active_element_controller";
 import commandController from "../../command-content/command_controller";
 import { commandSlice } from "../../command/command_slice";
+import { favoritesSlice } from "../../favorites/favorites_slice";
 import lifecycleController from "../../lifecycle-content/lifecycle_controller";
 import { lifecycleSlice } from "../../lifecycle-content/lifecycle_slice";
 import messageController from "../../message/message_controller";
@@ -28,6 +29,7 @@ const reducer = combineReducers({
   tabs: tabsSlice.reducer,
   payment: paymentSlice.reducer,
   premium: premiumSlice.reducer,
+  favorites: favoritesSlice.reducer,
 });
 
 export type ContentState = ReturnType<typeof reducer>;
