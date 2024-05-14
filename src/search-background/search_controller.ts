@@ -1,11 +1,12 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
+import FavoritesApi from "../favorites/favorites_api";
 import HistoryApiChrome from "../history/history_api_chrome";
 import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
 import SearchApi from "../search/search_api";
 import { searchSlice } from "../search/search_slice";
 
 const searchController = createListenerMiddleware();
-const repo = new SearchApi(new HistoryApiChrome());
+const searchApi = new SearchApi(new HistoryApiChrome(), new FavoritesApi());
 
 // context menu
 searchController.startListening({
@@ -33,19 +34,26 @@ searchController.startListening({
 // search
 searchController.startListening({
   actionCreator: searchSlice.actions.queryStart,
-  effect: (action, api) => {
-    (async () => {
-      try {
-        const state: any = api.getState();
-        let results = await repo.search({ ...action.payload });
-        if (state.payment.user.paid) {
-          results = await repo.filter(results);
-        }
-        api.dispatch(searchSlice.actions.queryDone(results));
-      } catch (e) {
-        api.dispatch(searchSlice.actions.queryError());
+  effect: async (action, api) => {
+    try {
+      const state: any = api.getState();
+      let items = [];
+      // search
+      let { favorites, history } = await searchApi.search({
+        ...action.payload,
+      });
+      items = [...favorites, ...history];
+      // sort
+      if (state.payment.user.paid) {
+        let { items: _favorites } = await searchApi.sort({ items: favorites });
+        let { items: _history } = await searchApi.sort({ items: history });
+        items = [..._favorites, ..._history];
       }
-    })();
+      // dispatch
+      api.dispatch(searchSlice.actions.queryDone(items));
+    } catch (e) {
+      api.dispatch(searchSlice.actions.queryError());
+    }
   },
 });
 

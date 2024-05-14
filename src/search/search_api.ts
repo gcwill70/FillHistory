@@ -1,49 +1,51 @@
-import { SearchItem, SearchQuery } from "./search.types";
-import { remove } from "../utils/array";
+import FavoritesApi from "../favorites/favorites_api";
 import HistoryApi from "../history/history_api";
+import { remove } from "../utils/array";
+import { SearchItem, SearchQuery, SearchResult, SortGroup, SortQuery, SortResult } from "./search.types";
 
 export default class SearchApi {
-  historyApi: HistoryApi;
+  historyApi?: HistoryApi;
+  favoritesApi?: FavoritesApi;
 
-  constructor(historyApi: HistoryApi) {
+  constructor(historyApi?: HistoryApi, favoritesApi?: FavoritesApi) {
     this.historyApi = historyApi;
+    this.favoritesApi = favoritesApi;
   }
 
-  search(query: SearchQuery): Promise<SearchItem[]> {
-    return this.historyApi.search(query);
+  async search(query: SearchQuery): Promise<SearchResult> {
+    const favorites = await this.favoritesApi?.search(query) ?? [];
+    const history = await this.historyApi?.search(query) ?? [];
+    return { favorites, history };
   }
 
-  async filter(items: SearchItem[]): Promise<SearchItem[]> {
+  async sort(query: SortQuery): Promise<SortResult> {
+    const { items } = query;
     // group by domain
-    const domains: {
-      domain: string;
-      count: number;
-      items: SearchItem[];
-    }[] = [];
+    const groups: SortGroup[] = [];
     for (const item of items) {
       if (item.url) {
         const count = item.visitCount ?? 0;
         const domain = new URL(item.url).hostname;
-        const existing = domains.find((d) => d.domain === domain);
+        const existing = groups.find((d) => d.domain === domain);
         if (existing) {
           existing.items.push(item);
           existing.count += count;
         } else {
-          domains.push({ domain, items: [item], count: count });
+          groups.push({ domain, items: [item], count: count });
         }
       }
     }
     // sort domains by visit count
-    domains.sort((a, b) => b.count - a.count);
+    groups.sort((a, b) => b.count - a.count);
     // select best candidates from each domain
     const best: SearchItem[] = [];
-    for (const { items: _items, count: count } of domains) {
+    for (const { items: _items, count: count } of groups) {
       this.select(this.selectShortest, best, _items, items);
       this.select(this.selectMostVisited, best, _items, items);
       this.select(this.selectMostRecent, best, _items, items);
     }
 
-    return [...best, ...items];
+    return {items: [...best, ...items]};
   }
 
   select(

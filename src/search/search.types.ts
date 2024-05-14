@@ -23,3 +23,22 @@ export interface SearchItem {
   /** The unique identifier for the item. */
   id: string;
 }
+
+export interface SearchResult {
+  favorites: SearchItem[];
+  history: SearchItem[];
+}
+
+export interface SortQuery {
+  items: SearchItem[];
+}
+
+export interface SortGroup {
+  domain: string;
+  count: number;
+  items: SearchItem[];
+}
+
+export interface SortResult {
+  items: SearchItem[];
+}

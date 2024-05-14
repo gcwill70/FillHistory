@@ -20,7 +20,7 @@ import searchController from "../../search-content/search_controller";
 import { searchSlice } from "../../search/search_slice";
 import { tabsSlice } from "../../tabs/tabs_slice";
 
-const contentReducer = combineReducers({
+const reducer = combineReducers({
   lifecycle: lifecycleSlice.reducer,
   message: messageSlice.reducer,
   commands: commandSlice.reducer,
@@ -30,7 +30,7 @@ const contentReducer = combineReducers({
   premium: premiumSlice.reducer,
 });
 
-export type ContentState = ReturnType<typeof contentReducer>;
+export type ContentState = ReturnType<typeof reducer>;
 export type ContentAction =
   | AnyAction
   | ActionType<typeof lifecycleSlice.actions>
@@ -40,12 +40,12 @@ export type ContentAction =
   | ActionType<typeof tabsSlice.actions>;
 
 export function createStore(
-  preloadedState: ContentState = contentReducer(undefined, {
+  preloadedState: ContentState = reducer(undefined, {
     type: "lifecycle",
   })
 ) {
   const store = configureStore<ContentState, ContentAction, Middleware[]>({
-    reducer: contentReducer,
+    reducer: reducer,
     preloadedState: preloadedState,
     middleware: (def) =>
       def().concat(
