@@ -13,7 +13,6 @@ searchController.startListening({
   actionCreator: lifecycleSlice.actions.initStart,
   effect: (action, api) => {
     chrome.runtime.onInstalled.addListener((details) => {
-      api.dispatch(searchSlice.actions.reset());
       chrome.contextMenus.remove("fh-1");
       chrome.contextMenus.create({
         title: "Search Links",

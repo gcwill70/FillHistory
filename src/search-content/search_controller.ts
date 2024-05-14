@@ -23,6 +23,7 @@ searchController.startListening({
         }
       }
     });
+    api.dispatch(searchSlice.actions.reset());
   },
 });
 
