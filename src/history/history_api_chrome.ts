@@ -1,8 +1,8 @@
-import { SearchItem, SearchQuery } from "../search/search.types";
+import { HistoryItem, HistoryQuery } from "./history.types";
 import HistoryApi from "./history_api";
 
 export default class HistoryApiChrome extends HistoryApi {
-  async search(query: SearchQuery): Promise<SearchItem[]> {
+  async search(query: HistoryQuery): Promise<HistoryItem[]> {
     const results = await chrome.history.search({ ...query });
     return results.map((item) => ({ ...item }));
   }
