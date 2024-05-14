@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { remove } from "../utils/array";
-
-export type FavoriteItem = {
-  url?: string;
-};
+import { FavoriteItem } from "./favorites.types";
 
 export type FavoritesState = {
   items: FavoriteItem[];
