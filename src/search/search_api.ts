@@ -13,8 +13,9 @@ export default class SearchApi {
   }
 
   async search(query: SearchQuery): Promise<SearchResult> {
-    const favorites = await this.favoritesApi?.search(query) ?? [];
-    const history = await this.historyApi?.search(query) ?? [];
+    const favoritesPromise = this.favoritesApi?.search(query) ?? Promise.resolve([]);
+    const historyPromise = this.historyApi?.search(query) ?? Promise.resolve([]);
+    const [favorites, history] = await Promise.all([favoritesPromise, historyPromise]);
     return { favorites, history };
   }
 
