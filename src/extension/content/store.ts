@@ -41,25 +41,19 @@ export type ContentAction =
   | ActionType<typeof lifecycleSlice.actions>
   | ActionType<typeof tabsSlice.actions>;
 
-export function createStore(
-  preloadedState: ContentState = reducer(undefined, {
+export const store = configureStore<ContentState, ContentAction, Middleware[]>({
+  reducer: reducer,
+  preloadedState: reducer(undefined, {
     type: "lifecycle",
-  })
-) {
-  const store = configureStore<ContentState, ContentAction, Middleware[]>({
-    reducer: reducer,
-    preloadedState: preloadedState,
-    middleware: (def) =>
-      def().concat(
-        logger,
-        lifecycleController.middleware,
-        messageController.middleware,
-        commandController.middleware,
-        activeElementController.middleware,
-        searchController.middleware,
-        paymentController.middleware
-      ),
-  });
-
-  return store;
-}
+  }),
+  middleware: (def) =>
+    def().concat(
+      logger,
+      lifecycleController.middleware,
+      messageController.middleware,
+      commandController.middleware,
+      activeElementController.middleware,
+      searchController.middleware,
+      paymentController.middleware
+    ),
+});

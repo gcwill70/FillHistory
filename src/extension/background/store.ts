@@ -47,31 +47,25 @@ export type BackgroundAction =
   | ActionType<typeof premiumSlice.actions>
   | ActionType<typeof tabsSlice.actions>;
 
-export function createStore(
-  preloadedState: BackgroundState = reducer(undefined, {
+export const store = configureStore<
+  BackgroundState,
+  BackgroundAction,
+  Middleware[]
+>({
+  reducer: reducer,
+  preloadedState: reducer(undefined, {
     type: "lifecycle",
-  })
-) {
-  const store = configureStore<BackgroundState, BackgroundAction, Middleware[]>(
-    {
-      reducer: reducer,
-      preloadedState: preloadedState,
-      middleware: (def) =>
-        def().concat(
-          logger,
-          lifecycleController.middleware,
-          persistController.middleware,
-          messageController.middleware,
-          searchController.middleware,
-          tabController.middleware,
-          commandController.middleware,
-          paymentController.middleware,
-          premiumController.middleware
-        ),
-    }
-  );
-
-  return store;
-}
-
-export type BackgroundStore = ReturnType<typeof createStore>;
+  }),
+  middleware: (def) =>
+    def().concat(
+      logger,
+      lifecycleController.middleware,
+      persistController.middleware,
+      messageController.middleware,
+      searchController.middleware,
+      tabController.middleware,
+      commandController.middleware,
+      paymentController.middleware,
+      premiumController.middleware
+    ),
+});

@@ -1,12 +1,14 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
+import { store } from "../extension/background/store";
 import FavoritesApi from "../favorites/favorites_api";
 import HistoryApiChrome from "../history/history_api_chrome";
 import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
 import SearchApi from "../search/search_api";
 import { searchSlice } from "../search/search_slice";
 
-const searchController = createListenerMiddleware();
 const searchApi = new SearchApi(new HistoryApiChrome(), new FavoritesApi());
+
+const searchController = createListenerMiddleware();
 
 // context menu
 searchController.startListening({
@@ -27,6 +29,7 @@ searchController.startListening({
         api.dispatch(searchSlice.actions.window(true));
       }
     });
+    searchApi.favoritesApi?.init(store);
   },
 });
 

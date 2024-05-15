@@ -3,10 +3,9 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { lifecycleSlice } from "../../lifecycle-content/lifecycle_slice";
 import App from "./App";
-import { createStore } from "./store";
+import { store } from "./store";
 
 (async () => {
-  const store = createStore();
   store.dispatch(lifecycleSlice.actions.initStart());
 
   // create UI root
