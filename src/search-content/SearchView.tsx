@@ -3,31 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { SearchItem } from "../search/search.types";
 import { searchSlice } from "../search/search_slice";
 import { activeElement } from "../active-element-content/active_element_controller";
+import { SearchItemView } from "./SearchItemView";
 
 const resultsListStyle: React.CSSProperties = {
   listStyle: "none",
   padding: "0px",
   margin: "0px",
   flex: "1 1 auto",
-};
-
-const listItemStyle: React.CSSProperties = {
-  padding: "10px",
-  cursor: "pointer",
-  backgroundColor: "#fff",
-  border: "1px solid #ddd",
-  marginBottom: "5px",
-  borderRadius: "3px",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap",
-  transition: "background-color 0.3s ease, color 0.3s ease",
+  flexDirection: "column",
 };
 
 export default function SearchView() {
   const dispatch = useDispatch();
   const { items, selected } = useSelector((state: any) => state.search);
-  const listRef = useRef<HTMLUListElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
 
   const select = (item: SearchItem) => {
     if (activeElement) {
@@ -69,20 +58,16 @@ export default function SearchView() {
   }, [selected]);
 
   return (
-    <ul id="results-list" style={resultsListStyle} ref={listRef}>
+    <div style={resultsListStyle} ref={listRef}>
       {items.map((item: SearchItem, i: number) => (
-        <li
-          key={`results-list-${i}`}
-          style={{
-            ...listItemStyle,
-            backgroundColor: selected === i ? "#007bff" : "#f5f5f5",
-            color: selected === i ? "white" : "black",
-          }}
-          onClick={() => select(item)}
-        >
-          {item.url}
-        </li>
+        <div key={`results-list-${i}`}>
+          <SearchItemView
+            item={item}
+            selected={selected === i}
+            onClick={() => select(item)}
+          />
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
