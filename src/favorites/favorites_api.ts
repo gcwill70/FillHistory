@@ -1,8 +1,15 @@
+import { Store } from "redux";
 import { FavoriteItem, FavoritesQuery } from "./favorites.types";
 
 export default class FavoritesApi {
+  public store?: Store;
+
+  async init(store: Store) {
+    this.store = store;
+  }
+
   async search(query: FavoritesQuery): Promise<FavoriteItem[]> {
-    let filteredFavorites: FavoriteItem[] = [];
+    let filteredFavorites: FavoriteItem[] = this.store?.getState().favorites.items;
 
     if (query.text) {
       const searchText = query.text.toLowerCase();
