@@ -23,18 +23,11 @@ const windowStyle: React.CSSProperties = {
   transform: "translate(-50%, -50%)",
   backgroundColor: "white",
   borderRadius: "8px",
-  boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
   padding: "20px",
-  width: "80%",
-  maxWidth: "1000px",
-  height: "600px",
-  overflowY: "auto",
-};
-
-const containerStyle: React.CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
+  width: "100%",
+  maxWidth: "800px",
   height: "100%",
+  maxHeight: "600px",
 };
 
 const listStyle: React.CSSProperties = {
@@ -67,13 +60,25 @@ export default function SearchWindow() {
       {show && (
         <div style={overlayStyle} onClick={handleOverlayClick}>
           <div style={windowStyle}>
-            <div style={containerStyle}>
-              <SearchForm />
-              <div style={{ marginBottom: "10px" }} />
-              <div style={listStyle}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
+              }}
+            >
+              <div style={{ marginBottom: "10px" }}>
+                <SearchForm />
+              </div>
+              <div
+                style={{
+                  overflowY: "scroll",
+                  marginBottom: "13px",
+                  flex: "1 1 auto",
+                }}
+              >
                 <SearchView />
               </div>
-              <div style={{ marginBottom: "13px" }} />
               <PremiumCtaView />
             </div>
           </div>
