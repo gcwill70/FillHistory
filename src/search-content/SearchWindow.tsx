@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PremiumCtaView from "../premium-content/premium_cta_view";
+import PremiumCtaView from "../premium-content/PremiumCtaView";
 import SearchForm from "./SearchForm";
 import { searchSlice } from "../search/search_slice";
 import SearchView from "./SearchView";
