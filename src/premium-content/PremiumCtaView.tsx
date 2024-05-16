@@ -32,9 +32,9 @@ function PremiumCtaView() {
   ) : (
     <div style={layoutStyle}>
       <p style={textStyle}>
-        Want to save even more keystrokes?{" "}
+        Set favorites and more with{" "}
         <span style={linkStyle} onClick={handleClick}>
-          Get Premium!
+          premium!
         </span>
       </p>
     </div>
