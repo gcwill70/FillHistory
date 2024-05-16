@@ -1,17 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { activeElement } from "../active-element-content/active_element_controller";
 import { SearchItem } from "../search/search.types";
 import { searchSlice } from "../search/search_slice";
-import { activeElement } from "../active-element-content/active_element_controller";
 import { SearchItemView } from "./SearchItemView";
-
-const resultsListStyle: React.CSSProperties = {
-  listStyle: "none",
-  padding: "0px",
-  margin: "0px",
-  flex: "1 1 auto",
-  flexDirection: "column",
-};
 
 export default function SearchView() {
   const dispatch = useDispatch();
@@ -58,9 +50,20 @@ export default function SearchView() {
   }, [selected]);
 
   return (
-    <div style={resultsListStyle} ref={listRef}>
+    <div
+      style={{
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+      ref={listRef}
+    >
       {items.map((item: SearchItem, i: number) => (
-        <div key={`results-list-${i}`}>
+        <div
+          key={`results-list-${i}`}
+          style={{ width: "100%" }}
+        >
           <SearchItemView
             item={item}
             selected={selected === i}

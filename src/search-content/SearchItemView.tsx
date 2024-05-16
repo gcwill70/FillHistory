@@ -6,30 +6,26 @@ export interface SearchItemViewProps {
   onClick?: () => void;
 }
 
-const listItemStyle: React.CSSProperties = {
-  padding: "10px",
-  cursor: "pointer",
-  backgroundColor: "#fff",
-  border: "1px solid #ddd",
-  marginBottom: "5px",
-  borderRadius: "3px",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap",
-  transition: "background-color 0.3s ease, color 0.3s ease",
-};
-
 export const SearchItemView = (props: SearchItemViewProps) => {
   return (
-    <li
+    <div
       style={{
-        ...listItemStyle,
+        padding: "0.25rem 0.25rem",
+        cursor: "pointer",
+        border: "1px solid #ddd",
+        borderRadius: "3px",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        transition: "background-color 0.3s ease, color 0.3s ease",
         backgroundColor: props.selected ? "#007bff" : "#f5f5f5",
-        color: props.selected ? "white" : "black",
       }}
       onClick={() => props.onClick?.()}
     >
-      {props.item.url}
-    </li>
+      <h5 style={{ margin: "0", color: props.selected ? "white" : "black" }}>
+        {props.item.url}
+      </h5>
+      <h6 style={{ margin: "0", color: props.selected ? "#e3e2de" : "gray" }}>{props.item.title}</h6>
+    </div>
   );
 };

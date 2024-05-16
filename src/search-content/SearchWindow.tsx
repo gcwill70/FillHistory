@@ -30,12 +30,6 @@ const windowStyle: React.CSSProperties = {
   maxHeight: "600px",
 };
 
-const listStyle: React.CSSProperties = {
-  flex: "1 1 auto",
-  overflowY: "auto",
-  padding: "5px 0px",
-};
-
 export default function SearchWindow() {
   const show = useSelector((state: any) => state.search.window.show);
   const dispatch = useDispatch();
