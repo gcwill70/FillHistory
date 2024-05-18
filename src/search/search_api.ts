@@ -15,7 +15,8 @@ export default class SearchApi {
   async search(query: SearchQuery): Promise<SearchResult> {
     const favoritesPromise = this.favoritesApi?.search(query) ?? Promise.resolve([]);
     const historyPromise = this.historyApi?.search(query) ?? Promise.resolve([]);
-    const [favorites, history] = await Promise.all([favoritesPromise, historyPromise]);
+    let [favorites, history] = await Promise.all([favoritesPromise, historyPromise]);
+    history = history.filter((h) => !favorites.some((f) => f.url === h.url));
     return { favorites, history };
   }
 
