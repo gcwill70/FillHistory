@@ -1,6 +1,5 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { favoritesSlice } from "../favorites/favorites_slice";
-import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
 import { persistSlice } from "./persist_slice";
 
 const persistController = createListenerMiddleware();
@@ -29,12 +28,6 @@ persistController.startListening({
     if (res.state && res.state.favorites) {
       api.dispatch(favoritesSlice.actions.restore(res.state.favorites.items));
     }
-  },
-});
-persistController.startListening({
-  actionCreator: lifecycleSlice.actions.initStart,
-  effect: async (action, api) => {
-    api.dispatch(persistSlice.actions.restore());
   },
 });
 
