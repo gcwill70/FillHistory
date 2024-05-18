@@ -1,5 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { lifecycleSlice } from "./lifecycle_slice";
+import { persistSlice } from "../persist/persist_slice";
 
 const lifecycleController = createListenerMiddleware();
 
@@ -37,6 +38,13 @@ lifecycleController.startListening({
         api.dispatch(lifecycleSlice.actions.deinitDone());
       }
     }
+  },
+});
+
+lifecycleController.startListening({
+  actionCreator: lifecycleSlice.actions.initStart,
+  effect: async (action, api) => {
+    api.dispatch(persistSlice.actions.sync());
   },
 });
 

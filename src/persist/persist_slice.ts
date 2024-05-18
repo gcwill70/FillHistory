@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const persistSlice = createSlice({
-  name: "persist",
+  name: "message/persist",
   initialState: {},
   reducers: {
-    save(state) {},
-    restore(state) {},
+    save() {},
+    restore() {},
+    sync() {},
   },
 });

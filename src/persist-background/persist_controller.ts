@@ -31,4 +31,14 @@ persistController.startListening({
   },
 });
 
+// sync
+persistController.startListening({
+  actionCreator: persistSlice.actions.sync,
+  effect: async (action, api) => {
+    const state = api.getState() as any;
+    // favorites
+    api.dispatch(favoritesSlice.actions.restore(state.favorites.items));
+  },
+});
+
 export default persistController;
