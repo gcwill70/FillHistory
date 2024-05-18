@@ -54,6 +54,7 @@ searchController.startListening({
       // dispatch
       api.dispatch(searchSlice.actions.queryDone(items));
     } catch (e) {
+      console.error(e);
       api.dispatch(searchSlice.actions.queryError());
     }
   },
@@ -70,6 +71,15 @@ searchController.startListening({
         startTime: new Date("2000-01-01T00:00:00Z").getTime(),
       })
     );
+  },
+});
+searchController.startListening({
+  actionCreator: searchSlice.actions.window,
+  effect: (action, api) => {
+    const state = api.getState() as any;
+    if (state.search.window.show === false) {
+      api.dispatch(searchSlice.actions.reset());
+    }
   },
 });
 
