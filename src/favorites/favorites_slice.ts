@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { remove } from "../utils/array";
 import { FavoriteItem } from "./favorites.types";
 
 export type FavoritesState = {
@@ -18,7 +17,7 @@ export const favoritesSlice = createSlice({
       state.items.push(action.payload);
     },
     remove: (state, action: PayloadAction<FavoriteItem>) => {
-      remove(state.items, action.payload);
+      state.items = state.items.filter((item) => item.id !== action.payload.id);
     },
     restore: (state, action) => {
       state.items = action.payload;
