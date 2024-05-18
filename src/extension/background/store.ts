@@ -18,7 +18,7 @@ import { paymentSlice } from "../../payment/payment_slice";
 import premiumController from "../../premium-background/premium_controller";
 import { premiumSlice } from "../../premium/premium_slice";
 import persistController from "../../persist-background/persist_controller";
-import { persistSlice } from "../../presist/persist_slice";
+import { persistSlice } from "../../persist/persist_slice";
 import searchController from "../../search-background/search_controller";
 import { searchSlice } from "../../search/search_slice";
 import tabController from "../../tabs-background/tab_controller";

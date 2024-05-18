@@ -1,6 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import { favoritesSlice } from "../favorites/favorites_slice";
-import { persistSlice } from "../presist/persist_slice";
+import { persistSlice } from "../persist/persist_slice";
 
 const persistController = createListenerMiddleware();
 

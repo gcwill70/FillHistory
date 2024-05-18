@@ -1,5 +1,5 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { persistSlice } from "../presist/persist_slice";
+import { persistSlice } from "../persist/persist_slice";
 import { lifecycleSlice } from "./lifecycle_slice";
 
 const lifecycleController = createListenerMiddleware();
