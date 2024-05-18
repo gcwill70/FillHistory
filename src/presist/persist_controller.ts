@@ -9,24 +9,14 @@ const persistController = createListenerMiddleware();
 persistController.startListening({
   actionCreator: persistSlice.actions.save,
   effect: async (action, api) => {
-    const state = api.getState();
-    await chrome.storage.local.set({ state });
+    const state = api.getState() as any;
+    await chrome.storage.local.set({ state: { favorites: state.favorites } });
   },
 });
 persistController.startListening({
-  actionCreator: lifecycleSlice.actions.deinitStart,
+  predicate: (action) => action.type.includes("favorites"),
   effect: async (action, api) => {
     api.dispatch(persistSlice.actions.save());
-  },
-});
-persistController.startListening({
-  actionCreator: lifecycleSlice.actions.initStart,
-  effect: async (action, api) => {
-    chrome.runtime.onConnect.addListener((port: chrome.runtime.Port) => {
-      port.onDisconnect.addListener(() => {
-        api.dispatch(persistSlice.actions.save());
-      });
-    });
   },
 });
 
@@ -37,7 +27,7 @@ persistController.startListening({
     const res: Record<string, any> = await chrome.storage.local.get(["state"]);
     // favorites
     if (res.state && res.state.favorites) {
-      api.dispatch(favoritesSlice.actions.restore(res.state.favorites));
+      api.dispatch(favoritesSlice.actions.restore(res.state.favorites.items));
     }
   },
 });
