@@ -17,10 +17,16 @@ paymentController.startListening({
 
 paymentController.startListening({
   actionCreator: paymentSlice.actions.getUser,
+  effect: async (action, api) => {
+    const user = await extpay.getUser();
+    api.dispatch(paymentSlice.actions.setUser({ paid: user.paid }));
+  },
+});
+
+paymentController.startListening({
+  actionCreator: paymentSlice.actions.pay,
   effect: (action, api) => {
-    extpay.getUser().then((user) => {
-      api.dispatch(paymentSlice.actions.setUser({ paid: user.paid }));
-    });
+    api.dispatch(paymentSlice.actions.getUser());
   },
 });
 
