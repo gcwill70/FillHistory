@@ -47,7 +47,7 @@ searchController.startListening({
       items = [...favorites, ...history];
       // sort
       if (state.payment.user.paid) {
-        let { items: _favorites } = await searchApi.sort({ items: favorites });
+        let { items: _favorites } = { items: favorites }; // await searchApi.sort({ items: favorites });
         let { items: _history } = await searchApi.sort({ items: history });
         items = [..._favorites, ..._history];
       }
