@@ -1,3 +1,4 @@
+import { Store } from "redux";
 import FavoritesApi from "../favorites/favorites_api";
 import HistoryApi from "../history/history_api";
 import { remove } from "../utils/array";
@@ -6,6 +7,12 @@ import { SearchItem, SearchQuery, SearchResult, SortGroup, SortQuery, SortResult
 export default class SearchApi {
   historyApi?: HistoryApi;
   favoritesApi?: FavoritesApi;
+  public store?: Store;
+
+  async init(store: Store) {
+    this.store = store;
+    this.favoritesApi?.init(store);
+  }
 
   constructor(historyApi?: HistoryApi, favoritesApi?: FavoritesApi) {
     this.historyApi = historyApi;

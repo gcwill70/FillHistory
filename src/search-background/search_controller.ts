@@ -29,7 +29,7 @@ searchController.startListening({
         api.dispatch(searchSlice.actions.window(true));
       }
     });
-    searchApi.favoritesApi?.init(store);
+    searchApi.init(store);
   },
 });
 
