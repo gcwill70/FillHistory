@@ -9,7 +9,8 @@ export default class FavoritesApi {
   }
 
   async search(query: FavoritesQuery): Promise<FavoriteItem[]> {
-    let filteredFavorites: FavoriteItem[] = this.store?.getState().favorites.items;
+    let filteredFavorites: FavoriteItem[] = this.store?.getState().favorites
+      .items;
 
     if (query.text) {
       const searchText = query.text.toLowerCase();
@@ -18,9 +19,6 @@ export default class FavoritesApi {
           item.title?.toLowerCase().includes(searchText) ||
           item.url?.toLowerCase().includes(searchText)
       );
-    }
-    if (query.maxResults) {
-      filteredFavorites = filteredFavorites.slice(0, query.maxResults);
     }
     if (query.startTime) {
       filteredFavorites = filteredFavorites.filter(
@@ -34,6 +32,9 @@ export default class FavoritesApi {
           item.lastVisitTime &&
           item.lastVisitTime <= (query.endTime ?? Date.now())
       );
+    }
+    if (query.maxResults) {
+      filteredFavorites = filteredFavorites.slice(0, query.maxResults);
     }
 
     return filteredFavorites;
