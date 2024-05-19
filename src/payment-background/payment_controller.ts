@@ -19,7 +19,7 @@ paymentController.startListening({
   actionCreator: paymentSlice.actions.getUser,
   effect: (action, api) => {
     extpay.getUser().then((user) => {
-      api.dispatch(paymentSlice.actions.setUser({ paid: true }));
+      api.dispatch(paymentSlice.actions.setUser({ paid: user.paid }));
     });
   },
 });
