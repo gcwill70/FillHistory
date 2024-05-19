@@ -12,23 +12,14 @@ export interface SearchItemViewProps {
 }
 
 export const SearchItemView = (props: SearchItemViewProps) => {
-  const favorites = useSelector(
-    (state: any) => state.favorites.items,
-    (left, right) => left.length === right.length
-  );
   const dispatch = useDispatch();
-
-  const favorited = useMemo(
-    () => favorites.some((x: SearchItem) => x.url === props.item.url),
-    [favorites]
-  );
 
   const [hovered, setHovered] = useState(false);
 
   const handleFavorite = (e: MouseEvent<any>) => {
     e.preventDefault();
     const _item: FavoriteItem = { ...props.item };
-    if (favorited) {
+    if (props.item.favorited) {
       dispatch(favoritesSlice.actions.remove(_item));
     } else {
       dispatch(favoritesSlice.actions.add(_item));
@@ -56,7 +47,7 @@ export const SearchItemView = (props: SearchItemViewProps) => {
       <FaStar
         size={30}
         style={{
-          color: favorited || hovered ? "#edeb6f" : "#e3e2de",
+          color: props.item.favorited || hovered ? "#edeb6f" : "#e3e2de",
           transition: "color 0.3s ease",
         }}
         onClick={handleFavorite}
