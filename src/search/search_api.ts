@@ -2,7 +2,7 @@ import { Store } from "redux";
 import FavoritesApi from "../favorites/favorites_api";
 import HistoryApi from "../history/history_api";
 import { remove } from "../utils/array";
-import { SearchItem, SearchQuery, SearchResult, SortGroup, SortQuery, SortResult } from "./search.types";
+import { SearchItem, SearchQuery, SearchResult, SortGroup } from "./search.types";
 
 export default class SearchApi {
   historyApi?: HistoryApi;
@@ -20,16 +20,17 @@ export default class SearchApi {
   }
 
   async search(query: SearchQuery): Promise<SearchResult> {
+    // search resources
     const favoritesPromise = this.favoritesApi?.search(query) ?? Promise.resolve([]);
     const historyPromise = this.historyApi?.search(query) ?? Promise.resolve([]);
-    let [favorites, history] = await Promise.all([favoritesPromise, historyPromise]);
-    favorites = favorites.map((x) => ({ ...x, favorited: true }));
-    history = history.filter((x) => !favorites.some((y) => x.url === y.url));
+    const [favoritesData, historyData] = await Promise.all([favoritesPromise, historyPromise]);
+    // convert into SearchItem array
+    const favorites = favoritesData.map<SearchItem>((x) => ({ ...x, favorited: true }));
+    const history = historyData.map<SearchItem>((x) => ({ ...x, favorited: favorites.some((y) => x.url === y.url) }));
     return { favorites, history };
   }
 
-  async sort(query: SortQuery): Promise<SortResult> {
-    const { items } = query;
+  async sort(items: SearchItem[]): Promise<SearchItem[]> {
     // group by domain
     const groups: SortGroup[] = [];
     for (const item of items) {
@@ -55,7 +56,7 @@ export default class SearchApi {
       this.select(this.selectMostRecent, best, _items, items);
     }
 
-    return {items: [...best, ...items]};
+    return [...best, ...items];
   }
 
   select(

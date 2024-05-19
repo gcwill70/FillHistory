@@ -20,16 +20,8 @@ export interface SearchResult {
   history: SearchItem[];
 }
 
-export interface SortQuery {
-  items: SearchItem[];
-}
-
 export interface SortGroup {
   domain: string;
   count: number;
-  items: SearchItem[];
-}
-
-export interface SortResult {
   items: SearchItem[];
 }

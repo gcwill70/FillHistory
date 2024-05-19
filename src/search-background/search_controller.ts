@@ -5,6 +5,7 @@ import HistoryApiChrome from "../history/history_api_chrome";
 import { lifecycleSlice } from "../lifecycle-background/lifecycle_slice";
 import SearchApi from "../search/search_api";
 import { searchSlice } from "../search/search_slice";
+import { SearchItem } from "../search/search.types";
 
 const searchApi = new SearchApi(new HistoryApiChrome(), new FavoritesApi());
 
@@ -39,17 +40,21 @@ searchController.startListening({
   effect: async (action, api) => {
     try {
       const state: any = api.getState();
-      let items = [];
+      let items: SearchItem[] = [];
       // search
-      let { favorites, history } = await searchApi.search({
-        ...action.payload,
-      });
-      items = [...favorites, ...history];
-      // sort
+      let { favorites, history } = await searchApi.search(action.payload);
+      // filter & sort
       if (state.payment.user.paid) {
-        let { items: _favorites } = { items: favorites }; // await searchApi.sort({ items: favorites });
-        let { items: _history } = await searchApi.sort({ items: history });
-        items = [..._favorites, ..._history];
+        // filter out favorites from history
+        history = history.filter(
+          (x) => !favorites.some((y) => x.url === y.url)
+        );
+        // sort
+        history = await searchApi.sort(history);
+        items = [...favorites, ...history];
+      } else {
+        // just show history
+        items = [...history];
       }
       // dispatch
       api.dispatch(searchSlice.actions.queryDone(items));
