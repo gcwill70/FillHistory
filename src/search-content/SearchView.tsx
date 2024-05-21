@@ -1,13 +1,22 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { activeElement } from "../active-element-content/active_element_controller";
+import { ContentState } from "../extension/content/store";
 import { SearchItem } from "../search/search.types";
 import { searchSlice } from "../search/search_slice";
 import { SearchItemView } from "./SearchItemView";
 
 export default function SearchView() {
   const dispatch = useDispatch();
-  const { items, selected } = useSelector((state: any) => state.search);
+  const {
+    search: { items, selected },
+  } = useSelector(
+    (state: ContentState) => state,
+    (l, r) =>
+      l.search.items.length === r.search.items.length &&
+      l.search.selected === r.search.selected &&
+      l.favorites.items.length === r.favorites.items.length
+  );
   const listRef = useRef<HTMLDivElement | null>(null);
 
   const select = (item: SearchItem) => {
@@ -60,10 +69,7 @@ export default function SearchView() {
       ref={listRef}
     >
       {items.map((item: SearchItem, i: number) => (
-        <div
-          key={`results-list-${i}`}
-          style={{ width: "100%" }}
-        >
+        <div key={`search-item-${i}`} style={{ width: "100%" }}>
           <SearchItemView
             item={item}
             selected={selected === i}

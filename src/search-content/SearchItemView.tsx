@@ -1,7 +1,6 @@
-import { MouseEvent, useMemo, useState } from "react";
+import { MouseEvent, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { FavoriteItem } from "../favorites/favorites.types";
+import { useDispatch } from "react-redux";
 import { favoritesSlice } from "../favorites/favorites_slice";
 import { SearchItem } from "../search/search.types";
 
@@ -14,16 +13,15 @@ export interface SearchItemViewProps {
 export const SearchItemView = (props: SearchItemViewProps) => {
   const dispatch = useDispatch();
 
-  const [hovered, setHovered] = useState(false);
-
+  const [favorited, setFavorited] = useState(props.item.favorited);
   const handleFavorite = (e: MouseEvent<any>) => {
     e.preventDefault();
-    const _item: FavoriteItem = { ...props.item };
-    if (props.item.favorited) {
-      dispatch(favoritesSlice.actions.remove(_item));
+    if (favorited) {
+      dispatch(favoritesSlice.actions.remove({ ...props.item }));
     } else {
-      dispatch(favoritesSlice.actions.add(_item));
+      dispatch(favoritesSlice.actions.add({ ...props.item }));
     }
+    setFavorited(!favorited);
   };
 
   return (
@@ -47,12 +45,10 @@ export const SearchItemView = (props: SearchItemViewProps) => {
       <FaStar
         size={30}
         style={{
-          color: props.item.favorited || hovered ? "#edeb6f" : "#e3e2de",
+          color: favorited ? "#edeb6f" : "#e3e2de",
           transition: "color 0.3s ease",
         }}
         onClick={handleFavorite}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
       />
       <div style={{ flex: "1 1 auto" }} onClick={() => props.onClick?.()}>
         <h4 style={{ margin: "0", color: props.selected ? "white" : "black" }}>
