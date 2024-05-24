@@ -32,7 +32,7 @@ function PremiumCtaView() {
   ) : (
     <div style={layoutStyle}>
       <p style={textStyle}>
-        Set favorites and more with{" "}
+        Quickly access favorites and more with{" "}
         <span style={linkStyle} onClick={handleClick}>
           premium!
         </span>
